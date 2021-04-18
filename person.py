@@ -12,7 +12,7 @@ MONEY = 'money'
 
 
 #DATAPATH = 'data.json'
-DATAPATH = '/home/pi/jt/data.json'
+DATAPATH = 'C:/Users/poepp/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/data.json'
 
 
 def init():
@@ -58,14 +58,12 @@ def rfidExists(rfid):
     for i in data[RFID]:
         if i[RFID] == rfid:
             return True
-            break
 
 def nameExists(name):
     data = getdata()
     for i in data[PEOPLE]:
         if i[NAME] == name:
             return True
-            break
 
 def addNameRFID(name, rfid):
     rfid = str(rfid)
@@ -90,7 +88,6 @@ def getName(rfid):
     for i in data[PEOPLE]:
         if i[RFID] == rfid:
             return i[NAME]
-            break
     return 'NoName'
 
 def getRFID(name):
@@ -99,7 +96,6 @@ def getRFID(name):
     for i in data[PEOPLE]:
         if i[NAME] == name:
             return i[RFID]
-            break
     return 'NoRfid'
 
 def lastSeen(rfid):
@@ -108,7 +104,6 @@ def lastSeen(rfid):
     for i in data[PEOPLE]:
         if i[RFID] == rfid:
             return i[SEEN]
-            break
     return 'NotFound'
 
 
