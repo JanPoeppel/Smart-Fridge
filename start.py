@@ -1,3 +1,9 @@
+"""
+start.py
+====================================
+The core module of my example project
+"""
+
 import gui
 import person
 import logging
@@ -7,7 +13,7 @@ import time
 import rfid
 
 #LOGPATH = 'log.json'
-LOGPATH = '/home/pi/jt/log.json'
+LOGPATH = 'C:/Users/poepp/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/log.json'
 
 def start():
 	"""

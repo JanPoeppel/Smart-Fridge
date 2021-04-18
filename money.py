@@ -10,7 +10,7 @@ MONEY = "money"
 PEOPLE = 'people'
 
 #DATAPATH = 'data.json'
-DATAPATH = '/home/pi/jt/data.json'
+DATAPATH = 'C:/Users/poepp/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/data.json'
 
 
 def init():

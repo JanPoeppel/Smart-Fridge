@@ -1,7 +1,7 @@
 Simple Test Documentation!
 ================================
 
-.. image:: https://raw.githubusercontent.com/JanPoeppel/Test/main/images/test.jpg
+.. image:: https://raw.githubusercontent.com/JanPoeppel/Smart-Fridge/main/images/test.png
   :width: 400
   :alt: Alternative text
 
@@ -12,6 +12,7 @@ Guide
    :caption: Contents:
    
    modules
+
 
 
 
