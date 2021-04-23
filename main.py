@@ -1,35 +1,64 @@
 """
-main.py
-====================================
-The core module of my example project
+start.py
+
+Dieses Modul kümmert sich um den Start und das Beenden des Programmes
+Typisches Anwendungsbeispiel:
+main()
 """
 
-def about_me(your_name):
+import gui
+import person
+import logging
+import time
+import rfid
+
+#import RPi.GPIO as GPIO
+
+from person import addPerson
+
+
+#LOGPATH = 'log.json'
+
+
+#TODO Move this Setting into Settings
+LOGPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/log.json'
+
+def main():
     """
-    Return the most important thing about a person.
-    Parameters
-    ----------
-    your_name
-        A string indicating the name of the person.
-    """
-    return "The wise {} loves Python.".format(your_name)
+	:Starten und Beenden des Programmes:
+	"""
+    start()
+    exit()
+
+def start():
+	"""
+	:Starten des Programmes:
+	"""
+	try:
+		#init all modules
+		person.init()
+		logging.basicConfig(filename=LOGPATH,level=logging.INFO)
+		
+		rfid.init()
+		
+		#start gui
+		gui.start()		
+		
+		#test
+		
+		
+	except KeyboardInterrupt:
+		exit()
+	
+def exit():
+	"""
+	:Beenden des Programmes:
+	"""
+	#GPIO.cleanup()
+	logging.warning('Exiting Script')
+	print('Exit')
 
 
-class ExampleClass:
-    """An example docstring for a class definition."""
 
-    def __init__(self, name):
-        """
-        Blah blah blah.
-        Parameters
-        ---------
-        name
-            A string to assign to the `name` instance attribute.
-        """
-        self.name = name
-
-    def about_self(self):
-        """
-        Return information about an instance created from ExampleClass.
-        """
-        return "I am a very smart {} object.".format(self.name)
+if __name__ == '__main__':
+    main()
