@@ -2,6 +2,7 @@
 person.py
 
 Dieses Modul kümmert sich um das Verwalten der Nutzer
+
 Typisches Anwendungsbeispiel:
 person.init()
 auth = auth(RFID)
@@ -12,7 +13,7 @@ name = getName(RFID)
 rfid = getRFID(String)
 date = lastSeen(RFID)
 
-Attributes:
+Attribute:
     DATAPATH: Pfad zur data.json
 """
 
