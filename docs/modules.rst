@@ -12,4 +12,3 @@ Test
    person
    rfid
    shop
-   start
