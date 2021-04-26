@@ -26,14 +26,14 @@ LOGPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/log.json
 
 def main():
     """
-	:Starten und Beenden des Programmes:
+	Starten und Beenden des Programmes:
 	"""
     start()
     exit()
 
 def start():
 	"""
-	:Starten des Programmes:
+	Starten des Programmes:
 	"""
 	try:
 		#init all modules
