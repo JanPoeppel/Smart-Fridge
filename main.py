@@ -2,6 +2,7 @@
 start.py
 
 Dieses Modul kümmert sich um den Start und das Beenden des Programmes
+
 Typisches Anwendungsbeispiel:
 main()
 """
