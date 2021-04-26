@@ -1,8 +1,28 @@
+"""
+person.py
+
+Dieses Modul kümmert sich um das Verwalten der Nutzer
+Typisches Anwendungsbeispiel:
+person.init()
+auth = auth(RFID)
+check = addPerson(String, RFID)
+check = rfidExists(RFID)
+check = nameExists(String)
+name = getName(RFID)
+rfid = getRFID(String)
+date = lastSeen(RFID)
+
+Attributes:
+    DATAPATH: Pfad zur data.json
+"""
+
+
 import json
 import os.path
 import logging
 import time
 
+#Ein paar Strings um Tippfehler zu vermeiden
 PEOPLE = 'people'
 RFID = 'rfid'
 NAME = 'name'
@@ -11,12 +31,17 @@ MONEY = 'money'
 
 
 
-#DATAPATH = 'data.json'
+#TODO Move this to settings
 DATAPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/data.json'
 
 
 def init():
-    if not(fileExist(DATAPATH)):
+    """
+	Initalisierung des Personen Modules
+
+    Erstellt die data.json wenn noch keine existiert.
+	"""
+    if not(__fileExist(DATAPATH)):
         data = {}
         data[PEOPLE] = []
         data[RFID] = []
@@ -24,21 +49,55 @@ def init():
             json.dump(data, outfile)
         time.sleep(1)
         print('File \'data.json\' created')
+        #TODO Log this Event
+        #TODO Exceptions?
 
-def getdata():
+def __getdata():
+    """
+	Läd die data.json
+	"""
     with open(DATAPATH, 'r') as namejson:
         return json.load(namejson)
     
 def auth(rfid):
+    """
+	Authentifiziert einen Admin
+
+    Prüft ob die RFID in der Liste der Admins ist.
+    Loggt fehlgeschlagene Authentifizierungen.
+
+    Args:
+        rfid: Die zu überprüfende RFID
+    
+    Returns:
+        true: wenn die RFID in der Liste ist.
+        false: wenn die RFID nicht in der Liste ist.
+	"""
     rfid = str(rfid)
+    #TODO rfid == admin List settings
     if(rfid == '1321908530113'):
-        return 1
+        return True
     else:
         logging.warning('Fehlgeschlagener Login mit '+str(rfid) + ' ' + getName(rfid))
         print('Fehlgeschlagener Login mit '+str(rfid) + ' ' + getName(rfid))
-        return -1
+        return False
 
 def addPerson(name, rfid):
+    """
+	Fügt eine*n neue*n Nutzer*in hinzu.
+
+    Loggt den Versuch eine bereits vergebene RFID erneut anzulegen.
+
+    Args:
+        name: Der Name des*der Nutzer*in
+        rfid: Die RFID des*der Nutzer*in
+    
+    Returns:
+        1: wenn der*die Nutzer*in erfolgreich hinzugefügt wurde.
+        -1: Wenn der Name bereits vergeben ist.
+        -2: Wenn die RFID bereits vergeben ist.
+        -3: Wenn ein interner Fehler aufgetreten ist.
+	"""
     rfid = str(rfid)
     rfid = rfid.translate(None, '()')
     if(rfidExists(rfid)):
@@ -49,25 +108,61 @@ def addPerson(name, rfid):
         print('Name bereits vorhanden')
         return -1
     else:
-        addNameRFID(name, rfid)
-        return 1
+        if(__addNameRFID(name, rfid)):
+            return 1
+    return -3
 
 def rfidExists(rfid):
+    """
+    Prüft ob eine RFID existiert.
+
+    Args:
+        rfid: Die zu überprüfende RFID
+    
+    Returns:
+        True: Wenn die RFID bereits Exisitiert.
+        False: Wenn die RFID noch nicht Existiert.
+    """
     rfid = str(rfid)
-    data = getdata()
+    data = __getdata()
     for i in data[RFID]:
         if i[RFID] == rfid:
             return True
+    return False
 
 def nameExists(name):
-    data = getdata()
+    """
+    Prüft ob ein Name existiert.
+
+    Args:
+        name: Der zu überprüfende Name
+    
+    Returns:
+        True: Wenn der Name bereits Exisitiert.
+        False: Wenn der Name noch nicht Existiert.
+    """
+    data = __getdata()
     for i in data[PEOPLE]:
         if i[NAME] == name:
             return True
+    return False
 
-def addNameRFID(name, rfid):
+def __addNameRFID(name, rfid):
+    """
+    Private Funktion um eine neue Person anzulegen.
+
+    Private Funktion um die Daten in die Datei zu schreiben.
+    Loggt das Ereignis.
+
+    Args:
+        name: Der Name des*der Nutzer*in
+        rfid: Die RFID des*der Nutzer*in
+    
+    Returns:
+        True: Wenn die Person erfolgreich angelegt wurde.
+    """
     rfid = str(rfid)
-    data = getdata()
+    data = __getdata()
     data[PEOPLE].append({
         NAME:name,
         RFID:str(rfid),
@@ -80,32 +175,63 @@ def addNameRFID(name, rfid):
     with open(DATAPATH, 'w') as namejson:
         json.dump(data, namejson)
     time.sleep(1)
+    #TODO Log this
     print('Name \''+name+'\' mit RFID \''+rfid+'\' wurde hinzugefuegt')
+    return True
 
 def getName(rfid):
+    """
+    Gibt den Namen zu einer RFID zurück.
+
+    Args:
+        rfid: Die RFID des*der Nutzer*in
+    
+    Returns:
+        Den Namen zu der RFID.
+        'NoName' wenn die RFID nicht existiert.
+    """
     rfid = str(rfid)
-    data = getdata()
+    data = __getdata()
     for i in data[PEOPLE]:
         if i[RFID] == rfid:
             return i[NAME]
     return 'NoName'
 
 def getRFID(name):
-    print('suche '+ str(name))
-    data = getdata()
+    """
+    Gibt die RFID zu einem Namen zurück.
+
+    Args:
+        name: Der Name des*der Nutzer*in
+    
+    Returns:
+        Die RFID zu dem Namen RFID.
+        'NoRFID' wenn der Name nicht existiert.
+    """
+    data = __getdata()
     for i in data[PEOPLE]:
         if i[NAME] == name:
             return i[RFID]
-    return 'NoRfid'
+    return 'NoRFID'
 
 def lastSeen(rfid):
+    """
+    Gibt das Datum zurück an dem zuletzt mit der RFID eingekauft wurde.
+
+    Args:
+        rfid: Die RFID des*der Nutzer*in
+    
+    Returns:
+        Das Datum an dem die RFID zuletzt gesehen wurde.
+        'NotFound' wenn noch kein Datum existiert.
+    """
     rfid = str(rfid)
-    data = getdata()
+    data = __getdata()
     for i in data[PEOPLE]:
         if i[RFID] == rfid:
             return i[SEEN]
     return 'NotFound'
 
 
-def fileExist(name):
+def __fileExist(name):
     return os.path.exists(name)
