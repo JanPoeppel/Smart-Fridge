@@ -12,7 +12,6 @@ import win32com.client
 def readuid():
     print("Reading uid")
     time.sleep(2)
-    return '1321908530113'
     li = read(1)
     if(li == None):
         return -1

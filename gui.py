@@ -41,7 +41,7 @@ class SeaofBTCapp(tk.Tk):
         if(cont == PageAdminLogin):
             rfids = rfid.readuid()
             status = person.auth(rfids)
-            if(status == 1):
+            if(status == True):
                 self.show_frame(PageAdmin)
             else:
                 self.show_frame(StartPage)
