@@ -6,7 +6,6 @@ Test
 
    main
    admin
-   drinks
    gui
    money
    person
