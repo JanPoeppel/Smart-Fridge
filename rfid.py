@@ -12,7 +12,7 @@ tuple = readall()
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-import MFRC522
+#import MFRC522
 import time
 import re
 import subprocess
