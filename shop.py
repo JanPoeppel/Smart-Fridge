@@ -1,31 +1,62 @@
+"""
+shop.py
+
+Dieses Modul kümmert sich um das Kaufen von Produkten
+
+Typisches Anwendungsbeispiel:
+check = buy(RFID, Double)
+price = getPrice(String)
+
+Attribute:
+    DATAPATH: Pfad zur data.json
+"""
 import money
 import logging
 import rfid
 import person
+import warnings
 
 def buy(rfid, amount):
+    """
+    Zieht Geld vom Konto ab
+
+    Überprüft ob genügend Geld auf dem Konto ist und zieht die gegebene Summe ab.
+    Loggt das Event.
+
+    Args:
+        rfid: Die RFID zum Konto
+        amount: Die Menge an Geld
+
+
+    Returns:
+        True: Wenn es erfolgreich war.
+        False: Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
+    """
     if(float(money.getMoney(rfid))>= float(amount)):
         money.withdraw(rfid, amount)
         name = person.getName(rfid)
         prices = str(amount)
+        #TODO bessere Formatierung der String übergebung
         logging.info(name +'('+rfid+') hat fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
         print(name +'('+rfid+') hat  fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
-        return 1
+        return True
     else:
-        return -1
+        return False
     
-"""    
-def getPrice(id):
-    switcher = {
-        #id: Preis
-        0: 1,
-        1: 1,
-        2: 4,
-        3: 5
-    }
-    return switcher.get(id, -1)
-"""
 def getPrice(name):
+    """
+    Gibt den Preis von einem Produkt zurück
+
+    Sucht anhand des Namens von einem Produkt den dazugehörigen Preis.
+
+    Args:
+        name: Der Name vom Produkt
+
+    Returns:
+        Integer: den Preis.
+        False: Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
+    """
+    #TODO Move to file
     switcher = {
         'Greif': 1,
         'Gaas-Seidla': 1,
@@ -50,10 +81,14 @@ def getPrice(name):
         'Trigger-Energy':0.7,
         '0.5_Bier':0.5
     }
-    return switcher.get(name, 0)
+    return switcher.get(name, False)
 
-def startbuy(id):
-    rfid.readuid()
+def __startbuy(id):
+    rfid.readUID()
+    warnings.warn(
+            "__startbuy is deprecated and will be removed in further versions",
+            DeprecationWarning
+        )
 
 def getNamefromID(id):
     switcher = {
@@ -62,6 +97,10 @@ def getNamefromID(id):
         2: "PizzaSchwank",
         3: "Limo"
     }
+    warnings.warn(
+            "deprecated and will be removed in further versions",
+            DeprecationWarning
+        )
     return switcher.get(id, -1)
 def getIDfromName(name):
     switcher = {
@@ -71,4 +110,8 @@ def getIDfromName(name):
         "PizzaSchwank": 3,
         "Gelbes_Limo": 4
     }
+    warnings.warn(
+            "__startbuy is deprecated and will be removed in further versions",
+            DeprecationWarning
+        )
     return switcher.get(name, "Error")

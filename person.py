@@ -49,8 +49,8 @@ def init():
         with open(DATAPATH, 'w') as outfile:
             json.dump(data, outfile)
         time.sleep(1)
+        logging.warn('File \'data.json\' created')
         print('File \'data.json\' created')
-        #TODO Log this Event
         #TODO Exceptions?
 
 def __getdata():

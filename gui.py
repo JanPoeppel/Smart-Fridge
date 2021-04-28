@@ -39,7 +39,7 @@ class SeaofBTCapp(tk.Tk):
         
         
         if(cont == PageAdminLogin):
-            rfids = rfid.readuid()
+            rfids = rfid.readUID()
             status = person.auth(rfids)
             if(status == True):
                 self.show_frame(PageAdmin)
@@ -50,7 +50,7 @@ class SeaofBTCapp(tk.Tk):
         elif(cont == Page2):
             frame.show_ele(frame)
         elif(cont == PageBuyLogin):
-            rfids = rfid.readuid()
+            rfids = rfid.readUID()
             status = shop.buy(rfids, float(amount))
             if(status == -1):
                 self.show_frame(PageError, error = 'Nicht genug Geld', controller = controller, page = Page5)
@@ -71,7 +71,7 @@ class SeaofBTCapp(tk.Tk):
         elif(cont == Page11):
             frame.reset(frame)
         elif(cont == Page12):
-            rfids = rfid.readuid()
+            rfids = rfid.readUID()
             self.show_frame(PageOverview, rfids = rfids)
         elif(cont == PageAddPerson):
             status = person.addPerson(name, rfids)
@@ -86,10 +86,10 @@ class SeaofBTCapp(tk.Tk):
                 self.show_frame(PageError, controller= controller, error = 'RFID bereits vorhanden, Vorgang wird abgebrochen')
                 return #showFrame StartPage
         elif(cont == Page13):
-            rfids = rfid.readuid()
+            rfids = rfid.readUID()
             self.show_frame(PageNewMoney, rfids = rfids, amount = amount, controller = controller)
         elif(cont == Page14):
-            rfids = rfid.readuid()
+            rfids = rfid.readUID()
             self.show_frame(Page9, rfids = rfids, controller = controller)
         elif(cont == PageError):
             frame.setError(frame, error, controller, page = page)
