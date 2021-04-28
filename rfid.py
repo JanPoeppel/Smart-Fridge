@@ -56,7 +56,7 @@ def readUID():
     """
     print("Reading uid")
     time.sleep(2)
-    li = read(1)
+    li = __read(1)
     if(li == None):
         return False
     ret = ''.join(str(e) for e in li)
@@ -74,7 +74,7 @@ def readdata():
         String: Die Daten
         False: Wenn ein Fehler aufgetreten ist.
     """
-    return read(2)
+    return __read(2)
 
 
 def readall():
@@ -88,7 +88,7 @@ def readall():
         Tuple: <UID, String> 
         False: Wenn ein Fehler aufgetreten ist.
     """
-    tup = read(0)
+    tup = __read(0)
     data = ''.join(str(e) for e in tup[1])
     return (tup[0], data)
 
