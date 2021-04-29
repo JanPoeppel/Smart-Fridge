@@ -106,24 +106,41 @@ Startpage:
 Trinken     Essen
 Admin       Abfrage
 """
+
+def __setButtonAttributes(self, button, relx, rely, height, width, activebackground, activeforeground, background, disabledforeground, foreground, highlightbackground, highlightcolor, pady, text, width2):
+        button.place(relx= relx, rely=rely, height= height, width = width)
+        button.configure(activebackground=activebackground)
+        button.configure(activeforeground=activeforeground)
+        button.configure(background=background)
+        button.configure(disabledforeground=disabledforeground)
+        button.configure(foreground=foreground)
+        button.configure(highlightbackground=highlightbackground)
+        button.configure(highlightcolor=highlightcolor)
+        button.configure(pady=pady)
+        button.configure(text=text)
+        button.configure(width=width2)
+
 class StartPage(tk.Frame):
+    
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self,parent, height = 320, width = 480)
 
         self.drinkButton = tk.Button(self)
-        self.drinkButton.place(relx=0.0, rely=0.0, height=160, width=240)
-        self.drinkButton.configure(activebackground='#d9d9d9')
-        self.drinkButton.configure(activeforeground='#000000')
-        self.drinkButton.configure(background='#d9d9d9')
-        self.drinkButton.configure(disabledforeground='#a3a3a3')
-        self.drinkButton.configure(foreground='#000000')
-        self.drinkButton.configure(highlightbackground='#d9d9d9')
-        self.drinkButton.configure(highlightcolor='black')
-        self.drinkButton.configure(pady='0')
-        self.drinkButton.configure(text='Trinken')
-        self.drinkButton.configure(width=162)
+        __setButtonAttributes(self, self.drinkButton, 0.0, 0.0, 160, 240, '#d9d9d9', '#000000', '#d9d9d9', '#a3a3a3', '#000000', '#d9d9d9', 'black', '0', 'Trinken', 162)
         self.drinkButton.bind('<Button-1>',lambda e:controller.show_frame(Page0))
+        # self.drinkButton.place(relx=0.0, rely=0.0, height=160, width=240)
+        # self.drinkButton.configure(activebackground='#d9d9d9')
+        # self.drinkButton.configure(activeforeground='#000000')
+        # self.drinkButton.configure(background='#d9d9d9')
+        # self.drinkButton.configure(disabledforeground='#a3a3a3')
+        # self.drinkButton.configure(foreground='#000000')
+        # self.drinkButton.configure(highlightbackground='#d9d9d9')
+        # self.drinkButton.configure(highlightcolor='black')
+        # self.drinkButton.configure(pady='0')
+        # self.drinkButton.configure(text='Trinken')
+        # self.drinkButton.configure(width=162)
+        
 
         self.foodButton = tk.Button(self)
         self.foodButton.place(relx=0.5, rely=0.0, height=160, width=240)
