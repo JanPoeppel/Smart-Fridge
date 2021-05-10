@@ -36,7 +36,7 @@ def buy(rfid, amount):
         money.withdraw(rfid, amount)
         name = person.getName(rfid)
         prices = str(amount)
-        #TODO bessere Formatierung der String übergebung
+        #TODO #14 bessere Formatierung der String übergebung
         logging.info(name +'('+rfid+') hat fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
         print(name +'('+rfid+') hat  fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
         return True
@@ -56,7 +56,7 @@ def getPrice(name):
         Integer: den Preis.
         False: Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
     """
-    #TODO Move to file
+    #TODO #13 Move to file
     switcher = {
         'Greif': 1,
         'Gaas-Seidla': 1,
