@@ -21,7 +21,7 @@
 #    along with MFRC522-Python.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-#TODO Quelle 
+#TODO #3 Quelle 
 import RPi.GPIO as GPIO
 import spi
 import signal
