@@ -21,7 +21,7 @@ from person import addPerson
 #LOGPATH = 'log.json'
 
 
-#TODO Move this Setting into Settings
+#TODO #2 Move this Setting into Settings
 LOGPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/log.json'
 
 def main():
