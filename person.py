@@ -32,7 +32,7 @@ MONEY = 'money'
 
 
 
-#TODO Move this to settings
+#TODO #7 Move this to settings
 DATAPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/data.json'
 
 

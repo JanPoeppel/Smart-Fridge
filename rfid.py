@@ -12,14 +12,14 @@ tuple = readall()
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-#import MFRC522 #TODO Setup remote control
+#import MFRC522 #TODO #9 Setup remote control
 import time
 import re
 import subprocess
 
 
 def init():
-    #TODO Error Handling on Raspberry and Windows
+    #TODO #10 Error Handling on Raspberry and Windows
     # wmi = win32com.client.GetObject ("winmgmts:")
     # for usb in wmi.InstancesOf ("Win32_USBHub"):
     #     print(usb.DeviceID)
@@ -36,7 +36,7 @@ def init():
                 dinfo['device'] = '/dev/bus/usb/%s/%s' % (dinfo.pop('bus'), dinfo.pop('device'))
                 devices.append(dinfo)
     print(devices)
-    #TODO for which usecase?
+    #TODO #12 for which usecase?
     # with open('/dev/tty0', 'r') as tty:
     #     while True:
     #         RFID_input = tty.readline()
@@ -94,7 +94,7 @@ def readall():
 
 
 def __read(mode):
-    #TODO Quelle
+    #TODO #11 Quelle
     MIFAREReader = MFRC522.MFRC522()
     try:
         b = True

@@ -26,7 +26,7 @@ MONEY = "money"
 PEOPLE = 'people'
 
 #DATAPATH = 'data.json'
-#TODO move this to settings
+#TODO #4 move this to settings
 DATAPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/data.json'
 
 
@@ -44,7 +44,7 @@ def init():
             json.dump(data, outfile)
         logging.warn('File \'data.json\' created')
         print('File \'data.json\' created')
-        #TODO Exceptions?
+        #TODO #5 Exceptions?
 
 def withdraw(rfid, amount):
     """
@@ -131,6 +131,6 @@ def __getdata():
 	"""
     if not (__fileExist(DATAPATH)):
         init()
-        #TODO createFile() auslagern
+        #TODO #6 createFile() auslagern
     with open(DATAPATH, 'r') as namejson:
         return json.load(namejson)
