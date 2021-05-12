@@ -6,7 +6,7 @@ Dieses Modul kümmert sich um den Start und das Beenden des Programmes
 Typisches Anwendungsbeispiel:
 main()
 """
-
+import settings
 import gui
 import person
 import logging
@@ -37,10 +37,11 @@ def start():
 	"""
 	try:
 		#init all modules
+		settings.init()
 		person.init()
 		logging.basicConfig(filename=LOGPATH,level=logging.INFO)
 		
-		rfid.init()
+		#rfid.init()
 		
 		#start gui
 		gui.start()		
