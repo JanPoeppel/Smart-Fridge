@@ -31,7 +31,8 @@ def init():
 	"""
     if not(__fileExist(dir_path)):
         data = {}
-        data["data.json"] = [os.path.dirname(os.path.realpath(__file__))+"/data.json"]
+        data['data.json'] = [os.path.dirname(os.path.realpath(__file__))+'/data.json']
+        data['log.log'] = [os.path.dirname(os.path.realpath(__file__))+'/log.log']
         with open(dir_path, 'w') as outfile:
             json.dump(data, outfile)
         time.sleep(1)
@@ -46,6 +47,7 @@ def __getData():
     """
 	Läd die settings.json
 	"""
+    #TODO #22 Can not read on windows, test on rasp!
     with open(dir_path, 'r') as namejson:
         return json.load(namejson)
     
@@ -56,9 +58,7 @@ def getSetting(name):
     Args:
         name: Die zu überprüfende Einstellung
     """
-    data = __getData()
-    print(data)
-    return data[name]
+    return __settings__[name]
 
 def setSetting(name, value):
     """
