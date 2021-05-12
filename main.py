@@ -18,11 +18,7 @@ import rfid
 from person import addPerson
 
 
-#LOGPATH = 'log.json'
-
-
-#TODO #2 Move this Setting into Settings
-LOGPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/log.json'
+LOGPATH = None
 
 def main():
     """
@@ -38,15 +34,17 @@ def start():
 	try:
 		#init all modules
 		settings.init()
-		person.init()
+		LOGPATH = str(settings.getSetting('log.log'))
+
 		logging.basicConfig(filename=LOGPATH,level=logging.INFO)
 		
+		person.init()
+
 		#rfid.init()
 		
 		#start gui
 		gui.start()		
 		
-		#test
 		
 		
 	except KeyboardInterrupt:
