@@ -10,11 +10,16 @@ price = getPrice(String)
 Attribute:
     DATAPATH: Pfad zur data.json
 """
+import settings
+import json
 import money
 import logging
 import rfid
 import person
 import warnings
+import logging
+
+
 
 def buy(rfid, amount):
     """
@@ -82,6 +87,27 @@ def getPrice(name):
         '0.5_Bier':0.5
     }
     return switcher.get(name, False)
+
+
+
+def updateAmount(id, amount):
+    data = settings.getData(settings.getSetting('articel.json'))
+    data[id] = data[id] + amount
+    settings.saveData(data, settings.getSetting('articel.json'))
+    return True
+
+def buyArticel(rfid, articels):
+    #articels[0] = id
+    #articels[1] = amount
+    sum = 0
+    for a in articels:
+        sum += articels[1]*getPrice(articels[0])
+    if not(buy(rfid, sum)):
+        return False
+    for a in articels:
+        if not(updateAmount(articels[0], articels[1]*-1)):
+            logging.warn("New Amount of %d cannot be updated with %d", articels[0], articels[1]*-1)
+    return True
 
 def __startbuy(id):
     rfid.readUID()
