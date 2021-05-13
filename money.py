@@ -12,7 +12,7 @@ money = getMoney(String, RFID)
 Attribute:
     DATAPATH: Pfad zur data.json
 """
-
+import settings
 import os.path
 import json
 import logging
@@ -25,9 +25,7 @@ RFID = "rfid"
 MONEY = "money"
 PEOPLE = 'people'
 
-#DATAPATH = 'data.json'
-#TODO #4 move this to settings
-DATAPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/data.json'
+DATAPATH = settings.getSetting('data.json')
 
 
 def init():
