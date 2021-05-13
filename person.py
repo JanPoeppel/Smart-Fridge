@@ -17,7 +17,7 @@ Attribute:
     DATAPATH: Pfad zur data.json
 """
 
-
+import settings
 import json
 import os.path
 import logging
@@ -30,10 +30,7 @@ NAME = 'name'
 SEEN = 'seen'
 MONEY = 'money'
 
-
-
-#TODO #7 Move this to settings
-DATAPATH = 'D:/OneDrive/Dokumente/Uni/Bachelorarbeit/GitHub/Smart Fridge/data.json'
+DATAPATH = settings.getSetting('data.json')
 
 
 def init():
