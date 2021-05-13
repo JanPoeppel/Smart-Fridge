@@ -33,7 +33,6 @@ MONEY = 'money'
 
 DATAPATH = settings.getSetting('data.json')
 
-
 def init():
     """
 	Initalisierung des Personen Modules
