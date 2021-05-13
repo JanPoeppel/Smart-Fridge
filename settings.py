@@ -17,11 +17,9 @@ import os.path
 import logging
 import time
 
-FILENAME = 'settings.json';
+FILENAME = 'settings.json'
 
 dir_path  = os.path.dirname(os.path.realpath(__file__))+"/"+FILENAME
-
-__settings__ = None
 
 def init():
     """
@@ -39,9 +37,6 @@ def init():
         logging.warn('File \'settings.json\' created')
         print('File \'settings.json\' created')
         #TODO #21 Exceptions?
-        __settings__ = data
-    else:
-        __settings__ = __getData()
 
 def __getData():
     """
@@ -58,7 +53,7 @@ def getSetting(name):
     Args:
         name: Die zu überprüfende Einstellung
     """
-    return __settings__[name]
+    return __getData()[name]
 
 def setSetting(name, value):
     """
@@ -68,10 +63,11 @@ def setSetting(name, value):
         name: Der Name der Einstellung
         value: Der Wert der Einstellung
     """
-    __settings__[name] = value
+    data = __getData()
+    data[name] = value
     
     with open(dir_path, 'w') as namejson:
-        json.dump(__settings__, namejson)
+        json.dump(data, namejson)
     time.sleep(1)
     logging.info("The Setting of " + name + " was set to "+value)
     print("The Setting of " + name + " was set to "+value)
