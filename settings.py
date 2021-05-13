@@ -37,15 +37,18 @@ def init():
         logging.warn('File \'settings.json\' created')
         print('File \'settings.json\' created')
         #TODO #21 Exceptions?
-
-def __getData():
+def getData(path):
     """
-	Läd die settings.json
+	Läd die Datei
 	"""
-    #TODO #22 Can not read on windows, test on rasp!
-    with open(dir_path, 'r') as namejson:
+      #TODO #22 Can not read on windows, test on rasp!
+    with open(path, 'r') as namejson:
         return json.load(namejson)
-    
+
+def saveData(data, path):
+    with open(path, 'w') as namejson:
+        json.dump(data, namejson)
+  
 def getSetting(name):
     """
 	Gibt den gesetzten Wert zurück
@@ -53,7 +56,7 @@ def getSetting(name):
     Args:
         name: Die zu überprüfende Einstellung
     """
-    return __getData()[name]
+    return getData(dir_path)[name]
 
 def setSetting(name, value):
     """
@@ -63,7 +66,7 @@ def setSetting(name, value):
         name: Der Name der Einstellung
         value: Der Wert der Einstellung
     """
-    data = __getData()
+    data = getData(dir_path)
     data[name] = value
     
     with open(dir_path, 'w') as namejson:
