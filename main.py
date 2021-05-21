@@ -7,11 +7,11 @@ Typisches Anwendungsbeispiel:
 main()
 """
 import settings
-import gui
 import person
 import logging
 import time
 import rfid
+import gui
 
 #import RPi.GPIO as GPIO
 
@@ -34,9 +34,9 @@ def start():
 	try:
 		#init all modules
 		settings.init()
-		LOGPATH = str(settings.getSetting('log.log'))
+		LOGPATH = str(settings.getPath('log.log'))
 
-		logging.basicConfig(filename=LOGPATH,level=logging.INFO)
+		logging.basicConfig(filename='log.log',level=logging.INFO)
 		
 		person.init()
 

@@ -6,12 +6,15 @@ import money
 import shop
 from tkinter.constants import SINGLE, WORD
 import rfid
+import os
 from subprocess import call
 
 
 
 LARGE_FONT= ('Verdana', 12)
-
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using :0.0')
+    os.environ.__setitem__('DISPLAY', ':0.0')
 
 class SeaofBTCapp(tk.Tk):
 
@@ -39,7 +42,7 @@ class SeaofBTCapp(tk.Tk):
         
         
         if(cont == PageAdminLogin):
-            rfids = rfid.readUID()
+            rfids = rfid.read()
             status = person.auth(rfids)
             if(status == True):
                 self.show_frame(PageAdmin)
@@ -50,7 +53,7 @@ class SeaofBTCapp(tk.Tk):
         elif(cont == Page2):
             frame.show_ele(frame)
         elif(cont == PageBuyLogin):
-            rfids = rfid.readUID()
+            rfids = rfid.read()
             status = shop.buy(rfids, float(amount))
             if(status == -1):
                 self.show_frame(PageError, error = 'Nicht genug Geld', controller = controller, page = Page5)

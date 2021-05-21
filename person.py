@@ -31,32 +31,24 @@ SEEN = 'seen'
 MONEY = 'money'
 
 
-DATAPATH = settings.getSetting('data.json')
-
 def init():
     """
 	Initalisierung des Personen Modules
 
     Erstellt die data.json wenn noch keine existiert.
 	"""
-    if not(__fileExist(DATAPATH)):
+    
+
+    if not(settings.fileExist(settings.getPath('data.json'))):
         data = {}
         data[PEOPLE] = []
         data[RFID] = []
-        with open(DATAPATH, 'w') as outfile:
-            json.dump(data, outfile)
+        settings.saveData(data, 'data.json')
         time.sleep(1)
         logging.warn('File \'data.json\' created')
         print('File \'data.json\' created')
         #TODO Exceptions?
 
-def __getdata():
-    """
-	Läd die data.json
-	"""
-    with open(DATAPATH, 'r') as namejson:
-        return json.load(namejson)
-    
 def auth(rfid):
     """
 	Authentifiziert einen Admin
@@ -77,7 +69,7 @@ def auth(rfid):
         return True
     else:
         logging.warning('Fehlgeschlagener Login mit '+str(rfid) + ' ' + getName(rfid))
-        print('Fehlgeschlagener Login mit '+str(rfid) + ' ' + getName(rfid))
+        print('Fehlgeschlagener Login von '+str(rfid) + ' ' + getName(rfid))
         return False
 
 def addPerson(name, rfid):
@@ -122,7 +114,7 @@ def rfidExists(rfid):
         False: Wenn die RFID noch nicht Existiert.
     """
     rfid = str(rfid)
-    data = __getdata()
+    data = settings.getData('data.json')
     for i in data[RFID]:
         if i[RFID] == rfid:
             return True
@@ -139,7 +131,7 @@ def nameExists(name):
         True: Wenn der Name bereits Exisitiert.
         False: Wenn der Name noch nicht Existiert.
     """
-    data = __getdata()
+    data = settings.getData('data.json')
     for i in data[PEOPLE]:
         if i[NAME] == name:
             return True
@@ -160,7 +152,7 @@ def __addNameRFID(name, rfid):
         True: Wenn die Person erfolgreich angelegt wurde.
     """
     rfid = str(rfid)
-    data = __getdata()
+    data = settings.getData('data.json')
     data[PEOPLE].append({
         NAME:name,
         RFID:str(rfid),
@@ -170,8 +162,7 @@ def __addNameRFID(name, rfid):
         RFID:rfid,
         MONEY: 0
     })
-    with open(DATAPATH, 'w') as namejson:
-        json.dump(data, namejson)
+    settings.saveData(data, 'data.json')
     time.sleep(1)
     #TODO Log this
     print('Name \''+name+'\' mit RFID \''+rfid+'\' wurde hinzugefuegt')
@@ -189,11 +180,11 @@ def getName(rfid):
         'NoName' wenn die RFID nicht existiert.
     """
     rfid = str(rfid)
-    data = __getdata()
+    data = settings.getData('data.json')
     for i in data[PEOPLE]:
         if i[RFID] == rfid:
             return i[NAME]
-    return 'NoName'
+    return 'Unknown'
 
 def getRFID(name):
     """
@@ -206,7 +197,7 @@ def getRFID(name):
         Die RFID zu dem Namen RFID.
         'NoRFID' wenn der Name nicht existiert.
     """
-    data = __getdata()
+    data = settings.getData('data.json')
     for i in data[PEOPLE]:
         if i[NAME] == name:
             return i[RFID]
@@ -224,12 +215,8 @@ def lastSeen(rfid):
         'NotFound' wenn noch kein Datum existiert.
     """
     rfid = str(rfid)
-    data = __getdata()
+    data = settings.getData('data.json')
     for i in data[PEOPLE]:
         if i[RFID] == rfid:
             return i[SEEN]
     return 'NotFound'
-
-
-def __fileExist(name):
-    return os.path.exists(name)

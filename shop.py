@@ -19,7 +19,7 @@ import person
 import warnings
 import logging
 
-
+data = None
 
 def buy(rfid, amount):
     """
@@ -62,42 +62,24 @@ def getPrice(name):
         False: Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
     """
     #TODO #13 Move to file
-    switcher = {
-        'Greif': 1,
-        'Gaas-Seidla': 1,
-        'Zwickel': 1,
-        'Weisses_Limo': 1,
-        'Gelbes_Limo': 1,
-        'Spezi':1,
-        'Pfirsich-Eistee':0.5,
-        'Zitronen-Eistee':0.5,
-        'Monster-Energy':1.5,
-        'Redbull':1,
-        'Brezel': 0.25,
-        'Pizza':2,
-        'Pizza-Schwank':4,
-        'Wasser': 0.5,
-        'Apfelschorle':1,
-        'Cola_0,5l':1,
-        'Weizen':1,
-        'Cola_0,3l': 0.7,
-        'Cola_1l':2,
-        'Capri-Sun':0.5,
-        'Trigger-Energy':0.7,
-        '0.5_Bier':0.5
-    }
-    return switcher.get(name, False)
+    if(data == None):
+        data = settings.getData('settings.json')
+
+    price = data['article'][name]
+    if(price == None):
+        return False
+    return price
 
 
 
-def updateAmount(id, amount):
-    data = settings.getData(settings.getSetting('articel.json'))
-    data[id] = data[id] + amount
-    settings.saveData(data, settings.getSetting('articel.json'))
+def updateAmount(name, amount):
+    data = settings.getData('settings.json')
+    data[name]['articel']['amount'] = data[name]['articel']['amount'] + amount
+    settings.saveData(data,'settings.json')
     return True
 
 def buyArticel(rfid, articels):
-    #articels[0] = id
+    #articels[0] = name
     #articels[1] = amount
     sum = 0
     for a in articels:

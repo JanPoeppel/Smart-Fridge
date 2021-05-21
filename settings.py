@@ -4,7 +4,6 @@ settings.py
 Dieses Modul kümmert sich um das Verwalten der Einstellungen
 
 Typisches Anwendungsbeispiel:
-settings.init()
 check = getSetting(String)
 
 Attribute:
@@ -27,26 +26,56 @@ def init():
 
     Erstellt die settings.json wenn noch keine existiert.
 	"""
-    if not(__fileExist(dir_path)):
+    if not(fileExist(dir_path)):
         data = {}
-        data['data.json'] = [os.path.dirname(os.path.realpath(__file__))+'/data.json']
-        data['log.log'] = [os.path.dirname(os.path.realpath(__file__))+'/log.log']
+
+        #init settingsfile
+        data['data.json'] = os.path.dirname(os.path.realpath(__file__))+'/data.json'
+        data['log.log'] = os.path.dirname(os.path.realpath(__file__))+'/log.log'
+        data['article'] = {}
+        drinks = ['Bier', 'Cola', 'Limo', 'Spezi', 'Eistee', 'Apfelschorle', 'Energy']
+        for d in drinks:
+            data['article'][d] = {}
+            data['article'][d]['price'] = 1
+            data['article'][d]['amount'] = 1
+        data['article']['Pizza']= {}
+        data['article']['Pizza']['price'] = 2
+        data['article']['Pizza']['amount'] = 0
+        data['article']['Brezel']= {}
+        data['article']['Brezel']['price'] = 0.25
+        data['article']['Brezel']['amount'] = 0
+
+
         with open(dir_path, 'w') as outfile:
-            json.dump(data, outfile)
+            json.dump(data, outfile, indent=4)
         time.sleep(1)
         logging.warn('File \'settings.json\' created')
         print('File \'settings.json\' created')
         #TODO #21 Exceptions?
-def getData(path):
+def getPath(name):
+    if(name == 'settings.json'):
+        return dir_path
+    if not(fileExist(dir_path)):
+        return None
+    with open(dir_path, 'r') as namejson:
+        data = json.load(namejson)
+        return data[name]
+    
+
+def getData(name):
     """
 	Läd die Datei
+
 	"""
       #TODO #22 Can not read on windows, test on rasp!
+    path = getPath(name)
+    if not(fileExist(path)):
+        return None
     with open(path, 'r') as namejson:
         return json.load(namejson)
 
-def saveData(data, path):
-    with open(path, 'w') as namejson:
+def saveData(data, name):
+    with open(getSetting(name), 'w') as namejson:
         json.dump(data, namejson)
   
 def getSetting(name):
@@ -76,5 +105,5 @@ def setSetting(name, value):
     print("The Setting of " + name + " was set to "+value)
     return True
 
-def __fileExist(name):
+def fileExist(name):
     return os.path.exists(name)

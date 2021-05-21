@@ -9,8 +9,6 @@ check = withdraw(RFID, Double)
 check = addMoney(RFID)
 money = getMoney(String, RFID)
 
-Attribute:
-    DATAPATH: Pfad zur data.json
 """
 import settings
 import os.path
@@ -25,21 +23,17 @@ RFID = "rfid"
 MONEY = "money"
 PEOPLE = 'people'
 
-DATAPATH = settings.getSetting('data.json')
-
-
 def init():
     """
 	Initalisierung des Money Modules
 
     Erstellt die data.json wenn noch keine existiert.
 	"""
-    if not(__fileExist('data.json')):
+    if not(settings.fileExist('data.json')):
         data = {}
         data[PEOPLE] = []
         data[RFID] = []
-        with open(DATAPATH, 'w') as outfile:
-            json.dump(data, outfile)
+        settings.saveData(data, 'data.json')
         logging.warn('File \'data.json\' created')
         print('File \'data.json\' created')
         #TODO #5 Exceptions?
@@ -59,13 +53,12 @@ def withdraw(rfid, amount):
         False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
-    data = __getdata()
+    data = settings.getData('data.json')
     if (person.rfidExists(rfid)): 
         for i in data[RFID]:
             if i[RFID] == rfid:
                 i[MONEY] -= amount
-                with open(DATAPATH, 'w') as namejson:
-                    json.dump(data, namejson)
+                settings.saveData(data, 'data.json')
                 logging.info('RFID \''+rfid+'\' wurden '+str(amount)+' abgezogen, neuer Stand: '+str(i[MONEY]))
                 return True
     return False
@@ -84,7 +77,7 @@ def getMoney(rfid):
         False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
-    data = __getdata()
+    data = settings.getData('data.json')
     for i in data[RFID]:
         if i[RFID] == rfid:
             return i[MONEY]
@@ -105,13 +98,12 @@ def addMoney(rfid, amount):
         False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
-    data = __getdata()
+    data = settings.getData('data.json')
     if (person.rfidExists(rfid)): 
         for i in data[RFID]:
             if i[RFID] == rfid:
                 i[MONEY] += amount
-                with open(DATAPATH, 'w') as namejson:
-                    json.dump(data, namejson)
+                settings.saveData(data, 'data.json')
                 logging.info("Geld hiunzugefuegt")
                 name = person.getName(rfid)
                 logging.info(name+'('+rfid+') wurden '+str(amount)+' hinzugefuegt, neuer Stand: '+str(i[MONEY]))
@@ -119,16 +111,3 @@ def addMoney(rfid, amount):
                 return True
     print("Chip unbekannt, Vorgang abgebrochen")
     return False
-
-def __fileExist(name):
-    return os.path.exists(name)
-
-def __getdata():
-    """
-	Läd die data.json
-	"""
-    if not (__fileExist(DATAPATH)):
-        init()
-        #TODO #6 createFile() auslagern
-    with open(DATAPATH, 'r') as namejson:
-        return json.load(namejson)
