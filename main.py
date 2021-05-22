@@ -12,10 +12,9 @@ import logging
 import time
 import rfid
 import gui
+import shop
 
 #import RPi.GPIO as GPIO
-
-from person import addPerson
 
 
 LOGPATH = None
@@ -35,14 +34,10 @@ def start():
 		#init all modules
 		settings.init()
 		LOGPATH = str(settings.getPath('log.log'))
-
 		logging.basicConfig(filename='log.log',level=logging.INFO)
 		
 		person.init()
-
-		#rfid.init()
 		
-		#start gui
 		gui.start()		
 		
 		

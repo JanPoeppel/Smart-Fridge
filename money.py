@@ -16,7 +16,7 @@ import json
 import logging
 import person
 import time
-from person import rfidExists
+
 
 #Ein paar Strings um Tippfehler zu vermeiden
 RFID = "rfid"

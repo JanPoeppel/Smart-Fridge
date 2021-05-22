@@ -29,6 +29,8 @@ RFID = 'rfid'
 NAME = 'name'
 SEEN = 'seen'
 MONEY = 'money'
+ADMIN = 'admin'
+MAGICNUMBER = 'REPLACE_WITH_RFIDS_0x00C0FFEE'
 
 
 def init():
@@ -43,6 +45,7 @@ def init():
         data = {}
         data[PEOPLE] = []
         data[RFID] = []
+        data[ADMIN] = [MAGICNUMBER]
         settings.saveData(data, 'data.json')
         time.sleep(1)
         logging.warn('File \'data.json\' created')
@@ -65,7 +68,11 @@ def auth(rfid):
 	"""
     rfid = str(rfid)
     #TODO rfid == admin List settings
-    if(rfid == '1321908530113'):
+    data = settings.getData('data.json')
+    admins = data[ADMIN]
+    if(len(admins)==1 and admins[0] == MAGICNUMBER):
+        return True
+    if(rfid in admins):
         return True
     else:
         logging.warning('Fehlgeschlagener Login mit '+str(rfid) + ' ' + getName(rfid))
@@ -88,8 +95,7 @@ def addPerson(name, rfid):
         -2: Wenn die RFID bereits vergeben ist.
         -3: Wenn ein interner Fehler aufgetreten ist.
 	"""
-    rfid = str(rfid)
-    rfid = rfid.translate(None, '()')
+    
     if(rfidExists(rfid)):
         logging.warning('Versuch RFID doppelt anzulegen '+str(rfid) + ' '+str(name))
         print('RFID bereits vorhanden, Vorgang wird abgebrochen')
@@ -165,7 +171,7 @@ def __addNameRFID(name, rfid):
     settings.saveData(data, 'data.json')
     time.sleep(1)
     #TODO Log this
-    print('Name \''+name+'\' mit RFID \''+rfid+'\' wurde hinzugefuegt')
+    print('Name \'%s\' mit RFID \'%s\' wurde hinzugefuegt' %(name, rfid))
     return True
 
 def getName(rfid):

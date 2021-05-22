@@ -54,11 +54,11 @@ class SeaofBTCapp(tk.Tk):
             frame.show_ele(frame)
         elif(cont == PageBuyLogin):
             rfids = rfid.read()
-            status = shop.buy(rfids, float(amount))
-            if(status == -1):
+            status = shop.checkoutCart(rfids)
+            if not(status):
                 self.show_frame(PageError, error = 'Nicht genug Geld', controller = controller, page = Page5)
             else:                
-                reseteinkauf()
+                shop.resetCart()
                 self.show_frame(PageNewMoney, rfids = rfids, controller = controller)
         elif(cont == Page5):
             frame.init(frame)
@@ -74,7 +74,7 @@ class SeaofBTCapp(tk.Tk):
         elif(cont == Page11):
             frame.reset(frame)
         elif(cont == Page12):
-            rfids = rfid.readUID()
+            rfids = rfid.read()
             self.show_frame(PageOverview, rfids = rfids)
         elif(cont == PageAddPerson):
             status = person.addPerson(name, rfids)
@@ -89,10 +89,10 @@ class SeaofBTCapp(tk.Tk):
                 self.show_frame(PageError, controller= controller, error = 'RFID bereits vorhanden, Vorgang wird abgebrochen')
                 return #showFrame StartPage
         elif(cont == Page13):
-            rfids = rfid.readUID()
+            rfids = rfid.read()
             self.show_frame(PageNewMoney, rfids = rfids, amount = amount, controller = controller)
         elif(cont == Page14):
-            rfids = rfid.readUID()
+            rfids = rfid.read()
             self.show_frame(Page9, rfids = rfids, controller = controller)
         elif(cont == PageError):
             frame.setError(frame, error, controller, page = page)
@@ -227,12 +227,7 @@ class Page0(tk.Frame):
         self.alk.bind('<Button-1>',lambda e:controller.show_frame(Page1))
 
 
-einkauf = {'Greif' : 0, 'Gaas-Seidla':0, 'Zwickel':0, 'Weisses_Limo':0, 'Gelbes_Limo': 0, 'Spezi' : 0 ,'Pfirsich-Eistee' : 0 ,'Zitronen-Eistee':0,'Monster-Energy':0 , 'Redbull':0, 'Brezel':0, 'Pizza':0, 'Pizza-Schwank':0}
-
-def reseteinkauf():
-    for ele in einkauf:
-        einkauf[ele]= 0
-                
+            
 """
 Getränkeauswahl
 -----------------------
@@ -247,6 +242,7 @@ class Page1(tk.Frame):
     
     def show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
+            einkauf = shop.getCart()
             for ele in einkauf:
                 if (einkauf[ele] != 0):
                     cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
@@ -264,7 +260,7 @@ class Page1(tk.Frame):
             if (indices.__len__() > 0):
                 index = int(indices[0])
                 value = w.get(index)
-                einkauf[value]+= 1
+                shop.addToCart(value, 1)
 
                 self.show_ele(self)
 
@@ -276,8 +272,7 @@ class Page1(tk.Frame):
             if(indices.__len__() >0):
                 index = int(indices[0])
                 value = w.get(index).split(' ',2)[1]
-                if(einkauf[value] >= 1):
-                    einkauf[value] -= 1
+                shop.addToCart(value, -1)
 
                 self.show_ele(self)
         
@@ -290,9 +285,8 @@ class Page1(tk.Frame):
         self.Listbox1.configure(font=font9)
         self.Listbox1.configure(foreground='#000000')
         self.Listbox1.configure(selectmode=SINGLE)
-        self.Listbox1.insert(tk.END, 'Greif')
-        self.Listbox1.insert(tk.END, 'Gaas-Seidla')
-        self.Listbox1.insert(tk.END, 'Zwickel')
+        for a in shop.getArticleList('alk'):
+            self.Listbox1.insert(tk.END, a)
         self.Listbox1.bind('<<ListboxSelect>>', add)
 
 
@@ -357,6 +351,7 @@ class Page2(tk.Frame):
     
     def show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
+            einkauf = shop.getCart()
             for ele in einkauf:
                 if (einkauf[ele] != 0):
                     cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
@@ -373,7 +368,7 @@ class Page2(tk.Frame):
             if (indices.__len__() > 0):
                 index = int(indices[0])
                 value = w.get(index)
-                einkauf[value] += 1
+                shop.addToCart(value, 1)
                 self.Listbox2.delete(0, tk.END)
                 self.show_ele(self)
 
@@ -384,8 +379,7 @@ class Page2(tk.Frame):
             if (indices.__len__() > 0):
                 index = int(indices[0])
                 value = w.get(index).split(' ', 2)[1]
-                if (einkauf[value] >= 1):
-                    einkauf[value] -= 1
+                shop.addToCart(value, -1)
                 self.Listbox2.delete(0, tk.END)
                 self.show_ele(self)
 
@@ -397,16 +391,11 @@ class Page2(tk.Frame):
         self.Listbox1.configure(font=font9)
         self.Listbox1.configure(foreground='#000000')
         self.Listbox1.configure(selectmode=SINGLE)
-        self.Listbox1.insert(tk.END, 'Weisses_Limo')
-        self.Listbox1.insert(tk.END, 'Gelbes_Limo')
-        self.Listbox1.insert(tk.END, 'Spezi')
-        self.Listbox1.insert(tk.END, 'Pfirsich-Eistee')
-        self.Listbox1.insert(tk.END, 'Zitronen-Eistee')
-        self.Listbox1.insert(tk.END, 'Monster-Energy')
-        self.Listbox1.insert(tk.END, 'Redbull')
+        for d in shop.getArticleList('drinks'):
+            self.Listbox1.insert(tk.END, d)
         self.Listbox1.bind('<<ListboxSelect>>', add)
 
-        self.Listbox2 = einkauf = tk.Listbox(self)
+        self.Listbox2 = tk.Listbox(self)
         self.Listbox2.place(relx=0.52, rely=0.0, relheight=0.7, relwidth=0.48)
         self.Listbox2.configure(background='white')
         self.Listbox2.configure(disabledforeground='#a3a3a3')
@@ -464,6 +453,7 @@ class Page3(tk.Frame):
     
     def show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
+            einkauf = shop.getCart()
             for ele in einkauf:
                 if (einkauf[ele] != 0):
                     cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
@@ -481,7 +471,7 @@ class Page3(tk.Frame):
             if (indices.__len__() > 0):
                 index = int(indices[0])
                 value = w.get(index)
-                einkauf[value]+= 1
+                shop.addToCart(value, 1)
 
                 self.show_ele(self)
 
@@ -493,8 +483,7 @@ class Page3(tk.Frame):
             if(indices.__len__() >0):
                 index = int(indices[0])
                 value = w.get(index).split(' ',2)[1]
-                if(einkauf[value] >= 1):
-                    einkauf[value] -= 1
+                shop.addToCart(value, -1)
 
                 self.show_ele(self)
         
@@ -507,9 +496,8 @@ class Page3(tk.Frame):
         self.Listbox1.configure(font=font9)
         self.Listbox1.configure(foreground='#000000')
         self.Listbox1.configure(selectmode=SINGLE)
-        self.Listbox1.insert(tk.END, 'Brezel')
-        self.Listbox1.insert(tk.END, 'Pizza')
-        self.Listbox1.insert(tk.END, 'Pizza-Schwank')
+        for f in shop.getArticleList('food'):
+            self.Listbox1.insert(tk.END, f)
         self.Listbox1.bind('<<ListboxSelect>>', add)
 
 
@@ -630,15 +618,13 @@ class Page5(tk.Frame):
         
     def show_ele(self, cont):
         cont.Listbox2.delete(0,'end')
+        einkauf = shop.getCart()
         for ele in einkauf:
             if (einkauf[ele] != 0):
                 cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
+                
     def sum(self, cont):
-        summe = 0.0
-        for ele in einkauf:
-            if(einkauf[ele] != 0):
-                summe += int(einkauf[ele]) * shop.getPrice(str(ele))
-        cont.sumLabel.configure(text=str(summe) + ' EUR')
+        cont.sumLabel.configure(text=str(shop.getCartValue()) + ' EUR')
 
     def __init__(self, parent, controller):
         
@@ -652,7 +638,7 @@ class Page5(tk.Frame):
 
         tk.Frame.__init__(self, parent)
        
-        self.Listbox2 = tk.Listbox(self) # = einkauf
+        self.Listbox2 = tk.Listbox(self)
         self.Listbox2.place(relx=0.0, rely=0.0, relheight=0.7, relwidth=0.48)
         self.Listbox2.configure(background='white')
         self.Listbox2.configure(disabledforeground='#a3a3a3')

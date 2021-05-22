@@ -26,24 +26,34 @@ def init():
 
     Erstellt die settings.json wenn noch keine existiert.
 	"""
+    ARTICLE = 'article'
+    ALK = 'alk'
+    DRINKS = 'drinks'
+    FOOD = 'food'
     if not(fileExist(dir_path)):
         data = {}
 
         #init settingsfile
         data['data.json'] = os.path.dirname(os.path.realpath(__file__))+'/data.json'
         data['log.log'] = os.path.dirname(os.path.realpath(__file__))+'/log.log'
-        data['article'] = {}
-        drinks = ['Bier', 'Cola', 'Limo', 'Spezi', 'Eistee', 'Apfelschorle', 'Energy']
+        data[ARTICLE] = {}
+        data[ARTICLE][ALK] = {}
+        data[ARTICLE][DRINKS] = {}
+        data[ARTICLE][FOOD] = {}
+        data[ARTICLE][ALK]['Bier'] = {}
+        data[ARTICLE][ALK]['Bier']['price'] = 1
+        data[ARTICLE][ALK]['Bier']['amount'] = 0
+        drinks = ['Cola', 'Limo', 'Spezi', 'Eistee', 'Apfelschorle', 'Energy']
         for d in drinks:
-            data['article'][d] = {}
-            data['article'][d]['price'] = 1
-            data['article'][d]['amount'] = 1
-        data['article']['Pizza']= {}
-        data['article']['Pizza']['price'] = 2
-        data['article']['Pizza']['amount'] = 0
-        data['article']['Brezel']= {}
-        data['article']['Brezel']['price'] = 0.25
-        data['article']['Brezel']['amount'] = 0
+            data[ARTICLE][DRINKS][d] = {}
+            data[ARTICLE][DRINKS][d]['price'] = 1
+            data[ARTICLE][DRINKS][d]['amount'] = 0
+        data[ARTICLE][FOOD]['Pizza']= {}
+        data[ARTICLE][FOOD]['Pizza']['price'] = 2
+        data[ARTICLE][FOOD]['Pizza']['amount'] = 0
+        data[ARTICLE][FOOD]['Brezel']= {}
+        data[ARTICLE][FOOD]['Brezel']['price'] = 0.25
+        data[ARTICLE][FOOD]['Brezel']['amount'] = 0
 
 
         with open(dir_path, 'w') as outfile:
@@ -75,8 +85,8 @@ def getData(name):
         return json.load(namejson)
 
 def saveData(data, name):
-    with open(getSetting(name), 'w') as namejson:
-        json.dump(data, namejson)
+    with open(getPath(name), 'w') as namejson:
+        json.dump(data, namejson, indent=4)
   
 def getSetting(name):
     """

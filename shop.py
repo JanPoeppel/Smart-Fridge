@@ -11,7 +11,6 @@ Attribute:
     DATAPATH: Pfad zur data.json
 """
 import settings
-import json
 import money
 import logging
 import rfid
@@ -19,7 +18,34 @@ import person
 import warnings
 import logging
 
-data = None
+shoppingcart ={}
+
+def addToCart(name, amount):
+    shoppingcart[name] = shoppingcart.get(name, 0) + amount
+    if(shoppingcart[name] == 0):
+        shoppingcart.pop(name)
+    return True
+
+def getCart():
+    return shoppingcart
+
+def resetCart():
+    shoppingcart.clear()
+    return True
+
+def getCartValue():
+    sum = 0
+    for a in shoppingcart:
+        sum += shoppingcart[a]*getPrice(a)
+    return sum
+
+def checkoutCart(rfid):
+    if (buy(rfid, getCartValue())):
+        for a in shoppingcart.keys():
+            if not(updateAmount(a, -1)):
+                logging.warn("New Amount of %s cannot be updated with %d", a, -1)
+                return resetCart()
+    return False
 
 def buy(rfid, amount):
     """
@@ -38,15 +64,14 @@ def buy(rfid, amount):
         False: Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
     """
     if(float(money.getMoney(rfid))>= float(amount)):
-        money.withdraw(rfid, amount)
-        name = person.getName(rfid)
-        prices = str(amount)
-        #TODO #14 bessere Formatierung der String übergebung
-        logging.info(name +'('+rfid+') hat fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
-        print(name +'('+rfid+') hat  fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
-        return True
-    else:
-        return False
+        if(money.withdraw(rfid, amount)):
+            name = person.getName(rfid)
+            prices = str(amount)
+            #TODO #14 bessere Formatierung der String übergebung
+            logging.info(name +'('+rfid+') hat fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
+            print(name +'('+rfid+') hat  fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
+            return True
+    return False
     
 def getPrice(name):
     """
@@ -61,65 +86,31 @@ def getPrice(name):
         Integer: den Preis.
         False: Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
     """
-    #TODO #13 Move to file
-    if(data == None):
-        data = settings.getData('settings.json')
-
-    price = data['article'][name]
-    if(price == None):
-        return False
-    return price
+    data = settings.getData('settings.json')
+    if (name in data['article']['drinks']):
+        return data['article']['drinks'][name]['price']
+    if (name in data['article']['alk']):
+        return data['article']['alk'][name]['price']
+    if (name in data['article']['food']):
+        return data['article']['food'][name]['price']
+    return False
 
 
 
 def updateAmount(name, amount):
     data = settings.getData('settings.json')
-    data[name]['articel']['amount'] = data[name]['articel']['amount'] + amount
+    
+    if (name in data['article']['drinks']):
+        data['article']['drinks'][name]['amount'] += amount
+    elif (name in data['article']['alk']):
+        data['article']['alk'][name]['amount'] += amount
+    elif (name in data['article']['food']):
+        data['article']['food'][name]['amount'] += amount
+    else:
+        return False
     settings.saveData(data,'settings.json')
     return True
 
-def buyArticel(rfid, articels):
-    #articels[0] = name
-    #articels[1] = amount
-    sum = 0
-    for a in articels:
-        sum += articels[1]*getPrice(articels[0])
-    if not(buy(rfid, sum)):
-        return False
-    for a in articels:
-        if not(updateAmount(articels[0], articels[1]*-1)):
-            logging.warn("New Amount of %d cannot be updated with %d", articels[0], articels[1]*-1)
-    return True
-
-def __startbuy(id):
-    rfid.readUID()
-    warnings.warn(
-            "__startbuy is deprecated and will be removed in further versions",
-            DeprecationWarning
-        )
-
-def getNamefromID(id):
-    switcher = {
-        0: "Cola",
-        1: "Bier",
-        2: "PizzaSchwank",
-        3: "Limo"
-    }
-    warnings.warn(
-            "deprecated and will be removed in further versions",
-            DeprecationWarning
-        )
-    return switcher.get(id, -1)
-def getIDfromName(name):
-    switcher = {
-        #id: Preis
-        "Cola": 1,
-        "Bier": 2,
-        "PizzaSchwank": 3,
-        "Gelbes_Limo": 4
-    }
-    warnings.warn(
-            "__startbuy is deprecated and will be removed in further versions",
-            DeprecationWarning
-        )
-    return switcher.get(name, "Error")
+def getArticleList(category):
+    data = settings.getData('settings.json')
+    return data['article'][category].keys()
