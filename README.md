@@ -1,14 +1,18 @@
 # SmartFridge
 
 ## Beschreibung
-Dieses Projekt dient Jugendlichen den Zugang zu technischem sowie logischem Denken zu bieten sowie einen Anreiz zu bieten sich weiter mit dem Thema zu beschäftigen.
+Dieses Projekt bietet Jugendlichen den Zugang zu technischem sowie logischem Denken sowie einen Anreiz sich weiter in dem Themengebiet fortzubilden.\
 
-Durch das Projekt - welches mit dieser Anleitung auch ohne Vorkenntnisse möglich ist - wird das Problem mit der Bezahlung von Getränken und Essen behoben.
+## Problematiken in den Jugendtreffs
+Jeder Jugendtreff möchte seinen Besuchern und Mitgliedern Getränke oder auch etwas zu Essen anbieten. Dafür wird in den meisten Fällen jedoch eine Aufischtsperson für die Kasse und die Korrekte Bezahlung benötigt.\
+Dieses Problem soll duch dieses Projekt gelöst werden, indem man für jeden ein internes Konto anlegt, auf dem direkt ein Betrag eingezahlt werden kann und beim bezahlen das Guthaben auf dem Konto verringert wird.\
+
+Die Grundfunktionen können auch ohne Vorkenntnisse eingerichtet werden.
 
 ## Aufbau
-Durch das Projekt werden die Grundbausteine gesetzt, welche dann durch die Jugendlichen weiter ausgebaut, verändert sowie ergänzt werden können.
-Als Grundlage dient ein Raspberry Pi (getestet auf Version #TODO), ein Touchscreen und ein RFID-Reader. 
-Durch eine simple Benutzeroberfläche können Jugendliche in ihrem Jugendtreff, Vereinsheim oder auch in Privaten Räumen ihre Getränke bezahlen, ohne das passende Geld dabei zu haben.\
+Durch das Projekt dient als Grundbausteine, welches dann durch die Jugendlichen weiter ausgebaut, verändert sowie ergänzt werden kann.\
+Als Platform dient ein Raspberry Pi (getestet auf Version #TODO), ein Touchscreen und ein RFID-Reader. 
+Durch eine simple Benutzeroberfläche können Jugendliche in ihrem Jugendtreff, Vereinsheim oder auch in Privaten Räumen ihre Getränke bezahlen.\
 Die Jugendlichen können sich einen RFID-Chip oder -Karte bei einem Verantwortlichen registrieren lassen und können dann Geld auf diese laden. Nun müssen die Jugendlichen nur noch den Chip beim bezahlvorgang an das Gerät halten, und der Betrag wird automatisch von ihrem Konto abgezogen.\
 *Optional kann auch ein Magnetschloss am Kühlschrank oder entsprechendes Mobiliar montiert werden, welcher nach dem Bezahlvorgang das Schloss entriegelt*
 
