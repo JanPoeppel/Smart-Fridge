@@ -60,6 +60,8 @@ wenn programmierer: gpg fehler lösung:https://canox.net/2018/10/gpg-unpassender
 
 ## Kauflinks (keine Affiliate Links)
 Hier eine Liste an Komponenten wie sie im Projekt genutzt und getestet wurden. (Wir bekommen keine Vergütung wenn über diese Links ein Produkt gekauft wird)\
-[Raspberry Pi](https://www.reichelt.de/DE/DE/raspberry-pi-4-b-4x-1-5-ghz-2-gb-ram-wlan-bt-rasp-pi-4-b-2gb-p259919.html?r=1&src=raspberrypi "reichelt.de"){:target="_blank" rel="noopener"} 
-[go](http://stackoverflow.com){:target="_blank" rel="noopener"} 
-<a href="http://stackoverflow.com" target="_blank">external link</a>
+[Raspberry Pi](https://www.reichelt.de/DE/DE/raspberry-pi-4-b-4x-1-5-ghz-2-gb-ram-wlan-bt-rasp-pi-4-b-2gb-p259919.html?r=1&src=raspberrypi "reichelt.de")\
+[Netzteil](https://www.reichelt.de/raspberry-pi-netzteil-5-1-v-3-0-a-usb-type-c-eu-stecker-s-rpi-ps-15w-bk-eu-p260010.html?&nbc=1&trstct=lsbght_sldr::259919 "reichelt.de")\
+[Touchscreen Display](https://www.reichelt.de/raspberry-pi-shield-display-lcd-touch-3-5-480x320-pixel-xp-rasp-pi-3-5td-p202827.html "reichelt.de)\
+[Gehäuse für Raspberry Pi mit Display](https://www.reichelt.de/gehaeuse-fuer-raspberry-pi-4-3-5-display-rpi-case-3-5-tr-p272260.html?&nbc=1&trstct=lsbght_sldr::202827 "reichelt.de")\
+Optional [Kühlsatz](https://www.reichelt.de/raspberry-pi-4-kuehlsatz-4-teilig-silber-rpi-cool-4xsi-p261927.html?&nbc=1&trstct=lsbght_sldr::259919 "reichelt.de")
