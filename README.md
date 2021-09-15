@@ -16,6 +16,11 @@ Durch eine simple Benutzeroberfläche können Jugendliche in ihrem Jugendtreff, 
 Die Jugendlichen können sich einen RFID-Chip oder -Karte bei einem Verantwortlichen registrieren lassen und können dann Geld auf diese laden. Nun müssen die Jugendlichen nur noch den Chip beim bezahlvorgang an das Gerät halten, und der Betrag wird automatisch von ihrem Konto abgezogen.\
 *Optional kann auch ein Magnetschloss am Kühlschrank oder entsprechendes Mobiliar montiert werden, welcher nach dem Bezahlvorgang das Schloss entriegelt*
 
+## Hardeware Anforderungen
+[Raspberry Pi](https://www.raspberrypi.org/ "raspberrypi.org")
+Touchscreen Display
+
+
 ## Installation (ohne Vorwissen)
 
 Download der .zip Datei\
@@ -52,3 +57,7 @@ Verlinkung zum doc und noch füllen
 - python 3 als standart
 
 wenn programmierer: gpg fehler lösung:https://canox.net/2018/10/gpg-unpassender-ioctl-i-o-control-fuer-das-geraet-fehler-beheben/
+
+## Kauflinks (keine Affiliate Links)
+Hier eine Liste an Komponenten wie sie im Projekt genutzt und getestet wurden. (Wir bekommen keine Vergütung wenn über diese Links ein Produkt gekauft wird)
+[Raspberry Pi](https://www.reichelt.de/DE/DE/raspberry-pi-4-b-4x-1-5-ghz-2-gb-ram-wlan-bt-rasp-pi-4-b-2gb-p259919.html?r=1&src=raspberrypi "reichelt.de")
