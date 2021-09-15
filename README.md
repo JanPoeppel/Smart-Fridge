@@ -61,3 +61,4 @@ wenn programmierer: gpg fehler lösung:https://canox.net/2018/10/gpg-unpassender
 ## Kauflinks (keine Affiliate Links)
 Hier eine Liste an Komponenten wie sie im Projekt genutzt und getestet wurden. (Wir bekommen keine Vergütung wenn über diese Links ein Produkt gekauft wird)\
 [Raspberry Pi](https://www.reichelt.de/DE/DE/raspberry-pi-4-b-4x-1-5-ghz-2-gb-ram-wlan-bt-rasp-pi-4-b-2gb-p259919.html?r=1&src=raspberrypi "reichelt.de"){:target="_blank" rel="noopener"} 
+[go](http://stackoverflow.com){:target="_blank" rel="noopener"} 
