@@ -18,10 +18,12 @@ Die Jugendlichen können sich einen RFID-Chip oder -Karte bei einem Verantwortli
 
 ## Hardeware Anforderungen
 [Raspberry Pi](https://www.raspberrypi.org/ "raspberrypi.org")
-Touchscreen Display
+Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwendet, bei anderen Herstellern muss auf
 
 
 ## Installation (ohne Vorwissen)
+
+Die Micro SD Karte an einem Computer mit dem bereitgestellten Image beschreiben und das Display auf dem Raspberry Pi anbringen, eine Anleitung ist [hier](https://joy-it.net/files/files/Produkte/RB-TFT3.5/RB-TFT-Anleitung_04082020.pdf "joy-it.net") zu finden.
 
 Download der .zip Datei\
 Alle nötigen Vorraussetzungen installieren
