@@ -68,16 +68,16 @@ def auth(rfid):
 
 def addPerson(name, rfid):
     """
-	Fügt eine*n neue*n Nutzer*in hinzu.
+	Fügt einen neuen Nutzenden hinzu.
 
     .. note:: Loggt den Versuch eine bereits vergebene RFID erneut anzulegen.
 
     Args:
-        name: Der Name des*der Nutzer*in
-        rfid: Die RFID des*der Nutzer*in
+        name: Der Name des Nutzenden
+        rfid: Die RFID des Nutzenden
     
     Returns:
-        | 1: wenn der*die Nutzer*in erfolgreich hinzugefügt wurde.
+        | 1: wenn der Nutzende erfolgreich hinzugefügt wurde.
         | -1: Wenn der Name bereits vergeben ist.
         | -2: Wenn die RFID bereits vergeben ist.
         | -3: Wenn ein interner Fehler aufgetreten ist.
@@ -138,8 +138,8 @@ def __addNameRFID(name, rfid):
     Loggt das Ereignis.
 
     Args:
-        name: Der Name des*der Nutzer*in
-        rfid: Die RFID des*der Nutzer*in
+        name: Der Name des Nutzenden
+        rfid: Die RFID des Nutzenden
     
     Returns:
         True: Wenn die Person erfolgreich angelegt wurde.
@@ -166,7 +166,7 @@ def getName(rfid):
     Gibt den Namen zu einer RFID zurück.
 
     Args:
-        rfid: Die RFID des*der Nutzer*in
+        rfid: Die RFID des Nutzenden
     
     Returns:
         Den Namen zu der RFID.
@@ -184,7 +184,7 @@ def getRFID(name):
     Gibt die RFID zu einem Namen zurück.
 
     Args:
-        name: Der Name des*der Nutzer*in
+        name: Der Name des Nutzenden
     
     Returns:
         Die RFID zu dem Namen RFID.
@@ -201,7 +201,7 @@ def lastSeen(rfid):
     Gibt das Datum zurück an dem zuletzt mit der RFID eingekauft wurde.
 
     Args:
-        rfid: Die RFID des*der Nutzer*in
+        rfid: Die RFID des Nutzenden
     
     Returns:
         Das Datum an dem die RFID zuletzt gesehen wurde.
