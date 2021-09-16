@@ -25,7 +25,7 @@ LOGPATH = None
 
 def main():
     """
-	Starten und Beenden des Programmes:
+	Starten und Beenden des Programmes
 	"""
     start()
     exit()
@@ -33,6 +33,7 @@ def main():
 def start():
 	"""
 	Starten des Programmes:
+	initialisiert das Einstellungsmodul :class:'settings'
 	"""
 	try:
 		#init all modules
@@ -51,7 +52,7 @@ def start():
 	
 def exit():
 	"""
-	Beenden des Programmes:
+	Beenden des Programmes
 	"""
 	#GPIO.cleanup()
 	logging.warning('Exiting Script')
