@@ -54,7 +54,10 @@ def start():
 	
 def exit():
 	"""
-	Beenden des Programmes
+	Beenden des Programmes:
+	
+	Diese Funktion wird als letztes aufgerufen und kann daher zum Aufräumen genutzt werden.
+	Zum Beispiel können noch gesetzte GPIOs zurückgesetzt werden.
 	"""
 	#GPIO.cleanup()
 	logging.warning('Exiting Script')
