@@ -1,6 +1,7 @@
 person module
 =============
-|Typisches Anwendungsbeispiel:
+
+Typisches Anwendungsbeispiel:
 |person.init()
 |auth = auth(RFID)
 |check = addPerson(String, RFID)
