@@ -3,23 +3,8 @@ person.py
 
 Dieses Modul kümmert sich um das Verwalten der Nutzer
 
-Typisches Anwendungsbeispiel:
-person.init()
-auth = auth(RFID)
-check = addPerson(String, RFID)
-check = rfidExists(RFID)
-check = nameExists(String)
-name = getName(RFID)
-rfid = getRFID(String)
-date = lastSeen(RFID)
-
 :param DATAPATH: Pfad zur data.json
-.. function:: auth(RFID)
 
-Authentifiziert eine RFID ob sie zu einem Admin gehört
-
-:param RFID: RFID zum prüfen
-:rtype: boolean
 """
 
 import settings
