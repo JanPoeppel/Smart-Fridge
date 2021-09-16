@@ -1,4 +1,4 @@
-Simple Test Documentation!
+Smart Fridge Dokumentation!
 ================================
 
 .. image:: https://raw.githubusercontent.com/JanPoeppel/Smart-Fridge/main/images/test.png
