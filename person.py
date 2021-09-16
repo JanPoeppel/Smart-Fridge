@@ -13,6 +13,9 @@ name = getName(RFID)
 rfid = getRFID(String)
 date = lastSeen(RFID)
 
+:param addr: Device MAC address, defaults to None
+:type addr: str, optional
+
 :param DATAPATH: Pfad zur data.json
 :param init:
 :param auth:
