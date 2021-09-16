@@ -40,7 +40,7 @@ def init():
 
 def auth(rfid):
     """
-	Authentifiziert einen Admin
+    Authentifiziert einen Admin
 
     Prüft ob die RFID in der Liste der Admins ist.
     
@@ -70,17 +70,17 @@ def addPerson(name, rfid):
     """
 	Fügt eine*n neue*n Nutzer*in hinzu.
 
-    Loggt den Versuch eine bereits vergebene RFID erneut anzulegen.
+    .. note:: Loggt den Versuch eine bereits vergebene RFID erneut anzulegen.
 
     Args:
         name: Der Name des*der Nutzer*in
         rfid: Die RFID des*der Nutzer*in
     
     Returns:
-        1: wenn der*die Nutzer*in erfolgreich hinzugefügt wurde.
-        -1: Wenn der Name bereits vergeben ist.
-        -2: Wenn die RFID bereits vergeben ist.
-        -3: Wenn ein interner Fehler aufgetreten ist.
+        | 1: wenn der*die Nutzer*in erfolgreich hinzugefügt wurde.
+        | -1: Wenn der Name bereits vergeben ist.
+        | -2: Wenn die RFID bereits vergeben ist.
+        | -3: Wenn ein interner Fehler aufgetreten ist.
 	"""
     
     if(rfidExists(rfid)):
