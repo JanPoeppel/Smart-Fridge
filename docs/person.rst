@@ -3,14 +3,14 @@ person module
 
 Typisches Anwendungsbeispiel:
 
-|person.init()
-|auth = auth(RFID)
-|check = addPerson(String, RFID)
-|check = rfidExists(RFID)
-|check = nameExists(String)
-|name = getName(RFID)
-|rfid = getRFID(String)
-|date = lastSeen(RFID)
+| person.init()
+| auth = auth(RFID)
+| check = addPerson(String, RFID)
+| check = rfidExists(RFID)
+| check = nameExists(String)
+| name = getName(RFID)
+| rfid = getRFID(String)
+| date = lastSeen(RFID)
 
 | Lend us a couple of bob till Thursday.
 | I'm absolutely skint.
