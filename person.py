@@ -13,8 +13,10 @@ name = getName(RFID)
 rfid = getRFID(String)
 date = lastSeen(RFID)
 
-Attribute:
-    DATAPATH: Pfad zur data.json
+:param DATAPATH: Pfad zur data.json
+:param init:
+:param auth:
+:type auth: RFID
 """
 
 import settings
