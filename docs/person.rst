@@ -16,3 +16,17 @@ Typisches Anwendungsbeispiel:
    :members:
    :undoc-members:
    :show-inheritance:
+   
+:param __addNameRFID:
+    Private Funktion um eine neue Person anzulegen.
+    Private Funktion um die Daten in die Datei zu schreiben.
+    ..note:: Diese Aktion wird geloggt
+    
+    ..warning:: Bevor die Daten in die Datei zu speichern muss davor geprüft werden, ob bereits ein Name oder eine RFID mit den Werten angelegt wurde.
+    Args:
+        | name: Der Name des Nutzenden
+        | rfid: Die RFID des Nutzenden
+    
+    Returns:
+        True: Wenn die Person erfolgreich angelegt wurde.
+
