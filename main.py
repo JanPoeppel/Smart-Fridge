@@ -1,10 +1,14 @@
 """
-start.py
+main.py
 
-Dieses Modul kümmert sich um den Start und das Beenden des Programmes
+Dieses Modul kümmert sich um den Start und das Beenden des Programmes.
+Dabei initalisiert es wichtige Variablen und überprüft ob alle Abhängigkeiten verfügbar sind.
 
-Typisches Anwendungsbeispiel:
-main()
+Hierfür müssen die zu prüfenden Module importiert werden.
+
+.. note:: Die exit() Funktion wird auch beim einem KeyboardInterrupt Event aufgerufen.
+
+
 """
 import settings
 import person
