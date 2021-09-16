@@ -135,7 +135,9 @@ def __addNameRFID(name, rfid):
     Private Funktion um eine neue Person anzulegen.
 
     Private Funktion um die Daten in die Datei zu schreiben.
-    Loggt das Ereignis.
+    ..note:: Diese Aktion wird geloggt
+    
+    ..warning:: Bevor die Daten in die Datei zu speichern muss davor geprüft werden, ob bereits ein Name oder eine RFID mit den Werten angelegt wurde.
 
     Args:
         | name: Der Name des Nutzenden
