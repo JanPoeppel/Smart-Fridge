@@ -15,7 +15,9 @@ date = lastSeen(RFID)
 
 :param DATAPATH: Pfad zur data.json
 .. function:: auth(RFID)
+
 Authentifiziert eine RFID ob sie zu einem Admin gehört
+
 :param RFID: RFID zum prüfen
 :rtype: boolean
 """
