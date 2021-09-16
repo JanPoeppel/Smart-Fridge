@@ -50,8 +50,8 @@ def auth(rfid):
         rfid: Die zu überprüfende RFID
     
     Returns:
-        true: wenn die RFID in der Liste ist.
-        false: wenn die RFID nicht in der Liste ist.
+        | True: wenn die RFID in der Liste ist.
+        | False: wenn die RFID nicht in der Liste ist.
 	"""
     rfid = str(rfid)
     #TODO rfid == admin List settings
@@ -73,8 +73,8 @@ def addPerson(name, rfid):
     .. note:: Loggt den Versuch eine bereits vergebene RFID erneut anzulegen.
 
     Args:
-        name: Der Name des Nutzenden
-        rfid: Die RFID des Nutzenden
+        | name: Der Name des Nutzenden
+        | rfid: Die RFID des Nutzenden
     
     Returns:
         | 1: wenn der Nutzende erfolgreich hinzugefügt wurde.
@@ -103,8 +103,8 @@ def rfidExists(rfid):
         rfid: Die zu überprüfende RFID
     
     Returns:
-        True: Wenn die RFID bereits Exisitiert.
-        False: Wenn die RFID noch nicht Existiert.
+        | True: Wenn die RFID bereits Exisitiert.
+        | False: Wenn die RFID noch nicht Existiert.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
@@ -121,8 +121,8 @@ def nameExists(name):
         name: Der zu überprüfende Name
     
     Returns:
-        True: Wenn der Name bereits Exisitiert.
-        False: Wenn der Name noch nicht Existiert.
+        | True: Wenn der Name bereits Exisitiert.
+        | False: Wenn der Name noch nicht Existiert.
     """
     data = settings.getData('data.json')
     for i in data[PEOPLE]:
@@ -138,8 +138,8 @@ def __addNameRFID(name, rfid):
     Loggt das Ereignis.
 
     Args:
-        name: Der Name des Nutzenden
-        rfid: Die RFID des Nutzenden
+        | name: Der Name des Nutzenden
+        | rfid: Die RFID des Nutzenden
     
     Returns:
         True: Wenn die Person erfolgreich angelegt wurde.
@@ -169,8 +169,8 @@ def getName(rfid):
         rfid: Die RFID des Nutzenden
     
     Returns:
-        Den Namen zu der RFID.
-        'NoName' wenn die RFID nicht existiert.
+        | Den Namen zu der RFID.
+        | 'Unknown' wenn die RFID nicht existiert.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
@@ -187,8 +187,8 @@ def getRFID(name):
         name: Der Name des Nutzenden
     
     Returns:
-        Die RFID zu dem Namen RFID.
-        'NoRFID' wenn der Name nicht existiert.
+        | Die RFID zu dem Namen RFID.
+        | 'NoRFID' wenn der Name nicht existiert.
     """
     data = settings.getData('data.json')
     for i in data[PEOPLE]:
@@ -204,8 +204,8 @@ def lastSeen(rfid):
         rfid: Die RFID des Nutzenden
     
     Returns:
-        Das Datum an dem die RFID zuletzt gesehen wurde.
-        'NotFound' wenn noch kein Datum existiert.
+        | Das Datum an dem die RFID zuletzt gesehen wurde.
+        | 'NotFound' wenn noch kein Datum existiert.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
