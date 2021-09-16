@@ -132,9 +132,8 @@ def nameExists(name):
 
 def __addNameRFID(name, rfid):
     """
-    Private Funktion um eine neue Person anzulegen.
-
-    Private Funktion um die Daten in die Datei zu schreiben.
+    Private Funktion um eine neue Person anzulegen beziehungsweise die Werte in die Datei zu schreiben.
+    
     .. note:: Diese Aktion wird geloggt
     
     .. warning:: Bevor die Daten in die Datei gespeichert werden, muss geprüft werden ob bereits ein Name oder eine RFID mit den Werten hinterlegt ist.
