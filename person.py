@@ -13,13 +13,11 @@ name = getName(RFID)
 rfid = getRFID(String)
 date = lastSeen(RFID)
 
-:param addr: Device MAC address, defaults to None
-:type addr: str, optional
-
 :param DATAPATH: Pfad zur data.json
-:param init:
-:param auth:
-:type auth: RFID
+.. function:: auth(RFID)
+Authentifiziert eine RFID ob sie zu einem Admin gehört
+:param RFID: RFID zum prüfen
+:rtype: boolean
 """
 
 import settings
