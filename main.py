@@ -51,7 +51,7 @@ def start():
 	
 def exit():
 	"""
-	:Beenden des Programmes:
+	Beenden des Programmes:
 	"""
 	#GPIO.cleanup()
 	logging.warning('Exiting Script')
