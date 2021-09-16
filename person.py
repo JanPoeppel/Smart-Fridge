@@ -1,5 +1,5 @@
 """
-Dieses Modul kümmert sich um das Verwalten der Nutzer
+Dieses Modul kümmert sich um das Verwalten der Nutzenden
 
 """
 
