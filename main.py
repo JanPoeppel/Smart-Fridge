@@ -33,7 +33,7 @@ def main():
 def start():
 	"""
 	Starten des Programmes:
-	initialisiert das Einstellungsmodul :class:'settings'
+	initialisiert das Einstellungsmodul :class:`settings`
 	"""
 	try:
 		#init all modules
