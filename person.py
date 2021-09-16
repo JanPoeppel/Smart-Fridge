@@ -1,6 +1,4 @@
 """
-person.py
-
 Dieses Modul kümmert sich um das Verwalten der Nutzer
 
 :param DATAPATH: Pfad zur data.json
