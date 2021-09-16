@@ -17,7 +17,7 @@ Typisches Anwendungsbeispiel:
    :undoc-members:
    :show-inheritance:
    
-.. py:function:: spam(eggs)
+.. py:function:: addNameRFID(name, rfid)
     Private Funktion um eine neue Person anzulegen.
     Private Funktion um die Daten in die Datei zu schreiben.
     ..note:: Diese Aktion wird geloggt
