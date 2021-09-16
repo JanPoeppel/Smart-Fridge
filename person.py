@@ -43,7 +43,8 @@ def auth(rfid):
 	Authentifiziert einen Admin
 
     Prüft ob die RFID in der Liste der Admins ist.
-    Loggt fehlgeschlagene Authentifizierungen.
+    
+    .. note::Loggt fehlgeschlagene Authentifizierungen.
 
     Args:
         rfid: Die zu überprüfende RFID
