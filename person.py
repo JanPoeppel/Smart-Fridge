@@ -50,6 +50,8 @@ def auth(rfid):
         rfid: Die zu überprüfende RFID
     
     Returns:
+    	'param1': True,
+        'False': pa
         | True: wenn die RFID in der Liste ist.
         | False: wenn die RFID nicht in der Liste ist.
 	"""
