@@ -34,7 +34,7 @@ def start():
 	"""
 	Starten des Programmes:
 	
-	Initialisiert das Einstellungsmodul :class:`settings.py` und setzt den :param LOGPATH: auf den in der Datei hinterlegten Pfad.
+	Initialisiert das Einstellungsmodul :class:`settings.py` und setzt den LOGPATH auf den in der Datei hinterlegten Pfad.
 	Danach wird die GUI gestartet.
 	"""
 	try:
