@@ -18,6 +18,7 @@ Typisches Anwendungsbeispiel:
    :show-inheritance:
    
 .. py:function:: addNameRFID(name, rfid)
+
       Private Funktion um eine neue Person anzulegen.
       Private Funktion um die Daten in die Datei zu schreiben.
       ..note:: Diese Aktion wird geloggt
