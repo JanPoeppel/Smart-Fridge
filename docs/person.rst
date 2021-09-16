@@ -10,7 +10,7 @@ Typisches Anwendungsbeispiel:
 | check = nameExists(String)
 | name = getName(RFID)
 | rfid = getRFID(String)
-| date = lastSeen(RFID)
+| date = lastSeen(RFID) 
 
 .. automodule:: person
    :members:
