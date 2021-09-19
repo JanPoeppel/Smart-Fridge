@@ -103,8 +103,8 @@ def rfidExists(rfid):
         rfid: Die zu überprüfende RFID
     
     Returns:
-        | True: Wenn die RFID bereits Exisitiert.
-        | False: Wenn die RFID noch nicht Existiert.
+        | True: Wenn die RFID bereits exisitiert.
+        | False: Wenn die RFID noch nicht existiert.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
@@ -121,8 +121,8 @@ def nameExists(name):
         name: Der zu überprüfende Name
     
     Returns:
-        | True: Wenn der Name bereits Exisitiert.
-        | False: Wenn der Name noch nicht Existiert.
+        | True: Wenn der Name bereits exisitiert.
+        | False: Wenn der Name noch nicht existiert.
     """
     data = settings.getData('data.json')
     for i in data[PEOPLE]:
@@ -136,7 +136,7 @@ def __addNameRFID(name, rfid):
     
     .. note:: Diese Aktion wird geloggt
     
-    .. warning:: Bevor die Daten in die Datei gespeichert werden, muss geprüft werden ob bereits ein Name oder eine RFID mit den Werten hinterlegt ist.
+    .. warning:: Bevor die Daten in die Datei gespeichert werden, muss geprüft werden, ob bereits ein Name oder eine RFID mit den Werten hinterlegt ist.
 
     Args:
         | name: Der Name des Nutzenden
