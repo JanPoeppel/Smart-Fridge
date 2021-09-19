@@ -2,11 +2,11 @@
 main.py
 
 Dieses Modul kümmert sich um den Start und das Beenden des Programmes.
-Dabei initalisiert es wichtige Variablen und überprüft ob alle Abhängigkeiten verfügbar sind.
+Dabei initalisiert es wichtige Variablen und überprüft, ob alle Abhängigkeiten verfügbar sind.
 
 Hierfür müssen die zu prüfenden Module importiert werden.
 
-.. note:: Die exit() Funktion wird auch beim einem KeyboardInterrupt Event aufgerufen.
+.. note:: Die exit() Funktion wird auch bei einem KeyboardInterrupt Event aufgerufen.
 
 
 """
@@ -25,7 +25,7 @@ LOGPATH = None
 
 def main():
     """
-	Starten und Beenden des Programmes
+	Starten und beenden des Programmes
 	"""
     start()
     exit()
