@@ -59,7 +59,7 @@ def withdraw(rfid, amount):
 
 def getMoney(rfid):
     """
-    Gibt das Guthaben zurück
+    Gibt das aktuell verfügbare Guthaben des Kontos zurück.
 
     Gibt das Guthaben von dem , mit der RFID verknüpften, Konto zurück.
 
