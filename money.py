@@ -47,15 +47,7 @@ def withdraw(rfid, amount):
         False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
-    data = settings.getData('data.json')
-    if (person.rfidExists(rfid)): 
-        for i in data[RFID]:
-            if i[RFID] == rfid:
-                i[MONEY] -= amount
-                settings.saveData(data, 'data.json')
-                logging.info('RFID \''+rfid+'\' wurden '+str(amount)+' abgezogen, neuer Stand: '+str(i[MONEY]))
-                return True
-    return False
+    return addMoney(rfid, -amount)
 
 def getMoney(rfid):
     """
@@ -100,8 +92,8 @@ def addMoney(rfid, amount):
                 settings.saveData(data, 'data.json')
                 logging.info("Geld hiunzugefuegt")
                 name = person.getName(rfid)
-                logging.info(name+'('+rfid+') wurden '+str(amount)+' hinzugefuegt, neuer Stand: '+str(i[MONEY]))
-                print((name+'('+rfid+') wurden '+str(amount)+' hinzugefuegt, neuer Stand: '+str(i[MONEY])))
+                logging.info(name+'('+rfid+') Konto wurden um '+str(amount)+' geaendert, neuer Stand: '+str(i[MONEY]))
+                print((name+'('+rfid+') Konto wurden um '+str(amount)+' geaendertt, neuer Stand: '+str(i[MONEY])))
                 return True
     print("Chip unbekannt, Vorgang abgebrochen")
     return False
