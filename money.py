@@ -4,6 +4,7 @@ money.py
 Dieses Modul kümmert sich um das Verwalten der Guthaben.
 
 Typisches Anwendungsbeispiel:
+
 | money.init()
 | check = withdraw(RFID, Double)
 | check = addMoney(RFID)
