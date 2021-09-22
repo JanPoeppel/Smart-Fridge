@@ -11,3 +11,4 @@ Smart Fridge
    person
    rfid
    shop
+   settings
