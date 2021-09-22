@@ -3,9 +3,6 @@ settings.py
 
 Dieses Modul kümmert sich um das Verwalten der Einstellungen
 
-Typisches Anwendungsbeispiel:
-check = getSetting(String)
-
 Attribute:
     DATAPATH: Pfad zur setting.json
 """
