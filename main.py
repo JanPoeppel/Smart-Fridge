@@ -48,7 +48,8 @@ def start():
 		gui.start()		
 		
 		
-		
+	except SystemExit:
+		exit()		
 	except KeyboardInterrupt:
 		exit()
 	
