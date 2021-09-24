@@ -26,7 +26,13 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
 1. Die Micro SD Karte an einem Computer mit dem bereitgestellten Image beschreiben und das Display auf dem Raspberry Pi anbringen. 
 Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.net/files/files/Produkte/RB-TFT3.5/RB-TFT-Anleitung_04082020.pdf "joy-it.net") zu finden.
 
-2. Die [.zip Datei](https://github.com/JanPoeppel/Smart-Fridge/archive/refs/heads/main.zip) downloaden und auf einem USB Stick speichern.
+2. Befolge die Installationsanweisungen auf dem Display\
+3. am Ende muss der RaspberryPi neugestartet werden.
+4. 
+
+
+
+4. Die [.zip Datei](https://github.com/JanPoeppel/Smart-Fridge/archive/refs/heads/main.zip) downloaden und auf einem USB Stick speichern.
 
 
 
