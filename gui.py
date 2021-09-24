@@ -32,7 +32,7 @@ class SeaofBTCapp(tk.Tk):
             frame.grid(row=0, column=0, sticky='nsew')
         self.show_frame(StartPage)
       
-    def show_frame(self, cont, name = None, rfids = None, amount = 0, controller = None, error = None, page = None):
+    def __show_frame(self, cont, name = None, rfids = None, amount = 0, controller = None, error = None, page = None):
         if(cont == None):
             cont = StartPage
         frame = self.frames[cont]
@@ -237,10 +237,10 @@ Liste mit Warenkorb wird angezeigt
 
 class Page1(tk.Frame):
     
-    def init(self, cont):
+    def __init(self, cont):
         cont.show_ele(cont)
     
-    def show_ele(self, cont):
+    def __show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
             einkauf = shop.getCart()
             for ele in einkauf:
@@ -253,7 +253,7 @@ class Page1(tk.Frame):
 
         
 
-        def add(evt):
+        def __add(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
@@ -265,7 +265,7 @@ class Page1(tk.Frame):
                 self.show_ele(self)
 
 
-        def dell(evt):
+        def __dell(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
@@ -349,7 +349,7 @@ class Page1(tk.Frame):
 
 class Page2(tk.Frame):
     
-    def show_ele(self, cont):
+    def __show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
             einkauf = shop.getCart()
             for ele in einkauf:
@@ -361,7 +361,7 @@ class Page2(tk.Frame):
         font9 = '-family {Courier New} -size 15 -weight normal -slant '  \
             'roman -underline 0 -overstrike 0'
 
-        def add(evt):
+        def __add(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
@@ -372,7 +372,7 @@ class Page2(tk.Frame):
                 self.Listbox2.delete(0, tk.END)
                 self.show_ele(self)
 
-        def dell(evt):
+        def __dell(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
@@ -448,10 +448,10 @@ class Page2(tk.Frame):
  
 class Page3(tk.Frame):
     
-    def init(self, cont):
+    def __init(self, cont):
         cont.show_ele(cont)
     
-    def show_ele(self, cont):
+    def __show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
             einkauf = shop.getCart()
             for ele in einkauf:
@@ -464,7 +464,7 @@ class Page3(tk.Frame):
 
         
 
-        def add(evt):
+        def __add(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
@@ -476,7 +476,7 @@ class Page3(tk.Frame):
                 self.show_ele(self)
 
 
-        def dell(evt):
+        def __dell(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
@@ -612,18 +612,18 @@ class PageBuyLogin(tk.Frame):
         
 class Page5(tk.Frame):
     
-    def init(self, cont):
+    def __init(self, cont):
         cont.show_ele(cont)
         cont.sum(cont)
         
-    def show_ele(self, cont):
+    def __show_ele(self, cont):
         cont.Listbox2.delete(0,'end')
         einkauf = shop.getCart()
         for ele in einkauf:
             if (einkauf[ele] != 0):
                 cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
                 
-    def sum(self, cont):
+    def __sum(self, cont):
         cont.sumLabel.configure(text=str(shop.getCartValue()) + ' EUR')
 
     def __init__(self, parent, controller):
@@ -762,7 +762,7 @@ class PageAdmin(tk.Frame):
         
         
 class PageNewMoney(tk.Frame):
-    def setRFIDLabel(self,cont, rfids, controller):
+    def __setRFIDLabel(self,cont, rfids, controller):
         newMoneyLabel = person.getName(rfids)
         cont.pageNameLabel.configure(text='Neues Guthaben von ' +newMoneyLabel)
         newmoney = money.getMoney(rfids)
@@ -864,11 +864,11 @@ class PageDeposit(tk.Frame):
         
 class Page9(tk.Frame):
     
-    def reset(self, cont):
+    def __reset(self, cont):
         cont.Label4.configure(text='Waiting...')
         
     
-    def setRFIDLabel(self,cont, rfids):
+    def __setRFIDLabel(self,cont, rfids):
         cont.Label4.configure(text= str(rfids))
 
     def __init__(self, parent, controller):
@@ -1005,7 +1005,7 @@ class Page10(tk.Frame):
 
 class Page11(tk.Frame):
 
-    def reset(self, cont):
+    def __reset(self, cont):
         cont.name.delete('1.0', 'end')
     
     def __init__(self, parent, controller):
@@ -1146,7 +1146,7 @@ class Page14(tk.Frame):
 
 class PageError(tk.Frame):
     
-    def setError(self, cont, error = None, controller = None, page = StartPage):
+    def __setError(self, cont, error = None, controller = None, page = StartPage):
         cont.amountLabel.configure(text = error)
         controller.update()
         time.sleep(5)
@@ -1180,7 +1180,7 @@ class PageError(tk.Frame):
         
         
 class PageOverview(tk.Frame):
-    def setRFIDLabel(self,cont, rfids = None, name = None):
+    def __setRFIDLabel(self,cont, rfids = None, name = None):
         if(rfids == None):
             rfids = person.getRFID(name)            
         cont.name.configure(text= str(person.getName(rfids)))
@@ -1282,7 +1282,7 @@ class PageOverview(tk.Frame):
 
 class PageAddPerson(tk.Frame):
     
-    def setRFIDLabel(self,cont, name, rfids):
+    def __setRFIDLabel(self,cont, name, rfids):
         cont.name.configure(text= name+'('+str(name)+')')
         cont.rfid.configure(text= name+'('+str(rfids)+')')
 
