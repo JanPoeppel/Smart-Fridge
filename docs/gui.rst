@@ -2,4 +2,6 @@ gui module
 ==========
 
 .. automodule:: gui
-.. method:: start
+   :members:
+   :undoc-members: Page0, Page10
+   :show-inheritance:
