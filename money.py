@@ -97,3 +97,18 @@ def addMoney(rfid, amount):
                 return True
     print("Chip unbekannt, Vorgang abgebrochen")
     return False
+
+def addspent(name, amount):
+    data = settings.getData('data.json')
+    for i in data[PEOPLE]:
+        if i[NAME] == name:
+            i[SPENT] += amount
+	    settings.saveData(data, 'data.json')
+            break
+	
+def getAll():
+    data = settings.getData('data.json')
+    ret = 0
+    for i in data[RFID]:
+        ret += int(i[MONEY])
+    return ret
