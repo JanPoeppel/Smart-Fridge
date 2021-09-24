@@ -8,8 +8,6 @@ import shop
 from Tkconstants import SINGLE, WORD, VERTICAL
 import rfid
 import statistik
-from _ast import If
-from pip._vendor.cachecontrol import controller
 
 
 
@@ -49,8 +47,6 @@ class SeaofBTCapp(tk.Tk):
         elif(cont == Page1):
             frame.show_ele(frame)
         elif(cont == Page2):
-            frame.show_ele(frame)
-        elif(cont == Page3):
             frame.show_ele(frame)
         elif(cont == PageBuyLogin):
             rfids = rfid.readuid()
@@ -258,11 +254,18 @@ class Page0(tk.Frame):
         self.alk.bind('<Button-1>',lambda e:controller.show_frame(Page1))
 
 
-einkauf = {'Bier/Weizen':0,'Landbier':0, 'Limo/Apfelschorle': 0,'Eistee':0, 'Monster-Energy':0, 'Cola_0,3l': 0, 'Capri-Sun':0, 'Trigger-Energy':0, 'Wasser': 0 , 'Brezel':0, 'Pizza':0, 'Mozzarella-Sticks':0, 'Vegetarisch':0, 'Rockstar':0}
+einkauf = {'Greif' : 0, 'Gaas-Seidla':0, 'Zwickel':0, 'Weizen': 0, '5.0_Bier': 0, 'Weisses_Limo':0, 'Gelbes_Limo': 0, 'Spezi' : 0 ,'Pfirsich-Eistee' : 0 ,'Zitronen-Eistee':0,'Monster-Energy':0 , 'Redbull':0,'Cola_0,5l':0, 'Cola_0,3l': 0, 'Capri-Sun':0, 'Trigger-Energy':0, 'Cola_1l':0, 'Wasser': 0, 'Apfelschorle':0 , 'Brezel':0, 'Pizza':0, 'Pizza-Schwank':0}
 
 def reseteinkauf():
     for ele in einkauf:
         einkauf[ele]= 0
+                
+"""
+Getr�nkeauswahl
+-----------------------
+Liste mit Getr�nken ausw�hlen
+Liste mit Warenkorb wird angezeigt
+"""
 
 class Page1(tk.Frame):
     
@@ -482,7 +485,6 @@ class Page3(tk.Frame):
     
     def init(self, cont):
         cont.show_ele(cont)
-        
     
     def show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
@@ -531,7 +533,7 @@ class Page3(tk.Frame):
         self.Listbox1.configure(selectmode=SINGLE)
         self.Listbox1.insert(tk.END, 'Brezel')
         self.Listbox1.insert(tk.END, 'Pizza')
-        self.Listbox1.insert(tk.END, 'Mozzarella-Sticks')
+        self.Listbox1.insert(tk.END, 'Pizza-Schwank')
         self.Listbox1.bind('<<ListboxSelect>>', add)
 
 
@@ -656,22 +658,11 @@ class Page5(tk.Frame):
             if (einkauf[ele] != 0):
                 cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
     def sum(self, cont):
-        summe = 0
+        summe = 0.0
         for ele in einkauf:
             if(einkauf[ele] != 0):
                 summe += int(einkauf[ele]) * shop.getPrice(str(ele))
-                print("ek "+str(summe))
-        cont.sumLabel.configure(text=str(summe/100.0) + ' EUR')
-    def buy(self, controller):
-        amount = 0
-        for ele in einkauf:
-            if(einkauf[ele] != 0):
-                amount += int(einkauf[ele]) * shop.getPrice(str(ele))
-        if(amount >1):
-            controller.show_frame(PageBuyLogin,amount = amount, controller = controller)
-        else:
-            controller.show_frame(StartPage)
-            
+        cont.sumLabel.configure(text=str(summe) + ' EUR')
 
     def __init__(self, parent, controller):
         
@@ -729,7 +720,7 @@ class Page5(tk.Frame):
         self.buyButton.configure(font=font11)
         self.buyButton.configure(text='Kostenpflichtig kaufen')
         self.buyButton.configure(width=117)
-        self.buyButton.bind('<Button-1>', lambda e: self.buy(controller))
+        self.buyButton.bind('<Button-1>', lambda e: controller.show_frame(PageBuyLogin, amount = float(str(self.sumLabel.cget('text')).split()[0]), controller = controller))
 
 
 class PageAdmin(tk.Frame):
@@ -805,7 +796,7 @@ class PageAdmin(tk.Frame):
         self.shutdown.configure(pady='0')
         self.shutdown.configure(text='statistik')
         self.shutdown.configure(width=147)
-        self.shutdown.bind('<Button-1>',lambda e:controller.show_frame(PageStatistikJT, controller = controller))
+        self.shutdown.bind('<Button-1>',lambda e:controller.show_frame(PageStatistikJT, controller))
         
         self.shutdown = tk.Button(self)
         self.shutdown.place(relx=0.5, rely=0.70, height=64, width=147)
@@ -826,7 +817,7 @@ class PageNewMoney(tk.Frame):
         newMoneyLabel = person.getName(rfids)
         cont.pageNameLabel.configure(text='Neues Guthaben von ' +newMoneyLabel)
         newmoney = money.getMoney(rfids)
-        cont.newMoneyLabel.configure(text= str(newmoney/100.0))
+        cont.newMoneyLabel.configure(text= str(newmoney))
         controller.update()
 
     def __init__(self, parent, controller):
@@ -918,7 +909,7 @@ class PageDeposit(tk.Frame):
         self.buy.configure(pady='0')
         self.buy.configure(text='aufladen')
         self.buy.configure(width=87)
-        self.buy.bind('<Button-1>',lambda e:controller.show_frame(Page13, amount = int(self.amount.get('1.0',tk.END)), controller = controller))
+        self.buy.bind('<Button-1>',lambda e:controller.show_frame(Page13, amount = float(self.amount.get('1.0',tk.END)), controller = controller))
         
 class Page9(tk.Frame):
     
@@ -1245,7 +1236,7 @@ class PageOverview(tk.Frame):
         cont.name.configure(text= str(person.getName(rfids)))
         cont.rfid.configure(text= str(rfids))
         cont.seen.configure(text= str(person.lastSeen(rfids)))
-        cont.money.configure(text = str(money.getMoney(rfids)/100.0))
+        cont.money.configure(text = str(money.getMoney(rfids)))
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -1436,7 +1427,7 @@ class PageStatistikJT(tk.Frame):
     
     def setLabel(cont, controller):
         balance = money.getAll()
-        cont.balanceamount.configure(text = balance/100.0)
+        cont.balanceamount.configure(text = balance)
         controller.update()
 
 
