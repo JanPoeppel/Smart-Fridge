@@ -1,11 +1,11 @@
-Smart Fridge Dokumentation!
+Smart Fridge Dokumentation
 ================================
 
-.. image:: https://raw.githubusercontent.com/JanPoeppel/Smart-Fridge/main/images/test.png
-  :width: 400
-  :alt: Alternative text
+In den unten angegebenen Kaptieln sind alle Dokumentation der entsprechenden Module gegeben.
 
-Guide
+Die Schritt-für-Schritt Anleitung ist über folgenden Link auf der github Seite des Projektes zu finden.
+
+https://github.com/JanPoeppel/Smart-Fridge
 
 .. toctree::
    :maxdepth: 2
