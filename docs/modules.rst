@@ -12,5 +12,5 @@ Smart Fridge
    rfid
    shop
    settings
-   statistik.py
-   releais.py
+   statistik
+   releais
