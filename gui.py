@@ -51,9 +51,7 @@ class SeaofBTCapp(tk.Tk):
         elif(cont == PageBuyLogin):
             rfids = rfid.read()
             status = shop.buy(rfids, amount)
-            if(status == -2):
-                self.show_frame(PageError, error = 'RFID nicht gefunden', controller = controller)
-            elif(status == -1):
+            if not(status):
                 self.show_frame(PageError, error = 'Nicht genug Geld', controller = controller, page = Page5)
             else:                
                 shop.resetCart()
@@ -1476,7 +1474,7 @@ class PageStatistikBalance(tk.Frame):
 
 
     def __init__(self, cont, controller):
-        tk.Frame.__init__(self, parent)
+        tk.Frame.__init__(self)
         font10 = '-family {Segoe UI} -size 14 -weight normal -slant '  \
             'roman -underline 0 -overstrike 0'
         font11 = '-family {Segoe UI} -size 12 -weight normal -slant '  \
