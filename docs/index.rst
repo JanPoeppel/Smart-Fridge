@@ -9,7 +9,7 @@ https://github.com/JanPoeppel/Smart-Fridge
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Kapitel:
    
    modules
 
