@@ -1,50 +1,48 @@
 # -*- coding: UTF-8 -*-
-import tkinter as tk
+import Tkinter as tk
 import time
 import person
 import money
+import relais
 import shop
-from tkinter.constants import SINGLE, WORD
+from Tkconstants import SINGLE, WORD, VERTICAL
 import rfid
-import os
-from subprocess import call
+import statistik
+from _ast import If
+from pip._vendor.cachecontrol import controller
 
 
 
 LARGE_FONT= ('Verdana', 12)
-if os.environ.get('DISPLAY','') == '':
-    print('no display found. Using :0.0')
-    os.environ.__setitem__('DISPLAY', ':0.0')
+
 
 class SeaofBTCapp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
-        
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
         container.pack(side='top', fill='both', expand = True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
-        for F in (StartPage, Page0, Page1, Page2, Page3, PageAdminLogin, PageBuyLogin, Page5, PageAdmin, PageNewMoney, PageDeposit, Page9, Page10, Page11, Page12, Page13,Page14, PageError, PageOverview, PageAddPerson):
+        for F in (StartPage, Page0, Page1, Page2, Page3, PageAdminLogin, PageBuyLogin, Page5, PageAdmin, PageNewMoney, PageDeposit, Page9, Page10, Page11, Page12, Page13,Page14, PageError, PageOverview, PageAddPerson, PageStatistikMoney, PageStatistikJT):
             frame = F(container, self)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky='nsew')
         self.show_frame(StartPage)
       
-    def __show_frame(self, cont, name = None, rfids = None, amount = 0, controller = None, error = None, page = None):
+    def show_frame(self, cont, name = None, rfids = None, amount = 0, controller = None, error = None, page = None, open = False):
         if(cont == None):
             cont = StartPage
         frame = self.frames[cont]
         frame.tkraise()
         frame.update()
-        
-        
-        
+        if(controller != None):
+            controller.update()
         if(cont == PageAdminLogin):
-            rfids = rfid.read()
+            rfids = rfid.readuid()
             status = person.auth(rfids)
-            if(status == True):
+            if(status == 1):
                 self.show_frame(PageAdmin)
             else:
                 self.show_frame(StartPage)
@@ -52,21 +50,31 @@ class SeaofBTCapp(tk.Tk):
             frame.show_ele(frame)
         elif(cont == Page2):
             frame.show_ele(frame)
+        elif(cont == Page3):
+            frame.show_ele(frame)
         elif(cont == PageBuyLogin):
-            rfids = rfid.read()
-            status = shop.checkoutCart(rfids)
-            if not(status):
+            rfids = rfid.readuid()
+            status = shop.buy(rfids, amount)
+            if(status == -2):
+                self.show_frame(PageError, error = 'RFID nicht gefunden', controller = controller)
+            elif(status == -1):
                 self.show_frame(PageError, error = 'Nicht genug Geld', controller = controller, page = Page5)
             else:                
-                shop.resetCart()
-                self.show_frame(PageNewMoney, rfids = rfids, controller = controller)
+                reseteinkauf()
+                self.show_frame(PageNewMoney, rfids = rfids, controller = controller, open = True)
         elif(cont == Page5):
             frame.init(frame)
         elif(cont == PageNewMoney):
             if(amount != 0 and amount != None):
-                money.addMoney(rfids, amount)
+                status = money.addMoney(rfids, amount)
+                if(status == -1):
+                    self.show_frame(PageError, controller= controller, error = 'RFID unbekannt, Vorgang wird abgebrochen')
+                    return
             frame.setRFIDLabel(frame, rfids, controller)
-            time.sleep(5)
+            if(open):
+                relais.open(9)
+            else:
+                time.sleep(5)
             self.show_frame(StartPage)
         elif(cont == Page9):
             frame.reset(frame)
@@ -74,13 +82,14 @@ class SeaofBTCapp(tk.Tk):
         elif(cont == Page11):
             frame.reset(frame)
         elif(cont == Page12):
-            rfids = rfid.read()
+            rfids = rfid.readuid()
             self.show_frame(PageOverview, rfids = rfids)
         elif(cont == PageAddPerson):
             status = person.addPerson(name, rfids)
             if(status == 1):
-                frame.setRFIDLabel(frame, name, rfids)
-                time.sleep(2)
+                frame.setRFIDLabel(frame, name, rfids, controller)
+                controller.update()
+                time.sleep(1)
                 self.show_frame(StartPage)
             elif(status == -1):
                 self.show_frame(PageError, controller= controller, error = 'Name bereits vorhanden', page =Page9)
@@ -89,10 +98,10 @@ class SeaofBTCapp(tk.Tk):
                 self.show_frame(PageError, controller= controller, error = 'RFID bereits vorhanden, Vorgang wird abgebrochen')
                 return #showFrame StartPage
         elif(cont == Page13):
-            rfids = rfid.read()
+            rfids = rfid.readuid()
             self.show_frame(PageNewMoney, rfids = rfids, amount = amount, controller = controller)
         elif(cont == Page14):
-            rfids = rfid.read()
+            rfids = rfid.readuid()
             self.show_frame(Page9, rfids = rfids, controller = controller)
         elif(cont == PageError):
             frame.setError(frame, error, controller, page = page)
@@ -101,6 +110,10 @@ class SeaofBTCapp(tk.Tk):
                 cont.setRFIDLabel(frame, rfids = rfids)
             else:
                 cont.setRFIDLabel(frame, name = name)
+        elif(cont == PageStatistikMoney):
+            cont.updateList(frame, controller = controller)
+        elif(cont == PageStatistikJT):
+            cont.setLabel(frame, controller = controller)
     
         
 """
@@ -109,80 +122,18 @@ Startpage:
 Trinken     Essen
 Admin       Abfrage
 """
-
-def __setButtonAttributes(self, button, relx, rely, height, width, activebackground, activeforeground, background, disabledforeground, foreground, highlightbackground, highlightcolor, pady, text, width2):
-        button.place(relx= relx, rely=rely, height= height, width = width)
-        button.configure(activebackground=activebackground)
-        button.configure(activeforeground=activeforeground)
-        button.configure(background=background)
-        button.configure(disabledforeground=disabledforeground)
-        button.configure(foreground=foreground)
-        button.configure(highlightbackground=highlightbackground)
-        button.configure(highlightcolor=highlightcolor)
-        button.configure(pady=pady)
-        button.configure(text=text)
-        button.configure(width=width2)
-
 class StartPage(tk.Frame):
     
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self,parent, height = 320, width = 480)
-
-        self.drinkButton = tk.Button(self)
-        #__setButtonAttributes(self, self.drinkButton, 0.0, 0.0, 160, 240, '#d9d9d9', '#000000', '#d9d9d9', '#a3a3a3', '#000000', '#d9d9d9', 'black', '0', 'Trinken', 162)
-        self.drinkButton.bind('<Button-1>',lambda e:controller.show_frame(Page0))
-        self.drinkButton.place(relx=0.0, rely=0.0, height=160, width=240)
-        self.drinkButton.configure(activebackground='#d9d9d9')
-        self.drinkButton.configure(activeforeground='#000000')
-        self.drinkButton.configure(background='#d9d9d9')
-        self.drinkButton.configure(disabledforeground='#a3a3a3')
-        self.drinkButton.configure(foreground='#000000')
-        self.drinkButton.configure(highlightbackground='#d9d9d9')
-        self.drinkButton.configure(highlightcolor='black')
-        self.drinkButton.configure(pady='0')
-        self.drinkButton.configure(text='Trinken')
-        self.drinkButton.configure(width=162)
-        
-
-        self.foodButton = tk.Button(self)
-        self.foodButton.place(relx=0.5, rely=0.0, height=160, width=240)
-        self.foodButton.configure(activebackground='#d9d9d9')
-        self.foodButton.configure(activeforeground='#000000')
-        self.foodButton.configure(background='#d9d9d9')
-        self.foodButton.configure(disabledforeground='#a3a3a3')
-        self.foodButton.configure(foreground='#000000')
-        self.foodButton.configure(highlightbackground='#d9d9d9')
-        self.foodButton.configure(highlightcolor='black')
-        self.foodButton.configure(pady='0')
-        self.foodButton.configure(text='Essen')
-        self.foodButton.configure(width=142)
-        self.foodButton.bind('<Button-1>',lambda e:controller.show_frame(Page3))
-
-        self.adminButton = tk.Button(self)
-        self.adminButton.place(relx=0.0, rely=0.5, height=160, width=240)
-        self.adminButton.configure(activebackground='#d9d9d9')
-        self.adminButton.configure(activeforeground='#000000')
-        self.adminButton.configure(background='#d9d9d9')
-        self.adminButton.configure(disabledforeground='#a3a3a3')
-        self.adminButton.configure(foreground='#000000')
-        self.adminButton.configure(highlightbackground='#d9d9d9')
-        self.adminButton.configure(highlightcolor='black')
-        self.adminButton.configure(pady='0')
-        self.adminButton.configure(text='Admin')
-        self.adminButton.configure(width=102)
-        self.adminButton.bind('<Button-1>',lambda e:controller.show_frame(PageAdminLogin))
-
     
-"""
-Page zur Auswahl:
------------------------
-Alk         NonAlk
-Zurück
-"""
-class Page0(tk.Frame):
-
+            
+            
     def __init__(self, parent, controller):
+        font00 = '-family {Courier New} -size 20 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+        
+        tk.Frame.__init__(self,parent, height = 320, width = 480)
+        
+        
         tk.Frame.__init__(self, parent)
         self.back = tk.Button(self)
         self.back.place(relx=0.0, rely=0.5, relheight=0.5, relwidth=0.5)
@@ -194,6 +145,84 @@ class Page0(tk.Frame):
         self.back.configure(highlightbackground='#d9d9d9')
         self.back.configure(highlightcolor='black')
         self.back.configure(pady='0')
+        self.back.configure(font=font00)
+        self.back.configure(text='Admin')
+        self.back.configure(width=102)
+        self.back.bind('<Button-1>',lambda e:controller.show_frame(PageAdminLogin))
+
+        self.noalk = tk.Button(self)
+        self.noalk.place(relx=0.5, rely=0.0, relheight=0.5, relwidth=0.5)
+        self.noalk.configure(activebackground='#d9d9d9')
+        self.noalk.configure(activeforeground='#000000')
+        self.noalk.configure(background='#d9d9d9')
+        self.noalk.configure(disabledforeground='#a3a3a3')
+        self.noalk.configure(foreground='#000000')
+        self.noalk.configure(highlightbackground='#d9d9d9')
+        self.noalk.configure(highlightcolor='black')
+        self.noalk.configure(pady='0')
+        self.noalk.configure(font = font00)
+        self.noalk.configure(text='Essen')
+        self.noalk.configure(width=142)
+        self.noalk.bind('<Button-1>',lambda e:controller.show_frame(Page3))
+
+
+        self.alk = tk.Button(self)
+        self.alk.place(relx=0.0, rely=0.0, relheight=0.5, relwidth=0.5)
+        self.alk.configure(activebackground='#d9d9d9')
+        self.alk.configure(activeforeground='#000000')
+        self.alk.configure(background='#d9d9d9')
+        self.alk.configure(disabledforeground='#a3a3a3')
+        self.alk.configure(foreground='#000000')
+        self.alk.configure(highlightbackground='#d9d9d9')
+        self.alk.configure(highlightcolor='black')
+        self.alk.configure(pady='0')
+        self.alk.configure(font = font00)
+        self.alk.configure(text='Trinken')
+        self.alk.configure(width=162)
+        self.alk.bind('<Button-1>',lambda e:controller.show_frame(Page0))
+        
+        self.ab = tk.Button(self)
+        self.ab.place(relx=0.5, rely=0.5, relheight=0.5, relwidth=0.5)
+        self.ab.configure(activebackground='#d9d9d9')
+        self.ab.configure(activeforeground='#000000')
+        self.ab.configure(background='#d9d9d9')
+        self.ab.configure(disabledforeground='#a3a3a3')
+        self.ab.configure(foreground='#000000')
+        self.ab.configure(highlightbackground='#d9d9d9')
+        self.ab.configure(highlightcolor='black')
+        self.ab.configure(pady='0')
+        self.ab.configure(font = font00)
+        self.ab.configure(text='Abfragen')
+        self.ab.configure(width=162)
+        self.ab.bind('<Button-1>',lambda e:controller.show_frame(Page10))
+        
+        
+
+    
+"""
+Page zur Auswahl:
+-----------------------
+Alk         NonAlk
+Zur�ck
+"""
+class Page0(tk.Frame):
+
+    def __init__(self, parent, controller):
+        font00 = '-family {Courier New} -size 20 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+        
+        tk.Frame.__init__(self, parent)
+        self.back = tk.Button(self)
+        self.back.place(relx=0.0, rely=0.5, relheight=0.5, relwidth=0.5)
+        self.back.configure(activebackground='#d9d9d9')
+        self.back.configure(activeforeground='#000000')
+        self.back.configure(background='#d9d9d9')
+        self.back.configure(disabledforeground='#a3a3a3')
+        self.back.configure(foreground='#000000')
+        self.back.configure(highlightbackground='#d9d9d9')
+        self.back.configure(highlightcolor='black')
+        self.back.configure(pady='0')
+        self.back.configure(font=font00)
         self.back.configure(text='zurueck')
         self.back.configure(width=147)
         self.back.bind('<Button-1>',lambda e:controller.show_frame(StartPage))
@@ -208,6 +237,7 @@ class Page0(tk.Frame):
         self.noalk.configure(highlightbackground='#d9d9d9')
         self.noalk.configure(highlightcolor='black')
         self.noalk.configure(pady='0')
+        self.noalk.configure(font=font00)
         self.noalk.configure(text='noalk')
         self.noalk.configure(width=107)
         self.noalk.bind('<Button-1>',lambda e:controller.show_frame(Page2))
@@ -222,27 +252,25 @@ class Page0(tk.Frame):
         self.alk.configure(highlightbackground='#d9d9d9')
         self.alk.configure(highlightcolor='black')
         self.alk.configure(pady='0')
+        self.alk.configure(font=font00)
         self.alk.configure(text='alk')
         self.alk.configure(width=117)
         self.alk.bind('<Button-1>',lambda e:controller.show_frame(Page1))
 
 
-            
-"""
-Getränkeauswahl
------------------------
-Liste mit Getränken auswählen
-Liste mit Warenkorb wird angezeigt
-"""
+einkauf = {'Bier/Weizen':0,'Landbier':0, 'Limo/Apfelschorle': 0,'Eistee':0, 'Monster-Energy':0, 'Cola_0,3l': 0, 'Capri-Sun':0, 'Trigger-Energy':0, 'Wasser': 0 , 'Brezel':0, 'Pizza':0, 'Mozzarella-Sticks':0, 'Vegetarisch':0, 'Rockstar':0}
+
+def reseteinkauf():
+    for ele in einkauf:
+        einkauf[ele]= 0
 
 class Page1(tk.Frame):
     
-    def __init(self, cont):
+    def init(self, cont):
         cont.show_ele(cont)
     
-    def __show_ele(self, cont):
+    def show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
-            einkauf = shop.getCart()
             for ele in einkauf:
                 if (einkauf[ele] != 0):
                     cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
@@ -253,26 +281,27 @@ class Page1(tk.Frame):
 
         
 
-        def __add(evt):
+        def add(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
             if (indices.__len__() > 0):
                 index = int(indices[0])
                 value = w.get(index)
-                shop.addToCart(value, 1)
+                einkauf[value]+= 1
 
                 self.show_ele(self)
 
 
-        def __dell(evt):
+        def dell(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
             if(indices.__len__() >0):
                 index = int(indices[0])
                 value = w.get(index).split(' ',2)[1]
-                shop.addToCart(value, -1)
+                if(einkauf[value] >= 1):
+                    einkauf[value] -= 1
 
                 self.show_ele(self)
         
@@ -285,12 +314,11 @@ class Page1(tk.Frame):
         self.Listbox1.configure(font=font9)
         self.Listbox1.configure(foreground='#000000')
         self.Listbox1.configure(selectmode=SINGLE)
-        for a in shop.getArticleList('alk'):
-            self.Listbox1.insert(tk.END, a)
+        shop.fillalk(self)
         self.Listbox1.bind('<<ListboxSelect>>', add)
 
 
-        self.Listbox2 = einkauf = tk.Listbox(self)
+        self.Listbox2 = Einkauf = tk.Listbox(self)
         self.Listbox2.place(relx=0.52, rely=0.0, relheight=0.7, relwidth=0.48)
         self.Listbox2.configure(background='white')
         self.Listbox2.configure(disabledforeground='#a3a3a3')
@@ -349,9 +377,8 @@ class Page1(tk.Frame):
 
 class Page2(tk.Frame):
     
-    def __show_ele(self, cont):
+    def show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
-            einkauf = shop.getCart()
             for ele in einkauf:
                 if (einkauf[ele] != 0):
                     cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
@@ -361,41 +388,46 @@ class Page2(tk.Frame):
         font9 = '-family {Courier New} -size 15 -weight normal -slant '  \
             'roman -underline 0 -overstrike 0'
 
-        def __add(evt):
+        def add(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
             if (indices.__len__() > 0):
                 index = int(indices[0])
                 value = w.get(index)
-                shop.addToCart(value, 1)
+                einkauf[value] += 1
                 self.Listbox2.delete(0, tk.END)
                 self.show_ele(self)
 
-        def __dell(evt):
+        def dell(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
             if (indices.__len__() > 0):
                 index = int(indices[0])
                 value = w.get(index).split(' ', 2)[1]
-                shop.addToCart(value, -1)
+                if (einkauf[value] >= 1):
+                    einkauf[value] -= 1
                 self.Listbox2.delete(0, tk.END)
                 self.show_ele(self)
 
         tk.Frame.__init__(self, parent)
-        self.Listbox1 = tk.Listbox(self)
+        
+        self.scrollbar1 = tk.Scrollbar(self, orient=VERTICAL)
+        self.Listbox1 = tk.Listbox(self, yscrollcommand=self.scrollbar1.set)
+        self.scrollbar1.config(command=self.Listbox1.yview)
+        self.scrollbar1.place(relx=0.48, rely=0.0, relheight=0.7, relwidth=0.05)
+        
         self.Listbox1.place(relx=0.0, rely=0.0, relheight=0.7, relwidth=0.48)
         self.Listbox1.configure(background='white')
         self.Listbox1.configure(disabledforeground='#a3a3a3')
         self.Listbox1.configure(font=font9)
         self.Listbox1.configure(foreground='#000000')
         self.Listbox1.configure(selectmode=SINGLE)
-        for d in shop.getArticleList('drinks'):
-            self.Listbox1.insert(tk.END, d)
+        shop.fillnoalk(self)
         self.Listbox1.bind('<<ListboxSelect>>', add)
 
-        self.Listbox2 = tk.Listbox(self)
+        self.Listbox2 = Einkauf = tk.Listbox(self)
         self.Listbox2.place(relx=0.52, rely=0.0, relheight=0.7, relwidth=0.48)
         self.Listbox2.configure(background='white')
         self.Listbox2.configure(disabledforeground='#a3a3a3')
@@ -448,12 +480,12 @@ class Page2(tk.Frame):
  
 class Page3(tk.Frame):
     
-    def __init(self, cont):
+    def init(self, cont):
         cont.show_ele(cont)
+        
     
-    def __show_ele(self, cont):
+    def show_ele(self, cont):
             cont.Listbox2.delete(0, tk.END)
-            einkauf = shop.getCart()
             for ele in einkauf:
                 if (einkauf[ele] != 0):
                     cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
@@ -464,26 +496,27 @@ class Page3(tk.Frame):
 
         
 
-        def __add(evt):
+        def add(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
             if (indices.__len__() > 0):
                 index = int(indices[0])
                 value = w.get(index)
-                shop.addToCart(value, 1)
+                einkauf[value]+= 1
 
                 self.show_ele(self)
 
 
-        def __dell(evt):
+        def dell(evt):
             # Note here that Tkinter passes an event object to onselect()
             w = evt.widget
             indices = w.curselection()
             if(indices.__len__() >0):
                 index = int(indices[0])
                 value = w.get(index).split(' ',2)[1]
-                shop.addToCart(value, -1)
+                if(einkauf[value] >= 1):
+                    einkauf[value] -= 1
 
                 self.show_ele(self)
         
@@ -496,8 +529,9 @@ class Page3(tk.Frame):
         self.Listbox1.configure(font=font9)
         self.Listbox1.configure(foreground='#000000')
         self.Listbox1.configure(selectmode=SINGLE)
-        for f in shop.getArticleList('food'):
-            self.Listbox1.insert(tk.END, f)
+        self.Listbox1.insert(tk.END, 'Brezel')
+        self.Listbox1.insert(tk.END, 'Pizza')
+        self.Listbox1.insert(tk.END, 'Mozzarella-Sticks')
         self.Listbox1.bind('<<ListboxSelect>>', add)
 
 
@@ -612,19 +646,32 @@ class PageBuyLogin(tk.Frame):
         
 class Page5(tk.Frame):
     
-    def __init(self, cont):
+    def init(self, cont):
         cont.show_ele(cont)
         cont.sum(cont)
         
-    def __show_ele(self, cont):
+    def show_ele(self, cont):
         cont.Listbox2.delete(0,'end')
-        einkauf = shop.getCart()
         for ele in einkauf:
             if (einkauf[ele] != 0):
                 cont.Listbox2.insert(tk.END, '{}x {}'.format(einkauf[ele], ele))
-                
-    def __sum(self, cont):
-        cont.sumLabel.configure(text=str(shop.getCartValue()) + ' EUR')
+    def sum(self, cont):
+        summe = 0
+        for ele in einkauf:
+            if(einkauf[ele] != 0):
+                summe += int(einkauf[ele]) * shop.getPrice(str(ele))
+                print("ek "+str(summe))
+        cont.sumLabel.configure(text=str(summe/100.0) + ' EUR')
+    def buy(self, controller):
+        amount = 0
+        for ele in einkauf:
+            if(einkauf[ele] != 0):
+                amount += int(einkauf[ele]) * shop.getPrice(str(ele))
+        if(amount >1):
+            controller.show_frame(PageBuyLogin,amount = amount, controller = controller)
+        else:
+            controller.show_frame(StartPage)
+            
 
     def __init__(self, parent, controller):
         
@@ -638,7 +685,7 @@ class Page5(tk.Frame):
 
         tk.Frame.__init__(self, parent)
        
-        self.Listbox2 = tk.Listbox(self)
+        self.Listbox2 = Einkauf = tk.Listbox(self)
         self.Listbox2.place(relx=0.0, rely=0.0, relheight=0.7, relwidth=0.48)
         self.Listbox2.configure(background='white')
         self.Listbox2.configure(disabledforeground='#a3a3a3')
@@ -682,7 +729,7 @@ class Page5(tk.Frame):
         self.buyButton.configure(font=font11)
         self.buyButton.configure(text='Kostenpflichtig kaufen')
         self.buyButton.configure(width=117)
-        self.buyButton.bind('<Button-1>', lambda e: controller.show_frame(PageBuyLogin, amount =str(self.sumLabel.cget('text')).split()[0], controller = controller))
+        self.buyButton.bind('<Button-1>', lambda e: self.buy(controller))
 
 
 class PageAdmin(tk.Frame):
@@ -728,9 +775,9 @@ class PageAdmin(tk.Frame):
         self.abfragen.configure(highlightbackground='#d9d9d9')
         self.abfragen.configure(highlightcolor='black')
         self.abfragen.configure(pady='0')
-        self.abfragen.configure(text='abfragen')
+        self.abfragen.configure(text='Statistik')
         self.abfragen.configure(width=147)
-        self.abfragen.bind('<Button-1>',lambda e:controller.show_frame(Page10))
+        self.abfragen.bind('<Button-1>',lambda e:controller.show_frame(PageStatistikMoney, controller = controller))
         
         self.zuruck = tk.Button(self)
         self.zuruck.place(relx=0.08, rely=0.41, height=64, width=147)
@@ -742,12 +789,12 @@ class PageAdmin(tk.Frame):
         self.zuruck.configure(highlightbackground='#d9d9d9')
         self.zuruck.configure(highlightcolor='black')
         self.zuruck.configure(pady='0')
-        self.zuruck.configure(text=u'zurück')
+        self.zuruck.configure(text=u'zurueck')
         self.zuruck.configure(width=147)
         self.zuruck.bind('<Button-1>',lambda e:controller.show_frame(StartPage))
         
         self.shutdown = tk.Button(self)
-        self.shutdown.place(relx=0.25, rely=0.70, height=64, width=147)
+        self.shutdown.place(relx=0.08, rely=0.70, height=64, width=147)
         self.shutdown.configure(activebackground='#d9d9d9')
         self.shutdown.configure(activeforeground='#000000')
         self.shutdown.configure(background='#d9d9d9')
@@ -756,20 +803,31 @@ class PageAdmin(tk.Frame):
         self.shutdown.configure(highlightbackground='#d9d9d9')
         self.shutdown.configure(highlightcolor='black')
         self.shutdown.configure(pady='0')
-        self.shutdown.configure(text='Herunterfahren')
+        self.shutdown.configure(text='statistik')
         self.shutdown.configure(width=147)
-        self.shutdown.bind('<Button-1>',lambda e:call("sudo reboot now", shell=True))
+        self.shutdown.bind('<Button-1>',lambda e:controller.show_frame(PageStatistikJT, controller = controller))
         
+        self.shutdown = tk.Button(self)
+        self.shutdown.place(relx=0.5, rely=0.70, height=64, width=147)
+        self.shutdown.configure(activebackground='#d9d9d9')
+        self.shutdown.configure(activeforeground='#000000')
+        self.shutdown.configure(background='#d9d9d9')
+        self.shutdown.configure(disabledforeground='#a3a3a3')
+        self.shutdown.configure(foreground='#000000')
+        self.shutdown.configure(highlightbackground='#d9d9d9')
+        self.shutdown.configure(highlightcolor='black')
+        self.shutdown.configure(pady='0')
+        self.shutdown.configure(text='open')
+        self.shutdown.configure(width=147)
+        self.shutdown.bind('<Button-1>',lambda e:relais.open(9))
         
 class PageNewMoney(tk.Frame):
-    def __setRFIDLabel(self,cont, rfids, controller):
+    def setRFIDLabel(self,cont, rfids, controller):
         newMoneyLabel = person.getName(rfids)
         cont.pageNameLabel.configure(text='Neues Guthaben von ' +newMoneyLabel)
         newmoney = money.getMoney(rfids)
-        cont.newMoneyLabel.configure(text= str(newmoney))
+        cont.newMoneyLabel.configure(text= str(newmoney/100.0))
         controller.update()
-        time.sleep(5)
-        controller.show_frame(StartPage)
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -860,15 +918,15 @@ class PageDeposit(tk.Frame):
         self.buy.configure(pady='0')
         self.buy.configure(text='aufladen')
         self.buy.configure(width=87)
-        self.buy.bind('<Button-1>',lambda e:controller.show_frame(Page13, amount = int(str(self.amount.get('1.0','end')).translate(None, '\n')), controller = controller))
+        self.buy.bind('<Button-1>',lambda e:controller.show_frame(Page13, amount = int(self.amount.get('1.0',tk.END)), controller = controller))
         
 class Page9(tk.Frame):
     
-    def __reset(self, cont):
+    def reset(self, cont):
         cont.Label4.configure(text='Waiting...')
         
     
-    def __setRFIDLabel(self,cont, rfids):
+    def setRFIDLabel(self,cont, rfids):
         cont.Label4.configure(text= str(rfids))
 
     def __init__(self, parent, controller):
@@ -1005,7 +1063,7 @@ class Page10(tk.Frame):
 
 class Page11(tk.Frame):
 
-    def __reset(self, cont):
+    def reset(self, cont):
         cont.name.delete('1.0', 'end')
     
     def __init__(self, parent, controller):
@@ -1146,11 +1204,12 @@ class Page14(tk.Frame):
 
 class PageError(tk.Frame):
     
-    def __setError(self, cont, error = None, controller = None, page = StartPage):
+    def setError(self, cont, error = None, controller = None, page = StartPage):
         cont.amountLabel.configure(text = error)
         controller.update()
         time.sleep(5)
         controller.show_frame(page)
+        return
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -1180,13 +1239,13 @@ class PageError(tk.Frame):
         
         
 class PageOverview(tk.Frame):
-    def __setRFIDLabel(self,cont, rfids = None, name = None):
+    def setRFIDLabel(cont, rfids = None, name = None):
         if(rfids == None):
             rfids = person.getRFID(name)            
         cont.name.configure(text= str(person.getName(rfids)))
         cont.rfid.configure(text= str(rfids))
         cont.seen.configure(text= str(person.lastSeen(rfids)))
-        cont.money.configure(text = str(money.getMoney(rfids)))
+        cont.money.configure(text = str(money.getMoney(rfids)/100.0))
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -1206,7 +1265,7 @@ class PageOverview(tk.Frame):
         self.ok.configure(pady='0')
         self.ok.configure(text='OK')
         self.ok.configure(width=117)
-        self.ok.bind('<Button-1>',lambda e:controller.show_frame(PageAdmin))
+        self.ok.bind('<Button-1>',lambda e:controller.show_frame(StartPage))
 
         self.add = tk.Label(self)
         self.add.place(relx=0.21, rely=0.03, height=41, width=284)
@@ -1241,7 +1300,7 @@ class PageOverview(tk.Frame):
         self.seenLabel.configure(text='seen')
         
         self.moneyLabel = tk.Label(self)
-        self.moneyLabel.place(relx=0.21, rely=0.54, height=21, width=30)
+        self.moneyLabel.place(relx=0.21, rely=0.54, height=21, width=40)
         self.moneyLabel.configure(background='#d9d9d9')
         self.moneyLabel.configure(disabledforeground='#a3a3a3')
         self.moneyLabel.configure(foreground='#000000')
@@ -1272,7 +1331,7 @@ class PageOverview(tk.Frame):
         self.seen.configure(width=64)
         
         self.money = tk.Label(self)
-        self.money.place(relx=0.41, rely=0.54, height=21, width=30)
+        self.money.place(relx=0.41, rely=0.54, height=21, width=50)
         self.money.configure(background='#d9d9d9')
         self.money.configure(disabledforeground='#a3a3a3')
         self.money.configure(foreground='#000000')
@@ -1282,9 +1341,10 @@ class PageOverview(tk.Frame):
 
 class PageAddPerson(tk.Frame):
     
-    def __setRFIDLabel(self,cont, name, rfids):
-        cont.name.configure(text= name+'('+str(name)+')')
+    def setRFIDLabel(self,cont, name, rfids, controller):
+        cont.pageNameLabel.configure(text= name+'('+str(name)+')')
         cont.rfid.configure(text= name+'('+str(rfids)+')')
+        controller.update()
 
 
     def __init__(self, parent, controller):
@@ -1321,6 +1381,157 @@ class PageAddPerson(tk.Frame):
         self.rfid.configure(text='rfid')
         self.rfid.configure(width=324)
         
+#top 10 umsatze    
+class PageStatistikMoney(tk.Frame):
+    
+    def updateList(cont, controller):
+        statistik.top10(cont)
+        controller.update()
+    
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        font10 = '-family {Segoe UI} -size 14 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+        font11 = '-family {Segoe UI} -size 12 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+        font9 = '-family {Courier New} -size 9 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+
+        self.pageNameLabel = tk.Label(self)
+        self.pageNameLabel.place(relx=0.35, rely=0.10, height=41, width=164)
+        self.pageNameLabel.configure(background='#d9d9d9')
+        self.pageNameLabel.configure(disabledforeground='#a3a3a3')
+        self.pageNameLabel.configure(font=font10)
+        self.pageNameLabel.configure(foreground='#000000')
+        self.pageNameLabel.configure(text='Statistik Geld')
+        self.pageNameLabel.configure(width=164)
+        
+        self.Listbox1 = tk.Listbox(self)
+        self.Listbox1.place(relx=0.3, rely=0.3, relheight=0.5, relwidth=0.48)
+        self.Listbox1.configure(background='white')
+        self.Listbox1.configure(disabledforeground='#a3a3a3')
+        self.Listbox1.configure(font=font10)
+        self.Listbox1.configure(foreground='#000000')
+        statistik.top10(self)
+        
+        self.back = tk.Button(self)
+        self.back.place(relx=0.0, rely=0.9, relheight=0.1, relwidth=0.5)
+        self.back.configure(activebackground='#d9d9d9')
+        self.back.configure(activeforeground='#000000')
+        self.back.configure(background='#d9d9d9')
+        self.back.configure(disabledforeground='#a3a3a3')
+        self.back.configure(foreground='#000000')
+        self.back.configure(highlightbackground='#d9d9d9')
+        self.back.configure(highlightcolor='black')
+        self.back.configure(pady='0')
+        self.back.configure(font=font9)
+        self.back.configure(text='zurueck')
+        self.back.configure(width=147)
+        self.back.bind('<Button-1>',lambda e:controller.show_frame(StartPage))
+
+        
+#gesamt umsaetze
+class PageStatistikJT(tk.Frame):
+    
+    def setLabel(cont, controller):
+        balance = money.getAll()
+        cont.balanceamount.configure(text = balance/100.0)
+        controller.update()
+
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        font10 = '-family {Segoe UI} -size 14 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+        font11 = '-family {Segoe UI} -size 12 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+
+        self.pageNameLabel = tk.Label(self)
+        self.pageNameLabel.place(relx=0.35, rely=0.22, height=41, width=164)
+        self.pageNameLabel.configure(background='#d9d9d9')
+        self.pageNameLabel.configure(disabledforeground='#a3a3a3')
+        self.pageNameLabel.configure(font=font10)
+        self.pageNameLabel.configure(foreground='#000000')
+        self.pageNameLabel.configure(text='Statistik')
+        self.pageNameLabel.configure(width=164)
+        
+        self.balance = tk.Label(self)
+        self.balance.place(relx=0.2, rely=0.4, height=41, width=324)
+        self.balance.configure(background='#d9d9d9')
+        self.balance.configure(disabledforeground='#a3a3a3')
+        self.balance.configure(font=font11)
+        self.balance.configure(foreground='#000000')
+        self.balance.configure(text='Guthaben')
+        self.balance.configure(width=324)
+        
+        self.balanceamount = tk.Label(self)
+        self.balanceamount.place(relx=0.2, rely=0.6, height=41, width=324)
+        self.balanceamount.configure(background='#d9d9d9')
+        self.balanceamount.configure(disabledforeground='#a3a3a3')
+        self.balanceamount.configure(font=font11)
+        self.balanceamount.configure(foreground='#000000')
+        self.balanceamount.configure(text='Waiting...')
+        self.balanceamount.configure(width=324)
+        
+        self.back = tk.Button(self)
+        self.back.place(relx=0.06, rely=0.72, height=54, width=102)
+        self.back.configure(activebackground='#d9d9d9')
+        self.back.configure(activeforeground='#000000')
+        self.back.configure(background='#d9d9d9')
+        self.back.configure(disabledforeground='#a3a3a3')
+        self.back.configure(foreground='#000000')
+        self.back.configure(highlightbackground='#d9d9d9')
+        self.back.configure(highlightcolor='black')
+        self.back.configure(pady='0')
+        self.back.configure(text='back')
+        self.back.configure(width=102)
+        self.back.bind('<Button-1>',lambda e:controller.show_frame(StartPage))
+        
+#aktuell Guthaben
+class PageStatistikBalance(tk.Frame):
+    
+    def setRFIDLabel(self,cont, name, rfids, controller):
+        cont.pageNameLabel.configure(text= name+'('+str(name)+')')
+        cont.rfid.configure(text= name+'('+str(rfids)+')')
+        controller.update()
+
+
+    def __init__(self, cont, controller):
+        tk.Frame.__init__(self, parent)
+        font10 = '-family {Segoe UI} -size 14 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+        font11 = '-family {Segoe UI} -size 12 -weight normal -slant '  \
+            'roman -underline 0 -overstrike 0'
+
+        self.pageNameLabel = tk.Label(self)
+        self.pageNameLabel.place(relx=0.35, rely=0.22, height=41, width=164)
+        self.pageNameLabel.configure(background='#d9d9d9')
+        self.pageNameLabel.configure(disabledforeground='#a3a3a3')
+        self.pageNameLabel.configure(font=font10)
+        self.pageNameLabel.configure(foreground='#000000')
+        self.pageNameLabel.configure(text='Neuer Nutzer')
+        self.pageNameLabel.configure(width=164)
+
+        self.name = tk.Label(self)
+        self.name.place(relx=0.2, rely=0.4, height=41, width=324)
+        self.name.configure(background='#d9d9d9')
+        self.name.configure(disabledforeground='#a3a3a3')
+        self.name.configure(font=font11)
+        self.name.configure(foreground='#000000')
+        self.name.configure(text='name')
+        self.name.configure(width=324)
+        
+        self.rfid = tk.Label(self)
+        self.rfid.place(relx=0.2, rely=0.6, height=41, width=324)
+        self.rfid.configure(background='#d9d9d9')
+        self.rfid.configure(disabledforeground='#a3a3a3')
+        self.rfid.configure(font=font11)
+        self.rfid.configure(foreground='#000000')
+        self.rfid.configure(text='rfid')
+        self.rfid.configure(width=324)
+        
 def start():
     app = SeaofBTCapp()
     app.mainloop()
+    
