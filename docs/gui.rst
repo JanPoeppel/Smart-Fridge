@@ -3,5 +3,5 @@ gui module
 
 .. automodule:: gui
    :members:
-   :undoc-members: Page0, Page10
+   :undoc-members: gui.Page0, gui.Page10
    :show-inheritance:
