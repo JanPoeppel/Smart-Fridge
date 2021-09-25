@@ -26,7 +26,6 @@ Erstellt die data.json wenn noch keine existiert.
     if not(settings.fileExist('data.json')):
         data = {}
         data[PEOPLE] = []
-        data[RFID] = []
         settings.saveData(data, 'data.json')
         logging.warn('File \'data.json\' created')
         print('File \'data.json\' created')
@@ -64,7 +63,7 @@ def getMoney(rfid):
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
-    for i in data[RFID]:
+    for i in data[PEOPLE]:
         if i[RFID] == rfid:
             return i[MONEY]
     return False
@@ -86,7 +85,7 @@ def addMoney(rfid, amount):
     rfid = str(rfid)
     data = settings.getData('data.json')
     if (person.rfidExists(rfid)): 
-        for i in data[RFID]:
+        for i in data[PEOPLE]:
             if i[RFID] == rfid:
                 i[MONEY] += amount
                 settings.saveData(data, 'data.json')
@@ -109,6 +108,6 @@ def addspent(name, amount):
 def getAll():
     data = settings.getData('data.json')
     ret = 0
-    for i in data[RFID]:
+    for i in data[PEOPLE]:
         ret += int(i[MONEY])
     return ret
