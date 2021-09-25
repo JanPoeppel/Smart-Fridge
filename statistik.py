@@ -32,7 +32,7 @@ def top10(frame):
             pass
         
     i = 0
-    for key, value in sorted(list.iteritems(), key=lambda(k,v): (v,k), reverse=True):
+    for key, value in sorted(list.iteritems(), key=lambda (k,v): (v,k), reverse=True):
         if(i >= 5):
             break
         frame.Listbox1.insert(tk.END, '%s %s' % (value, key))
