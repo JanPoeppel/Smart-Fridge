@@ -30,7 +30,9 @@ Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.n
    Am Ende muss der RaspberryPi neugestartet werden.
 3. a) mit Internetverbindung:\
       Kopiere die Dateien aus dem gitrepository über folgenden Befehl:
-      
+      ```shell
+      git clone https://github.com/JanPoeppel/Smart-Fridge.git
+      ```
 
 
 
