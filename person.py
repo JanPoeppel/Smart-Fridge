@@ -30,7 +30,6 @@ def init():
     if not(settings.fileExist(settings.getPath('data.json'))):
         data = {}
         data[PEOPLE] = []
-        data[RFID] = []
         data[ADMIN] = [MAGICNUMBER]
         settings.saveData(data, 'data.json')
         time.sleep(1)
@@ -150,12 +149,9 @@ def __addNameRFID(name, rfid):
     data = settings.getData('data.json')
     data[PEOPLE].append({
         NAME:name,
+	MONEY: 0,
         RFID:str(rfid),
         SEEN: time.strftime('%d/%m/%Y')
-    })
-    data[RFID].append({
-        RFID:rfid,
-        MONEY: 0
     })
     settings.saveData(data, 'data.json')
     time.sleep(1)
