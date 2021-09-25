@@ -1,7 +1,7 @@
 """
 money.py
 
-Dieses Modul kümmert sich um das Verwalten der Guthaben.
+Dieses Modul kuemmert sich um das Verwalten der Guthaben.
 
 """
 import settings
@@ -36,7 +36,7 @@ def withdraw(rfid, amount):
     """
     Zieht Geld vom Guthaben ab
 
-    Zieht das angegebene Guthaben von der verknüpften RFID ab.
+    Zieht das angegebene Guthaben von der verknuepften RFID ab.
 
     Args:
         rfid: Die RFID zum Konto
@@ -51,9 +51,9 @@ def withdraw(rfid, amount):
 
 def getMoney(rfid):
     """
-    Gibt das aktuell verfügbare Guthaben des Kontos zurück.
+    Gibt das aktuell verfuegbare Guthaben des Kontos zurueck.
 
-    Gibt das Guthaben von dem , mit der RFID verknüpften, Konto zurück.
+    Gibt das Guthaben von dem , mit der RFID verknuepften, Konto zurueck.
 
     Args:
         rfid: Die RFID zum Konto
@@ -71,16 +71,16 @@ def getMoney(rfid):
 
 def addMoney(rfid, amount):
     """
-    Erhöht das Guthaben
+    Erhoeht das Guthaben
 
-    Fügt das angegebene Geld einem mit der RFID verknüpften Konto hinzu.
+    Fuegt das angegebene Geld einem mit der RFID verknuepften Konto hinzu.
 
     Args:
         rfid: Die RFID zum Konto
         amount: Die Menge an Guthaben
 
     Returns:
-        True: Wenn das Hinzufügen erfolgreich war.
+        True: Wenn das Hinzufuegen erfolgreich war.
         False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
