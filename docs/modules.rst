@@ -1,5 +1,5 @@
 Smart Fridge
-====
+============
 
 .. toctree::
    :maxdepth: 4
