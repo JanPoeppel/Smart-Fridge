@@ -1,10 +1,10 @@
 """
 main.py
 
-Dieses Modul kümmert sich um den Start und das Beenden des Programmes.
-Dabei initalisiert es wichtige Variablen und überprüft, ob alle Abhängigkeiten verfügbar sind.
+Dieses Modul kuemmert sich um den Start und das Beenden des Programmes.
+Dabei initalisiert es wichtige Variablen und ueberprueft, ob alle Abhaengigkeiten verfuegbar sind.
 
-Hierfür müssen die zu prüfenden Module importiert werden.
+Hierfuer muessen die zu pruefenden Module importiert werden.
 
 .. note:: Die exit() Funktion wird auch bei einem KeyboardInterrupt Event aufgerufen.
 
@@ -57,8 +57,8 @@ def exit():
 	"""
 	Beenden des Programmes:
 	
-	Diese Funktion wird als letztes aufgerufen und kann daher zum Aufräumen genutzt werden.
-	Zum Beispiel können noch gesetzte GPIOs zurückgesetzt werden.
+	Diese Funktion wird als letztes aufgerufen und kann daher zum Aufraeumen genutzt werden.
+	Zum Beispiel koennen noch gesetzte GPIOs zurueckgesetzt werden.
 	"""
 	#GPIO.cleanup()
 	logging.warning('Exiting Script')
