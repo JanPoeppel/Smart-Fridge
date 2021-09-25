@@ -1,7 +1,7 @@
 """
 shop.py
 
-Dieses Modul kümmert sich um das Kaufen von Produkten
+Dieses Modul kuemmert sich um das Kaufen von Produkten
 
 Typisches Anwendungsbeispiel:
 check = buy(RFID, Double)
@@ -51,7 +51,7 @@ def buy(rfid, amount):
     """
     Zieht Geld vom Konto ab
 
-    Überprüft ob genügend Geld auf dem Konto ist und zieht die gegebene Summe ab.
+    ueberprueft ob genuegend Geld auf dem Konto ist und zieht die gegebene Summe ab.
     Loggt das Event.
 
     Args:
@@ -61,13 +61,13 @@ def buy(rfid, amount):
 
     Returns:
         True: Wenn es erfolgreich war.
-        False: Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
+        False: Wenn ein Fehler aufgetreten ist oder nicht genuegend Geld auf dem Konto war.
     """
     if(float(money.getMoney(rfid))>= float(amount)):
         if(money.withdraw(rfid, amount)):
             name = person.getName(rfid)
             prices = str(amount)
-            #TODO #14 bessere Formatierung der String übergebung
+            #TODO #14 bessere Formatierung der String uebergebung
             logging.info(name +'('+rfid+') hat fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
             print(name +'('+rfid+') hat  fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
             return True
@@ -75,9 +75,9 @@ def buy(rfid, amount):
     
 def getPrice(name):
     """
-    Gibt den Preis von einem Produkt zurück
+    Gibt den Preis von einem Produkt zurueck
 
-    Sucht anhand des Namens von einem Produkt den dazugehörigen Preis.
+    Sucht anhand des Namens von einem Produkt den dazugehoerigen Preis.
 
     Args:
         name: Der Name vom Produkt
