@@ -21,7 +21,6 @@ class SeaofBTCapp(tk.Tk):
         container.pack(side='top', fill='both', expand = True)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
-        tk.Tk.attributes("-fullscreen", True)
         self.frames = {}
         for F in (StartPage, Page0, Page1, Page2, Page3, PageAdminLogin, PageBuyLogin, Page5, PageAdmin, PageNewMoney, PageDeposit, Page9, Page10, Page11, Page12, Page13,Page14, PageError, PageOverview, PageAddPerson, PageStatistikMoney, PageStatistikJT):
             frame = F(container, self)
