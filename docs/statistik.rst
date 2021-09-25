@@ -1,3 +1,7 @@
+statistik module
+==========
+
+
 .. automodule:: statistik
    :members:
    :undoc-members:
