@@ -1,5 +1,5 @@
 mapping module
-==========
+==============
 
 
 .. automodule:: mapping
