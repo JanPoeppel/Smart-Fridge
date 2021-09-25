@@ -37,7 +37,7 @@ Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.n
        Die [.zip Datei](https://github.com/JanPoeppel/Smart-Fridge/archive/refs/heads/main.zip) downloaden und auf einem USB Stick entpacken.\
        Dannach die Dateien auf den Raspberrypi kopieren
 4. Installieren von PyUSB 1.0
-5. ```shell
+   ```shell
    sudo apt-get install python-usb python3-usb
    ```
 
