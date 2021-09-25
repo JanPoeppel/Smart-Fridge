@@ -1,7 +1,7 @@
 """
 settings.py
 
-Dieses Modul kümmert sich um das Verwalten der Einstellungen
+Dieses Modul kuemmert sich um das Verwalten der Einstellungen
 
 Attribute:
     DATAPATH: Pfad zur setting.json
@@ -87,10 +87,10 @@ def saveData(data, name):
   
 def getSetting(name):
     """
-	Gibt den gesetzten Wert zurück
+	Gibt den gesetzten Wert zurueck
     
     Args:
-        name: Die zu überprüfende Einstellung
+        name: Die zu ueberpruefende Einstellung
     """
     return getData(dir_path)[name]
 
