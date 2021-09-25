@@ -1,5 +1,5 @@
 reader module
-==========
+==============
 
 .. automodule:: reader
    :members:
