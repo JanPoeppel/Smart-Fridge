@@ -1,5 +1,5 @@
 relais module
-==========
+==============
 
 
 .. automodule:: relais
