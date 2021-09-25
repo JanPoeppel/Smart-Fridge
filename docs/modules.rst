@@ -13,4 +13,6 @@ Smart Fridge
    shop
    settings
    statistik
-   releais
+   relais
+   reader
+   mapping
