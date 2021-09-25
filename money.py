@@ -103,7 +103,7 @@ def addspent(name, amount):
         if i[NAME] == name:
             i[SPENT] += amount
 	    settings.saveData(data, 'data.json')
-            break
+	    break
 	
 def getAll():
     data = settings.getData('data.json')
