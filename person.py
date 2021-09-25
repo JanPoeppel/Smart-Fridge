@@ -108,7 +108,7 @@ def rfidExists(rfid):
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
-    for i in data[RFID]:
+    for i in data[PEOPLE]:
         if i[RFID] == rfid:
             return True
     return False
