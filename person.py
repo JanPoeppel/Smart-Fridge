@@ -1,5 +1,5 @@
 """
-Dieses Modul kümmert sich um das Verwalten der Nutzenden
+Dieses Modul kuemmert sich um das Verwalten der Nutzenden
 
 """
 
@@ -42,12 +42,12 @@ def auth(rfid):
     """
     Authentifiziert einen Admin
 
-    Prüft ob die RFID in der Liste der Admins ist.
+    Prueft ob die RFID in der Liste der Admins ist.
     
     .. note:: Loggt fehlgeschlagene Authentifizierungen.
 
     Args:
-        rfid: Die zu überprüfende RFID
+        rfid: Die zu ueberpruefende RFID
     
     Returns:
         | True: wenn die RFID in der Liste ist.
@@ -68,7 +68,7 @@ def auth(rfid):
 
 def addPerson(name, rfid):
     """
-	Fügt einen neuen Nutzenden hinzu.
+	Fuegt einen neuen Nutzenden hinzu.
 
     .. note:: Loggt den Versuch eine bereits vergebene RFID erneut anzulegen.
 
@@ -77,7 +77,7 @@ def addPerson(name, rfid):
         | rfid: Die RFID des Nutzenden
     
     Returns:
-        | 1: wenn der Nutzende erfolgreich hinzugefügt wurde.
+        | 1: wenn der Nutzende erfolgreich hinzugefuegt wurde.
         | -1: Wenn der Name bereits vergeben ist.
         | -2: Wenn die RFID bereits vergeben ist.
         | -3: Wenn ein interner Fehler aufgetreten ist.
@@ -97,10 +97,10 @@ def addPerson(name, rfid):
 
 def rfidExists(rfid):
     """
-    Prüft ob eine RFID existiert.
+    Prueft ob eine RFID existiert.
 
     Args:
-        rfid: Die zu überprüfende RFID
+        rfid: Die zu ueberpruefende RFID
     
     Returns:
         | True: Wenn die RFID bereits exisitiert.
@@ -115,10 +115,10 @@ def rfidExists(rfid):
 
 def nameExists(name):
     """
-    Prüft ob ein Name existiert.
+    Prueft ob ein Name existiert.
 
     Args:
-        name: Der zu überprüfende Name
+        name: Der zu ueberpruefende Name
     
     Returns:
         | True: Wenn der Name bereits exisitiert.
@@ -136,7 +136,7 @@ def __addNameRFID(name, rfid):
     
     .. note:: Diese Aktion wird geloggt
     
-    .. warning:: Bevor die Daten in die Datei gespeichert werden, muss geprüft werden, ob bereits ein Name oder eine RFID mit den Werten hinterlegt ist.
+    .. warning:: Bevor die Daten in die Datei gespeichert werden, muss geprueft werden, ob bereits ein Name oder eine RFID mit den Werten hinterlegt ist.
 
     Args:
         | name: Der Name des Nutzenden
@@ -164,7 +164,7 @@ def __addNameRFID(name, rfid):
 
 def getName(rfid):
     """
-    Gibt den Namen zu einer RFID zurück.
+    Gibt den Namen zu einer RFID zurueck.
 
     Args:
         rfid: Die RFID des Nutzenden
@@ -182,7 +182,7 @@ def getName(rfid):
 
 def getRFID(name):
     """
-    Gibt die RFID zu einem Namen zurück.
+    Gibt die RFID zu einem Namen zurueck.
 
     Args:
         name: Der Name des Nutzenden
@@ -199,7 +199,7 @@ def getRFID(name):
 
 def lastSeen(rfid):
     """
-    Gibt das Datum zurück an dem zuletzt mit der RFID eingekauft wurde.
+    Gibt das Datum zurueck an dem zuletzt mit der RFID eingekauft wurde.
 
     Args:
         rfid: Die RFID des Nutzenden
