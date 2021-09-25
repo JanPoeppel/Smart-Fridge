@@ -10,7 +10,6 @@ import rfid
 import statistik
 
 
-
 LARGE_FONT= ('Verdana', 12)
 
 
