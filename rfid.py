@@ -8,9 +8,7 @@ rfid = read()
 """
 
 def read():
-    #TODO #11 Quelle
     try:
-        print("Reading uid")
         ret = input("Please scan RFID Chip:\n")
         return ret
 
