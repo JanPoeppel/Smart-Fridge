@@ -1,3 +1,9 @@
+"""
+statistik.py
+Dieses Modul kuemmert sich um die Statistik.
+"""
+import settings
+
 import json
 import Tkinter as tk
 import os.path
@@ -12,10 +18,9 @@ DATAPATH = '/home/pi/jt/data.json'
 
 def top10(frame):
     frame.Listbox1.delete(0, tk.END)
-    data = getdata()
+    data = settings.getData('data.json')
     list = {}
     for i in data[PEOPLE]:
-        
         try:
             list[str(i[NAME]).translate(None, '\n')] = i[SPENT]
         except KeyError:
@@ -23,8 +28,7 @@ def top10(frame):
             print("KeyError "+i[NAME])
             i[SPENT] = float(0)
             list[i[NAME]] = i[SPENT]
-            with open(DATAPATH, 'w') as namejson:
-                json.dump(data, namejson)
+            settings.saveData(data, 'data.json')
             pass
         
     i = 0
@@ -32,11 +36,4 @@ def top10(frame):
         if(i >= 5):
             break
         frame.Listbox1.insert(tk.END, '%s %s' % (value, key))
-        i = i+1
-        
-def fileExist(name):
-    return os.path.exists(name)
-        
-def getdata():
-    with open(DATAPATH, 'r') as namejson:
-        return json.load(namejson)    
+        i = i+1  
