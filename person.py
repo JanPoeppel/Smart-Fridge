@@ -57,8 +57,8 @@ def auth(rfid):
     data = settings.getData('data.json')
     admins = data[ADMIN]
     if(len(admins)==1 and admins[0] == MAGICNUMBER):
-	print('Es sind noch keine Admin RFIDs hinterlegt! ')	
-        return True
+	print('Es sind noch keine Admin RFIDs hinterlegt! ')
+	return True
     if(rfid in admins):
         return True
     else:
