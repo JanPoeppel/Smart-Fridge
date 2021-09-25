@@ -1,5 +1,5 @@
 statistik module
-==========
+=================
 
 
 .. automodule:: statistik
