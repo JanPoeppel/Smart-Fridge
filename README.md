@@ -33,10 +33,11 @@ Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.n
       ```shell
       git clone https://github.com/JanPoeppel/Smart-Fridge.git
       ```
+   b) ohne Internetverbindung
+       Die [.zip Datei](https://github.com/JanPoeppel/Smart-Fridge/archive/refs/heads/main.zip) downloaden und auf einem USB Stick entpacken.\
+       Dannach die Dateien auf den Raspberrypi kopieren
+4. 
 
-
-
-4. Die [.zip Datei](https://github.com/JanPoeppel/Smart-Fridge/archive/refs/heads/main.zip) downloaden und auf einem USB Stick speichern.
 
 
 
