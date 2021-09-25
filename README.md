@@ -27,8 +27,10 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
 Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.net/files/files/Produkte/RB-TFT3.5/RB-TFT-Anleitung_04082020.pdf "joy-it.net") zu finden.
 
 2. Befolge die Installationsanweisungen auf dem Display\
-3. am Ende muss der RaspberryPi neugestartet werden.
-4. 
+   Am Ende muss der RaspberryPi neugestartet werden.
+3. a) mit Internetverbindung:\
+      Kopiere die Dateien aus dem gitrepository über folgenden Befehl:
+      
 
 
 
