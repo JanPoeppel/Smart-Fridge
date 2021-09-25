@@ -6,6 +6,7 @@ Dieses Modul ist die Schnittstelle zum RFID Reader Modul.
 Typisches Anwendungsbeispiel:
 rfid = read()
 """
+import reader
 
 def read(): 
     
