@@ -1,5 +1,5 @@
 Smart Fridge Dokumentation
-================================
+===============================
 
 In den unten angegebenen Kaptieln sind alle Dokumentation der entsprechenden Module gegeben.
 
