@@ -1,9 +1,9 @@
 Smart Fridge Dokumentation
 ===============================
 
-In den unten angegebenen Kaptieln sind alle Dokumentation der entsprechenden Module gegeben.
+In den unten angeführten Kapiteln sind alle Dokumentation der entsprechenden Module gegeben.
 
-Die Schritt-für-Schritt Anleitung ist über folgenden Link auf der github Seite des Projektes zu finden.
+Die Schritt-für-Schritt-Anleitung ist über folgenden Link auf der github Seite des Projektes zu finden.
 
 https://github.com/JanPoeppel/Smart-Fridge
 
