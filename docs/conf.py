@@ -28,8 +28,8 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'Smart Fridge'
-copyright = '2021, Jan Poeppel'
-author = 'Jan Poeppel'
+copyright = '2021, Jan Pöppel'
+author = 'Jan Pöppel'
 
 
 # -- General configuration ---------------------------------------------------
