@@ -5,7 +5,7 @@ Dieses Modul kuemmert sich um die Statistik.
 import settings
 
 import json
-import Tkinter as tk
+import tkinter as tk
 import os.path
 
 
