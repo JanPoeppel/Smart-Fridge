@@ -15,7 +15,7 @@ import sys
 import mock
 
 MOCK_MODULES = [
-    'RPi'
+    'RPi.GPIO'
 ]
 
 for mod_name in MOCK_MODULES:
