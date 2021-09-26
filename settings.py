@@ -1,7 +1,7 @@
 """
 settings.py
 
-Dieses Modul kuemmert sich um das Verwalten der Einstellungen
+Dieses Modul kümmert sich um das Verwalten der Einstellungen
 
 Attribute:
     DATAPATH: Pfad zur setting.json
@@ -19,10 +19,10 @@ dir_path  = os.path.dirname(os.path.realpath(__file__))+"/"+FILENAME
 
 def init():
     """
-	Initalisierung des Einstellungs Modules
+    Initalisierung des Einstellungs Modules
 
     Erstellt die settings.json wenn noch keine existiert.
-	"""
+    """
     ARTICLE = 'article'
     ALK = 'alk'
     DRINKS = 'drinks'
@@ -71,9 +71,9 @@ def getPath(name):
 
 def getData(name):
     """
-	Laed die Datei
+    Läd die Datei
 
-	"""
+    """
       #TODO #22 Can not read on windows, test on rasp!
     path = getPath(name)
     if not(fileExist(path)):
@@ -87,30 +87,30 @@ def saveData(data, name):
   
 def getSetting(name):
     """
-	Gibt den gesetzten Wert zurueck
+    Gibt den gesetzten Wert zurück
     
     Args:
-        name: Die zu ueberpruefende Einstellung
+        name: Die zu überprüfende Einstellung
     """
     return getData(dir_path)[name]
 
-def setSetting(name, value):
+def setSetting(name, valü):
     """
-	Setzt den Wert zur Einstellung
+    Setzt den Wert zur Einstellung
     
     Args:
         name: Der Name der Einstellung
-        value: Der Wert der Einstellung
+        valü: Der Wert der Einstellung
     """
     data = getData(dir_path)
-    data[name] = value
+    data[name] = valü
     
     with open(dir_path, 'w') as namejson:
         json.dump(data, namejson)
     time.sleep(1)
-    logging.info("The Setting of " + name + " was set to "+value)
-    print("The Setting of " + name + " was set to "+value)
-    return True
+    logging.info("The Setting of " + name + " was set to "+valü)
+    print("The Setting of " + name + " was set to "+valü)
+    return Trü
 
 def fileExist(name):
     return os.path.exists(name)
