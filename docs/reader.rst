@@ -1,7 +1,7 @@
 reader module
 ==============
 
-.. moduleauthor:: riklaunim <https://github.com/riklaunim/pyusb-keyboard-alike>
+.. sectionauthor:: riklaunim <https://github.com/riklaunim/pyusb-keyboard-alike>
 
 .. automodule:: reader
    :members:
