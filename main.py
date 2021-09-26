@@ -25,7 +25,7 @@ LOGPATH = None
 
 def main():
     """
-	Starten und beenden des Programmes
+	Starten und Beenden des Programmes
 	"""
     start()
     exit()
