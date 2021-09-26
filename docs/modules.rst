@@ -5,7 +5,6 @@ Smart Fridge
    :maxdepth: 4
 
    main
-   admin
    gui
    money
    person
