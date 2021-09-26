@@ -5,7 +5,7 @@ import person
 import money
 import relais
 import shop
-from Tkconstants import SINGLE, WORD, VERTICAL
+from tkconstants import SINGLE, WORD, VERTICAL
 import rfid
 import statistik
 
