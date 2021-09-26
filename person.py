@@ -47,7 +47,12 @@ def auth(rfid):
 
     Args:
         rfid: Die zu ueberpruefende RFID
-    
+    Returns:
+       int.  The return code::
+
+          0 -- Success!
+          1 -- No good.
+          2 -- Try again.
     Returns:
         | True: wenn die RFID in der Liste ist.
         | False: wenn die RFID nicht in der Liste ist.
