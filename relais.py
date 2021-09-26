@@ -11,7 +11,7 @@ def open(timet):
     
     .. note:: Die Zeitspanne wird automatisch auf max. 9s gesetzt. Dies dient zum Schutzfunktion des Magnetschlosses.
     
-     Args:
+    Args:
         timet: Die angegebene Zeitspanne
     
     """
