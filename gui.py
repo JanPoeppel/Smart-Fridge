@@ -5,7 +5,7 @@ import person
 import money
 import relais
 import shop
-from tkconstants import SINGLE, WORD, VERTICAL
+from tkinter.constants import SINGLE, WORD, VERTICAL
 import rfid
 import statistik
 
