@@ -9,7 +9,7 @@ def open(timet):
     """
     Aktiviert für die angegebene Zeit den GPIO Pin 19
     
-    .. note:: Die Zeitspanne wird automatisch auf max. 9s gesetzt. Dies dient zum Schutzfunktion des Magnetschlosses.
+    .. note:: Die Zeitspanne wird automatisch auf max. 9s gesetzt. Dies dient zum Schutz des Magnetschlosses.
     
     Args:
         timet: Die angegebene Zeitspanne
