@@ -42,8 +42,8 @@ def withdraw(rfid, amount):
         amount: Die Menge an Guthaben
 
     Returns:
-        True: Wenn das Abziehen erfolgreich war.
-        False: Wenn ein Fehler aufgetreten ist.
+        | True: Wenn das Abziehen erfolgreich war.
+        | False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
     return addMoney(rfid, -amount)
@@ -52,14 +52,14 @@ def getMoney(rfid):
     """
     Gibt das aktuell verfuegbare Guthaben des Kontos zurueck.
 
-    Gibt das Guthaben von dem , mit der RFID verknuepften, Konto zurueck.
+    Gibt das Guthaben von dem, mit der RFID verknuepften, Konto zurueck.
 
     Args:
         rfid: Die RFID zum Konto
 
     Returns:
-        Double: aktuelles Guthaben
-        False: Wenn ein Fehler aufgetreten ist.
+        | Double: aktuelles Guthaben
+        | False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
