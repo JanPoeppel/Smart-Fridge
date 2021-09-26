@@ -51,7 +51,7 @@ def auth(rfid):
     Returns:
        boolean.  The return code::
 
-          Trü -- bei erfolgreicher Authentifizierung
+          True -- bei erfolgreicher Authentifizierung
           False -- bei fehlgeschlagener Authentifizierung
     """
     rfid = str(rfid)
@@ -60,9 +60,9 @@ def auth(rfid):
     admins = data[ADMIN]
     if(len(admins)==1 and admins[0] == MAGICNUMBER):
         print('Es sind noch keine Admin RFIDs hinterlegt!')
-        return Trü
+        return True
     if(rfid in admins):
-        return Trü
+        return True
     else:
         logging.warning('Fehlgeschlagener Login mit '+str(rfid) + ' ' + getName(rfid))
         print('Fehlgeschlagener Login von '+str(rfid) + ' ' + getName(rfid))
@@ -70,7 +70,7 @@ def auth(rfid):
 
 def addPerson(name, rfid):
     """
-    Fügt einen neün Nutzenden hinzu.
+    Fügt einen neuen Nutzenden hinzu.
 
     .. note:: Loggt den Versuch eine bereits vergebene RFID erneut anzulegen.
 
@@ -107,14 +107,14 @@ def rfidExists(rfid):
         rfid: Die zu überprüfende RFID
     
     Returns:
-        | Trü: Wenn die RFID bereits exisitiert.
+        | True: Wenn die RFID bereits exisitiert.
         | False: Wenn die RFID noch nicht existiert.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
     for i in data[PEOPLE]:
         if i[RFID] == rfid:
-            return Trü
+            return True
     return False
 
 def nameExists(name):
@@ -125,18 +125,18 @@ def nameExists(name):
         name: Der zu überprüfende Name
     
     Returns:
-        | Trü: Wenn der Name bereits exisitiert.
+        | True: Wenn der Name bereits exisitiert.
         | False: Wenn der Name noch nicht existiert.
     """
     data = settings.getData('data.json')
     for i in data[PEOPLE]:
         if i[NAME] == name:
-            return Trü
+            return True
     return False
 
 def __addNameRFID(name, rfid):
     """
-    Private Funktion um eine neü Person anzulegen beziehungsweise die Werte in die Datei zu schreiben.
+    Private Funktion um eine neue Person anzulegen beziehungsweise die Werte in die Datei zu schreiben.
     
     .. note:: Diese Aktion wird geloggt
     
@@ -147,7 +147,7 @@ def __addNameRFID(name, rfid):
         | rfid: Die RFID des Nutzenden
     
     Returns:
-        Trü: Wenn die Person erfolgreich angelegt wurde.
+        True: Wenn die Person erfolgreich angelegt wurde.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
@@ -161,7 +161,7 @@ def __addNameRFID(name, rfid):
     time.sleep(1)
     #TODO Log this
     print('Name \'%s\' mit RFID \'%s\' wurde hinzugefügt' %(name, rfid))
-    return Trü
+    return True
 
 def getName(rfid):
     """
