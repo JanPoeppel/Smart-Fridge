@@ -94,23 +94,23 @@ def getSetting(name):
     """
     return getData(dir_path)[name]
 
-def setSetting(name, valü):
+def setSetting(name, value):
     """
     Setzt den Wert zur Einstellung
     
     Args:
         name: Der Name der Einstellung
-        valü: Der Wert der Einstellung
+        value: Der Wert der Einstellung
     """
     data = getData(dir_path)
-    data[name] = valü
+    data[name] = value
     
     with open(dir_path, 'w') as namejson:
         json.dump(data, namejson)
     time.sleep(1)
-    logging.info("The Setting of " + name + " was set to "+valü)
-    print("The Setting of " + name + " was set to "+valü)
-    return Trü
+    logging.info("The Setting of " + name + " was set to "+value)
+    print("The Setting of " + name + " was set to "+value)
+    return True
 
 def fileExist(name):
     return os.path.exists(name)
