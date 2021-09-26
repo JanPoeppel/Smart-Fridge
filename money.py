@@ -35,7 +35,7 @@ def withdraw(rfid, amount):
     """
     Zieht Geld vom Guthaben ab
 
-    Zieht das angegebene Guthaben von der verknuepften RFID ab.
+    Zieht das angegebene Guthaben von der verknüpften RFID ab.
 
     Args:
         rfid: Die RFID zum Konto
