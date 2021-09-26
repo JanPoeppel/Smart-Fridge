@@ -1,6 +1,6 @@
 """
 statistik.py
-Dieses Modul kuemmert sich um die Statistik.
+Dieses Modul kümmert sich um die Statistik.
 """
 import settings
 
@@ -17,7 +17,7 @@ NAME = 'name'
 
 def top10(frame):
     """
-    Schreibt die 10 umsatzstaerksten Kunden in ein Frame
+    Schreibt die 10 umsatzstärksten Kunden in ein Frame
     
     Args:
         frame: Das frame, in dem die Namen stehen sollen
