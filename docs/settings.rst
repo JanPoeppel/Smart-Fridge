@@ -1,5 +1,5 @@
 settings module
-============
+================
 
 Typisches Anwendungsbeispiel:
 
