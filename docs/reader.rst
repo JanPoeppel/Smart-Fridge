@@ -7,3 +7,4 @@ reader module
    :members:
    :undoc-members:
    :show-inheritance:
+.. moduleauthor:: riklaunim <https://github.com/riklaunim/pyusb-keyboard-alike>
