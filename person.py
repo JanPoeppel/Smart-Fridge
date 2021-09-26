@@ -21,7 +21,7 @@ MAGICNUMBER = 'REPLACE_WITH_RFIDS_0x00C0FFEE'
 
 def init():
     """
-	Initalisierung des Personen Modules
+    Initalisierung des Personen Modules
 
     Erstellt die data.json wenn noch keine existiert.
 	"""
