@@ -1,10 +1,10 @@
 reader module
 ==============
 
-.. sectionauthor:: riklaunim <https://github.com/riklaunim/pyusb-keyboard-alike>
+.. sectionauthor:: riklaunim <riklaunim@gmail.com>
 
 .. automodule:: reader
    :members:
    :undoc-members:
    :show-inheritance:
-.. moduleauthor:: riklaunim <https://github.com/riklaunim/pyusb-keyboard-alike>
+.. moduleauthor:: riklaunim <riklaunim@gmail.com>
