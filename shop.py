@@ -24,23 +24,23 @@ def addToCart(name, amount):
     shoppingcart[name] = shoppingcart.get(name, 0) + amount
     if(shoppingcart[name] == 0):
         shoppingcart.pop(name)
-    return Trü
+    return True
 
 def getCart():
     return shoppingcart
 
 def resetCart():
     shoppingcart.clear()
-    return Trü
+    return True
 
-def getCartValü():
+def getCartValue():
     sum = 0
     for a in shoppingcart:
         sum += shoppingcart[a]*getPrice(a)
     return sum
 
 def checkoutCart(rfid):
-    if (buy(rfid, getCartValü())):
+    if (buy(rfid, getCartValue())):
         for a in shoppingcart.keys():
             if not(updateAmount(a, -1)):
                 logging.warn("New Amount of %s cannot be updated with %d", a, -1)
@@ -60,7 +60,7 @@ def buy(rfid, amount):
 
 
     Returns:
-        Trü: Wenn es erfolgreich war.
+        True: Wenn es erfolgreich war.
         False: Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
     """
     if(float(money.getMoney(rfid))>= float(amount)):
@@ -68,9 +68,9 @@ def buy(rfid, amount):
             name = person.getName(rfid)
             prices = str(amount)
             #TODO #14 bessere Formatierung der String übergebung
-            logging.info(name +'('+rfid+') hat für '+prices+' eingekauft, neür Stand: '+str(money.getMoney(rfid)))
-            print(name +'('+rfid+') hat  für '+prices+' eingekauft, neür Stand: '+str(money.getMoney(rfid)))
-            return Trü
+            logging.info(name +'('+rfid+') hat für '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
+            print(name +'('+rfid+') hat  für '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
+            return True
     return False
     
 def getPrice(name):
@@ -109,7 +109,7 @@ def updateAmount(name, amount):
     else:
         return False
     settings.saveData(data,'settings.json')
-    return Trü
+    return True
 
 def getArticleList(category):
     data = settings.getData('settings.json')
