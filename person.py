@@ -74,9 +74,9 @@ def addPerson(name, rfid):
 
     .. note:: Loggt den Versuch eine bereits vergebene RFID erneut anzulegen.
 
-    Args::
-        name -- Der Name des Nutzenden
-        rfid -- Die RFID des Nutzenden
+    Args:
+        | name: Der Name des Nutzenden
+        | rfid: Die RFID des Nutzenden
     
     Returns:
        int.  The return code::
