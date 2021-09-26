@@ -18,11 +18,11 @@ MONEY = "money"
 PEOPLE = 'people'
 
 def init():
-"""
-Initalisierung des Money Modules
+    """
+    Initalisierung des Money Modules
 
-Erstellt die data.json wenn noch keine existiert.
-"""
+    Erstellt die data.json wenn noch keine existiert.
+    """
     if not(settings.fileExist('data.json')):
         data = {}
         data[PEOPLE] = []
