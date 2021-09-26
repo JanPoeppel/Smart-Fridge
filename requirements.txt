@@ -1,4 +1,2 @@
 #PyUSB 1.0
 pyusb
-#RPi for Read the Docs
-RPi.GPIO
