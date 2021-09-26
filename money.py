@@ -1,7 +1,7 @@
 """
 money.py
 
-Dieses Modul kuemmert sich um das Verwalten der Guthaben.
+Dieses Modul kümmert sich um das Verwalten der Guthaben.
 
 """
 import settings
@@ -18,11 +18,11 @@ MONEY = "money"
 PEOPLE = 'people'
 
 def init():
-    """
+"""
 Initalisierung des Money Modules
 
 Erstellt die data.json wenn noch keine existiert.
-	"""
+"""
     if not(settings.fileExist('data.json')):
         data = {}
         data[PEOPLE] = []
@@ -42,7 +42,7 @@ def withdraw(rfid, amount):
         amount: Die Menge an Guthaben
 
     Returns:
-        | True: Wenn das Abziehen erfolgreich war.
+        | Trü: Wenn das Abziehen erfolgreich war.
         | False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
@@ -50,15 +50,15 @@ def withdraw(rfid, amount):
 
 def getMoney(rfid):
     """
-    Gibt das aktuell verfuegbare Guthaben des Kontos zurueck.
+    Gibt das aktüll verfügbare Guthaben des Kontos zurück.
 
-    Gibt das Guthaben von dem, mit der RFID verknuepften, Konto zurueck.
+    Gibt das Guthaben von dem, mit der RFID verknüpften, Konto zurück.
 
     Args:
         rfid: Die RFID zum Konto
 
     Returns:
-        | Double: aktuelles Guthaben
+        | Double: aktülles Guthaben
         | False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
@@ -70,16 +70,16 @@ def getMoney(rfid):
 
 def addMoney(rfid, amount):
     """
-    Erhoeht das Guthaben
+    Erhöht das Guthaben
 
-    Fuegt das angegebene Geld einem mit der RFID verknuepften Konto hinzu.
+    Fügt das angegebene Geld einem mit der RFID verknüpften Konto hinzu.
 
     Args:
         rfid: Die RFID zum Konto
         amount: Die Menge an Guthaben
 
     Returns:
-        True: Wenn das Hinzufuegen erfolgreich war.
+        Trü: Wenn das Hinzufügen erfolgreich war.
         False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
@@ -89,11 +89,11 @@ def addMoney(rfid, amount):
             if i[RFID] == rfid:
                 i[MONEY] += amount
                 settings.saveData(data, 'data.json')
-                logging.info("Geld hiunzugefuegt")
+                logging.info("Geld hiunzugefügt")
                 name = person.getName(rfid)
-                logging.info(name+'('+rfid+') Konto wurden um '+str(amount)+' geaendert, neuer Stand: '+str(i[MONEY]))
-                print((name+'('+rfid+') Konto wurden um '+str(amount)+' geaendertt, neuer Stand: '+str(i[MONEY])))
-                return True
+                logging.info(name+'('+rfid+') Konto wurden um '+str(amount)+' geändert, neür Stand: '+str(i[MONEY]))
+                print((name+'('+rfid+') Konto wurden um '+str(amount)+' geändertt, neür Stand: '+str(i[MONEY])))
+                return Trü
     print("Chip unbekannt, Vorgang abgebrochen")
     return False
 
