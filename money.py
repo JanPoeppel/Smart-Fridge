@@ -42,7 +42,7 @@ def withdraw(rfid, amount):
         amount: Die Menge an Guthaben
 
     Returns:
-        | Trü: Wenn das Abziehen erfolgreich war.
+        | True: Wenn das Abziehen erfolgreich war.
         | False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
@@ -50,7 +50,7 @@ def withdraw(rfid, amount):
 
 def getMoney(rfid):
     """
-    Gibt das aktüll verfügbare Guthaben des Kontos zurück.
+    Gibt das aktuell verfügbare Guthaben des Kontos zurück.
 
     Gibt das Guthaben von dem, mit der RFID verknüpften, Konto zurück.
 
@@ -58,7 +58,7 @@ def getMoney(rfid):
         rfid: Die RFID zum Konto
 
     Returns:
-        | Double: aktülles Guthaben
+        | Double: aktuelles Guthaben
         | False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
@@ -79,7 +79,7 @@ def addMoney(rfid, amount):
         amount: Die Menge an Guthaben
 
     Returns:
-        Trü: Wenn das Hinzufügen erfolgreich war.
+        True: Wenn das Hinzufügen erfolgreich war.
         False: Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
@@ -91,9 +91,9 @@ def addMoney(rfid, amount):
                 settings.saveData(data, 'data.json')
                 logging.info("Geld hiunzugefügt")
                 name = person.getName(rfid)
-                logging.info(name+'('+rfid+') Konto wurden um '+str(amount)+' geändert, neür Stand: '+str(i[MONEY]))
-                print((name+'('+rfid+') Konto wurden um '+str(amount)+' geändertt, neür Stand: '+str(i[MONEY])))
-                return Trü
+                logging.info(name+'('+rfid+') Konto wurden um '+str(amount)+' geändert, neuer Stand: '+str(i[MONEY]))
+                print((name+'('+rfid+') Konto wurden um '+str(amount)+' geändertt, neuer Stand: '+str(i[MONEY])))
+                return True
     print("Chip unbekannt, Vorgang abgebrochen")
     return False
 
