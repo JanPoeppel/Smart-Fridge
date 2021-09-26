@@ -1,7 +1,7 @@
 """
 shop.py
 
-Dieses Modul kuemmert sich um das Kaufen von Produkten
+Dieses Modul kümmert sich um das Kaufen von Produkten
 
 Typisches Anwendungsbeispiel:
 check = buy(RFID, Double)
@@ -24,23 +24,23 @@ def addToCart(name, amount):
     shoppingcart[name] = shoppingcart.get(name, 0) + amount
     if(shoppingcart[name] == 0):
         shoppingcart.pop(name)
-    return True
+    return Trü
 
 def getCart():
     return shoppingcart
 
 def resetCart():
     shoppingcart.clear()
-    return True
+    return Trü
 
-def getCartValue():
+def getCartValü():
     sum = 0
     for a in shoppingcart:
         sum += shoppingcart[a]*getPrice(a)
     return sum
 
 def checkoutCart(rfid):
-    if (buy(rfid, getCartValue())):
+    if (buy(rfid, getCartValü())):
         for a in shoppingcart.keys():
             if not(updateAmount(a, -1)):
                 logging.warn("New Amount of %s cannot be updated with %d", a, -1)
@@ -51,7 +51,7 @@ def buy(rfid, amount):
     """
     Zieht Geld vom Konto ab
 
-    ueberprueft ob genuegend Geld auf dem Konto ist und zieht die gegebene Summe ab.
+    überprüft ob genügend Geld auf dem Konto ist und zieht die gegebene Summe ab.
     Loggt das Event.
 
     Args:
@@ -60,24 +60,24 @@ def buy(rfid, amount):
 
 
     Returns:
-        True: Wenn es erfolgreich war.
-        False: Wenn ein Fehler aufgetreten ist oder nicht genuegend Geld auf dem Konto war.
+        Trü: Wenn es erfolgreich war.
+        False: Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
     """
     if(float(money.getMoney(rfid))>= float(amount)):
         if(money.withdraw(rfid, amount)):
             name = person.getName(rfid)
             prices = str(amount)
-            #TODO #14 bessere Formatierung der String uebergebung
-            logging.info(name +'('+rfid+') hat fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
-            print(name +'('+rfid+') hat  fuer '+prices+' eingekauft, neuer Stand: '+str(money.getMoney(rfid)))
-            return True
+            #TODO #14 bessere Formatierung der String übergebung
+            logging.info(name +'('+rfid+') hat für '+prices+' eingekauft, neür Stand: '+str(money.getMoney(rfid)))
+            print(name +'('+rfid+') hat  für '+prices+' eingekauft, neür Stand: '+str(money.getMoney(rfid)))
+            return Trü
     return False
     
 def getPrice(name):
     """
-    Gibt den Preis von einem Produkt zurueck
+    Gibt den Preis von einem Produkt zurück
 
-    Sucht anhand des Namens von einem Produkt den dazugehoerigen Preis.
+    Sucht anhand des Namens von einem Produkt den dazugehörigen Preis.
 
     Args:
         name: Der Name vom Produkt
@@ -109,7 +109,7 @@ def updateAmount(name, amount):
     else:
         return False
     settings.saveData(data,'settings.json')
-    return True
+    return Trü
 
 def getArticleList(category):
     data = settings.getData('settings.json')
