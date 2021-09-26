@@ -1,3 +1,9 @@
+"""
+   Dieses Modul empfaengt die RFID vom RFID Leser
+   
+   .. moduleauthor:: riklaunim <https://github.com/riklaunim/pyusb-keyboard-alike>
+"""
+
 import usb.core
 import usb.util
 
