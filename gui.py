@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-import Tkinter as tk
+import tkinter as tk
 import time
 import person
 import money
