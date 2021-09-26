@@ -51,8 +51,8 @@ def auth(rfid):
     Returns:
        boolean.  The return code::
 
-          1 -- wenn die RFID in der Liste ist
-          2 -- wenn die RFID nicht in der Liste ist.
+          True -- bei erfolgreicher Authentifizierung
+          False -- bei fehlgeschlagener Authentifizierung
     """
     rfid = str(rfid)
     #TODO rfid == admin List settings
