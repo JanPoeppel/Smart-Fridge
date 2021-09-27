@@ -42,7 +42,7 @@ def withdraw(rfid, amount):
         amount: Die Menge an Guthaben
 
     Returns:
-       boolean.  The return code::
+       Boolean.  The return code::
        
         True -- Wenn das Abziehen erfolgreich war.
         False -- Wenn ein Fehler aufgetreten ist.
@@ -83,7 +83,7 @@ def addMoney(rfid, amount):
         amount: Die Menge an Guthaben
 
     Returns:
-       boolean.  The return code::
+       Boolean.  The return code::
        
         True -- Wenn das Hinzufügen erfolgreich war.
         False -- Wenn ein Fehler aufgetreten ist.
@@ -125,7 +125,7 @@ def getAll():
     Über diese Funktion kann geprüft werden, wieviel Geld sich auf Konten aktuell befindet.
 
     Returns:
-       double.  The return code::
+       Double.  The return code::
        
         Double -- Die Summe aller Konten
     """
