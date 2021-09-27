@@ -1507,6 +1507,9 @@ class PageStatistikBalance(tk.Frame):
         self.rfid.configure(width=324)
         
 def start():
+    """
+    Startet die Benutzeroberfläche
+    """
     app = SeaofBTCapp()
     app.mainloop()
     
