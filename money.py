@@ -105,7 +105,7 @@ def addMoney(rfid, amount):
 
 def addspent(name, amount):
     """
-    Erhöht den Wert des gesamt ausgegeben Betrages eines Nutzenden
+    Erhöht den Wert des gesamten ausgegebenen Betrages eines Nutzenden
 
     Args:
         name: Der Name des Nutzenden
