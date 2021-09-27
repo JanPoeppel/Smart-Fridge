@@ -9,7 +9,9 @@ rfid = read()
 import reader
 
 def read(): 
-    
+    """
+    Initalisiert das reader Modul und wartet auf entspreche zurückgegebene Werte des RFID-Lesers
+    """
     reader1 = reader.Reader(0x13ba, 0x0018, 10, 8, should_reset=False)
     reader1.initialize()
     rfids =str(reader1.read().strip())
