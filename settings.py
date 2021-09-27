@@ -71,7 +71,7 @@ def getPath(name):
 
 def getData(name):
     """
-    Läd die Datei
+    Lädt die Datei
 
     """
       #TODO #22 Can not read on windows, test on rasp!
