@@ -21,7 +21,7 @@ Die Jugendlichen können sich einen RFID-Chip oder -Karte bei einem Verantwortli
 Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwendet, bei anderen Herstellern muss auf
 
 
-## Installation (ohne Vorwissen)
+## Installation
 
 1. Die Micro SD Karte an einem Computer mit dem bereitgestellten Image beschreiben und das Display auf dem Raspberry Pi anbringen. 
 Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.net/files/files/Produkte/RB-TFT3.5/RB-TFT-Anleitung_04082020.pdf "joy-it.net") zu finden.
@@ -45,26 +45,22 @@ Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.n
    sudo python SmartFridge/main.py
    ```
 
-## Installation (mit Vorwissen)
-Clonen des Github Projekt
-```shell
-$ git clone https://github.com/JanPoeppel/Smart-Fridge.git
-```
-Installation aller Vorraussetzungen
-```shell
-TODO python 3 als standart
-```
+## Einrichtung des Magnetschlosses
+
+1a. Anschluss aller GPIO Pins an das Display über Kabel
+1b. Dabei den 5V Anschluss von Pin 4 nicht mit dem Display verbinden
+2. Das Relais mit den GPIO Pins wie im folgenden Bild verkabeln
+   a) Braunes Kabel zu GND (Pin 39)
+   b) Orangenes Kabel zu 5V (Pin 4)
+   c) Rotes Kabel zu GPIO 19 (Pin 35)
+3. Ein 12V Netzteil mit einem Adapter auf Klemmen verbinden.
+4. Die Klemmen mit einem Kabel des Magnetschloss sowie dem Eingang des Releais verbinden.
+5. Das andere Kabel des Magnetschlosses mit dem Ausgang des Relais verbinden
 
 
-
-Verlinkung zum doc und noch füllen
-
-- Auflösung des Display setzten
 - Anzeigeeinstellungen auf medium 
 
 - python 3 als standart
-
-wenn programmierer: gpg fehler lösung:https://canox.net/2018/10/gpg-unpassender-ioctl-i-o-control-fuer-das-geraet-fehler-beheben/
 
 ## Kauflinks (keine Affiliate Links)
 Hier eine Liste an Komponenten wie sie im Projekt genutzt und getestet wurden. (Wir bekommen keine Vergütung wenn über diese Links ein Produkt gekauft wird)\
