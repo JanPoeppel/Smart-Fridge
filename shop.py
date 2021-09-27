@@ -32,6 +32,7 @@ def addToCart(name, amount):
     
     Returns:
        Boolean.  The return code::
+       
           True -- Bei erfolgreichem hinzufügen
     """
     shoppingcart[name] = shoppingcart.get(name, 0) + amount
@@ -45,6 +46,7 @@ def getCart():
     
     Returns:
        Array.  The return code::
+       
           Array -- Der aktuelle Warenkorb
     """
     return shoppingcart
