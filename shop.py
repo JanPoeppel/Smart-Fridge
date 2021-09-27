@@ -21,25 +21,78 @@ import logging
 shoppingcart ={}
 
 def addToCart(name, amount):
+    """
+    Fügt einen Artikel zum Warenkorb hinzu.
+    
+    Fügt die angegebene Anzahl vom angegeben Artikel zum Warenkorb hinzu.
+    
+    Args:
+        name: Der Name des Artikels
+        amount: Die Menge des Artikels
+    
+    Returns:
+       Boolean.  The return code::
+          True -- Bei erfolgreichem hinzufügen
+    """
     shoppingcart[name] = shoppingcart.get(name, 0) + amount
     if(shoppingcart[name] == 0):
         shoppingcart.pop(name)
     return True
 
 def getCart():
+    """
+    Gibt den aktuellen Warenkorb zurück.
+    
+    Returns:
+       Array.  The return code::
+          Array -- Der aktuelle Warenkorb
+    """
     return shoppingcart
 
 def resetCart():
+    """
+    Löscht den aktuellen Warenkorb
+    
+    Returns:
+       Boolean.  The return code::
+       
+          True -- Bei erfolgreichem löschen
+    """
     shoppingcart.clear()
     return True
 
 def getCartValue():
+    """
+    Gibt den aktuellen Wert des Warenkorbs zurück
+    
+    Summiert die Preise aller im Warenkorb befindlichen Artikel, hierbei werden die Preise über die getPrice() Funktion abgefragt.
+    
+    Returns:
+       Double.  The return code::
+       
+          Double -- Der Wert des aktuellen Warenkorbs
+    """
     sum = 0
     for a in shoppingcart:
         sum += shoppingcart[a]*getPrice(a)
     return sum
 
 def checkoutCart(rfid):
+    """
+    Zieht den aktuellen Wert des Warenkorbs vom angegeben Konto ab und löscht den Warenkorb.
+    
+    Ruft die buy(RFID, amount) Funktion auf und setzt den Warenkorb über die resetCart() Funktion zurück.
+    Sollte nicht genug Geld auf dem Konto sein, oder ein Fehler beim zurücksetzten des Warenkorbs auftreten, wird False zurückgegeben.
+    
+    Args:
+        rfid: Die RFID des Kaufenden
+    
+    Returns:
+       Boolean.  The return code::
+       
+          True -- Bei erfolgreichem Kauf
+          False -- Bei einem Fehler.
+    """
     if (buy(rfid, getCartValue())):
         for a in shoppingcart.keys():
             if not(updateAmount(a, -1)):
@@ -60,8 +113,10 @@ def buy(rfid, amount):
 
 
     Returns:
-        True: Wenn es erfolgreich war.
-        False: Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
+       Boolean.  The return code:
+       
+        True -- Wenn es erfolgreich war.
+        False -- Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
     """
     if(float(money.getMoney(rfid))>= float(amount)):
         if(money.withdraw(rfid, amount)):
@@ -83,8 +138,10 @@ def getPrice(name):
         name: Der Name vom Produkt
 
     Returns:
-        Integer: den Preis.
-        False: Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
+       Boolean oder Integer.  The return code:
+       
+        Integer -- der Preis des Artikels.
+        False -- Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
     """
     data = settings.getData('settings.json')
     if (name in data['article']['drinks']):
@@ -98,6 +155,19 @@ def getPrice(name):
 
 
 def updateAmount(name, amount):
+    """
+    Ändert die noch verfügbare Menge eines Produktes
+
+    Args:
+        name: Der Name vom Produkt
+        amount: Die zu ändernde Anzahl
+
+    Returns:
+       Boolean.  The return code:
+       
+        True -- Wenn die Anzahl erfolgreich gespeichert werden konnte.
+        False -- Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
+    """
     data = settings.getData('settings.json')
     
     if (name in data['article']['drinks']):
@@ -112,5 +182,16 @@ def updateAmount(name, amount):
     return True
 
 def getArticleList(category):
+    """
+    Gibt die Liste an Produkten einer bestimmten Kategorie zurück
+
+    Args:
+        category: Die Kategorie
+
+    Returns:
+       Array.  The return code:
+       
+        Array -- Eine Liste aller Produkte einer Kategorie.
+    """
     data = settings.getData('settings.json')
     return data['article'][category].keys()
