@@ -41,9 +41,9 @@ def withdraw(rfid, amount):
         rfid: Die RFID zum Konto
         amount: Die Menge an Guthaben
 
-    Returns:
-        | True: Wenn das Abziehen erfolgreich war.
-        | False: Wenn ein Fehler aufgetreten ist.
+    Returns::
+        True -- Wenn das Abziehen erfolgreich war.
+        False -- Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
     return addMoney(rfid, -amount)
@@ -57,9 +57,9 @@ def getMoney(rfid):
     Args:
         rfid: Die RFID zum Konto
 
-    Returns:
-        | Double: aktuelles Guthaben
-        | False: Wenn ein Fehler aufgetreten ist.
+    Returns::
+        Double -- aktuelles Guthaben
+        False -- Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
@@ -78,9 +78,9 @@ def addMoney(rfid, amount):
         rfid: Die RFID zum Konto
         amount: Die Menge an Guthaben
 
-    Returns:
-        True: Wenn das Hinzufügen erfolgreich war.
-        False: Wenn ein Fehler aufgetreten ist.
+    Returns::
+        True -- Wenn das Hinzufügen erfolgreich war.
+        False -- Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
     data = settings.getData('data.json')
@@ -98,6 +98,13 @@ def addMoney(rfid, amount):
     return False
 
 def addspent(name, amount):
+    """
+    Erhöht den Wert des gesamt ausgegeben Betrages eines Nutzenden
+
+    Args:
+        name: Der Name des Nutzenden
+        amount: Die Menge an Guthaben
+    """
     data = settings.getData('data.json')
     for i in data[PEOPLE]:
         if i[NAME] == name:
@@ -106,6 +113,14 @@ def addspent(name, amount):
             break
 	
 def getAll():
+    """
+    Gibt die Summe aller Konten zurück
+    
+    Über diese Funktion kann geprüft werden, wieviel Geld sich auf Konten aktuell befindet.
+
+    Returns::
+        Double -- Die Summe aller Konten
+    """
     data = settings.getData('data.json')
     ret = 0
     for i in data[PEOPLE]:
