@@ -48,7 +48,7 @@ def auth(rfid):
         rfid: Die zu überprüfende RFID
     
     Returns:
-       Boolean. The return code::
+       Boolean. Die Rückgabewerte::
 
           True -- bei erfolgreicher Authentifizierung
           False -- bei fehlgeschlagener Authentifizierung
@@ -78,7 +78,7 @@ def addPerson(name, rfid):
         | rfid: Die RFID des Nutzenden
     
     Returns:
-       Integer. The return code::
+       Integer. Die Rückgabewerte::
        
           1 -- Wenn der Nutzende erfolgreich hinzugefügt wurde.
          -1 -- Wenn der Name bereits vergeben ist.
@@ -106,7 +106,7 @@ def rfidExists(rfid):
         rfid: Die zu überprüfende RFID
     
     Returns:
-       Boolean. The return code::
+       Boolean. Die Rückgabewerte::
        
         True -- Wenn die RFID bereits exisitiert.
         False -- Wenn die RFID noch nicht existiert.
@@ -126,7 +126,7 @@ def nameExists(name):
         name: Der zu überprüfende Name
     
     Returns:
-       Boolean. The return code::
+       Boolean. Die Rückgabewerte::
        
         True -- Wenn der Name bereits exisitiert.
         False -- Wenn der Name noch nicht existiert.
@@ -150,7 +150,7 @@ def __addNameRFID(name, rfid):
         | rfid: Die RFID des Nutzenden
     
     Returns:
-       Boolean. The return code::
+       Boolean. Die Rückgabewerte::
        
         True -- Wenn die Person erfolgreich angelegt wurde.
     """
@@ -176,7 +176,7 @@ def getName(rfid):
         rfid: Die RFID des Nutzenden
     
     Returns:
-       String. The return code::
+       String. Die Rückgabewerte::
        
         String -- Den Namen zu der RFID.
         'Unknown' -- Wenn die RFID nicht existiert.
@@ -196,7 +196,7 @@ def getRFID(name):
         name: Der Name des Nutzenden
     
     Returns:
-       String. The return code::
+       String. Die Rückgabewerte::
        
         String -- Die RFID zu dem Namen RFID.
         'NoRFID' -- Wenn der Name nicht existiert.
@@ -215,7 +215,7 @@ def lastSeen(rfid):
         rfid: Die RFID des Nutzenden
     
     Returns:
-       Date oder String. The return code::
+       Date oder String. Die Rückgabewerte::
        
         Date -- Das Datum an dem die RFID zuletzt gesehen wurde.
         'NotFound' -- Wenn noch kein Datum existiert.
