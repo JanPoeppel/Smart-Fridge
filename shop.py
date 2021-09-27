@@ -31,7 +31,7 @@ def addToCart(name, amount):
         amount: Die Menge des Artikels
     
     Returns:
-       Boolean.  The return code::
+       Boolean.  Die Rückgabewerte::
        
           True -- Bei erfolgreichem hinzufügen
     """
@@ -45,7 +45,7 @@ def getCart():
     Gibt den aktuellen Warenkorb zurück.
     
     Returns:
-       Array.  The return code::
+       Array.  Die Rückgabewerte::
        
           Array -- Der aktuelle Warenkorb
     """
@@ -56,7 +56,7 @@ def resetCart():
     Löscht den aktuellen Warenkorb
     
     Returns:
-       Boolean.  The return code::
+       Boolean.  Die Rückgabewerte::
        
           True -- Bei erfolgreichem löschen
     """
@@ -70,7 +70,7 @@ def getCartValue():
     Summiert die Preise aller im Warenkorb befindlichen Artikel, hierbei werden die Preise über die getPrice() Funktion abgefragt.
     
     Returns:
-       Double.  The return code::
+       Double.  Die Rückgabewerte::
        
           Double -- Der Wert des aktuellen Warenkorbs
     """
@@ -90,7 +90,7 @@ def checkoutCart(rfid):
         rfid: Die RFID des Kaufenden
     
     Returns:
-       Boolean.  The return code::
+       Boolean.  Die Rückgabewerte::
        
           True -- Bei erfolgreichem Kauf
           False -- Bei einem Fehler.
@@ -115,7 +115,7 @@ def buy(rfid, amount):
 
 
     Returns:
-       Boolean.  The return code::
+       Boolean.  Die Rückgabewerte::
        
         True -- Wenn es erfolgreich war.
         False -- Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
@@ -140,7 +140,7 @@ def getPrice(name):
         name: Der Name vom Produkt
 
     Returns:
-       Boolean oder Integer.  The return code::
+       Boolean oder Integer.  Die Rückgabewerte::
        
         Integer -- der Preis des Artikels.
         False -- Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
@@ -165,7 +165,7 @@ def updateAmount(name, amount):
         amount: Die zu ändernde Anzahl
 
     Returns:
-       Boolean.  The return code::
+       Boolean.  Die Rückgabewerte::
        
         True -- Wenn die Anzahl erfolgreich gespeichert werden konnte.
         False -- Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
@@ -191,7 +191,7 @@ def getArticleList(category):
         category: Die Kategorie
 
     Returns:
-       Array.  The return code::
+       Array.  Die Rückgabewerte::
        
         Array -- Eine Liste aller Produkte einer Kategorie.
     """
