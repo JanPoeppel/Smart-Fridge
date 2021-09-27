@@ -165,7 +165,7 @@ def updateAmount(name, amount):
         amount: Die zu ändernde Anzahl
 
     Returns:
-       Boolean.  The return code:
+       Boolean.  The return code::
        
         True -- Wenn die Anzahl erfolgreich gespeichert werden konnte.
         False -- Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
@@ -191,7 +191,7 @@ def getArticleList(category):
         category: Die Kategorie
 
     Returns:
-       Array.  The return code:
+       Array.  The return code::
        
         Array -- Eine Liste aller Produkte einer Kategorie.
     """
