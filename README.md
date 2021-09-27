@@ -47,8 +47,8 @@ Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.n
 
 ## Einrichtung des Magnetschlosses
 
-1a. Anschluss aller GPIO Pins an das Display über Kabel
-1b. Dabei den 5V Anschluss von Pin 4 nicht mit dem Display verbinden
+1. Anschluss aller GPIO Pins an das Display über Kabel
+   Dabei den 5V Anschluss von Pin 4 nicht mit dem Display verbinden
 2. Das Relais mit den GPIO Pins wie im folgenden Bild verkabeln
    a) Braunes Kabel zu GND (Pin 39)
    b) Orangenes Kabel zu 5V (Pin 4)
