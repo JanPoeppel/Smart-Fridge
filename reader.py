@@ -1,5 +1,5 @@
 """
-   Dieses Modul empfaengt die RFID vom RFID Leser
+   Dieses Modul empfängt die RFID vom RFID Leser
    
 """
 
