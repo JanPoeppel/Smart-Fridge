@@ -29,7 +29,7 @@ Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.n
 2. Befolge die Installationsanweisungen auf dem Display\
    Am Ende muss der RaspberryPi neugestartet werden.
 3. a) mit Internetverbindung:\
-      Kopiere die Dateien aus dem gitrepository über folgenden Befehl:
+      Kopiere die Dateien aus dem Gitrepository über folgenden Befehl:
       ```shell
       git clone https://github.com/JanPoeppel/Smart-Fridge.git
       ```
@@ -40,24 +40,11 @@ Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.n
    ```shell
    sudo apt-get install python-usb python3-usb
    ```
+5. Starten des Programmes mit dem Befehl
+   ```shell
+   sudo python SmartFridge/main.py
+   ```
 
-
-
-
-
-Alle nötigen Vorraussetzungen installieren
-```shell
-pip3 install -r requirements.txt
-```
-Den Raspberry rebooten.
-```shell
-sudo reboot -r now
-```
-Das Programm sollte sich nun automatisch beim starten öffnen.\
-Manuell kann es aber auch mit folgendem Befehl gestartet werden
-```shell
-python main.py
-```
 ## Installation (mit Vorwissen)
 Clonen des Github Projekt
 ```shell
