@@ -35,7 +35,7 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
       Kopiere die Dateien aus dem Gitrepository über folgenden Befehl:
       ```shell
       git clone https://github.com/JanPoeppel/Smart-Fridge.git
-      ```\
+      ```
       ![](images/clone.png?raw=true)
    b) ohne Internetverbindung
        Die [.zip Datei](https://github.com/JanPoeppel/Smart-Fridge/archive/refs/heads/main.zip) downloaden und auf einem USB Stick entpacken.\
