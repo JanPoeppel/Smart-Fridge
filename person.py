@@ -26,7 +26,6 @@ def init():
     Erstellt die data.json wenn noch keine existiert.
     """
     
-
     if not(settings.fileExist(settings.getPath('data.json'))):
         data = {}
         data[PEOPLE] = []
