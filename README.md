@@ -25,7 +25,7 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
 
 1. Die Micro SD Karte an einem Computer mit dem bereitgestellten Image beschreiben und das Display auf dem Raspberry Pi anbringen. 
    Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.net/files/files/Produkte/RB-TFT3.5/RB-TFT-Anleitung_04082020.pdf "joy-it.net") zu      finden.
-   Dies sollte dann so Ausschauen:  
+   Dies sollte dann so Ausschauen:\  
    ![](images/imag.png?raw=true)
    
    
@@ -56,9 +56,13 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
    a) Braunes Kabel zu GND (Pin 39)\
    b) Orangenes Kabel zu 5V (Pin 4)\
    c) Rotes Kabel zu GPIO 19 (Pin 35)\
+   Dies sollte nun wie folgt Aussehen:\
+   ![](images/relais_rasp.png?raw=true)
 3. Ein 12V Netzteil mit einem Adapter auf Klemmen verbinden.
 4. Die Klemmen mit einem Kabel des Magnetschloss sowie dem Eingang des Releais verbinden.
-5. Das andere Kabel des Magnetschlosses mit dem Ausgang des Relais verbinden
+5. Das andere Kabel des Magnetschlosses mit dem Ausgang des Relais verbinden\
+   Dies sollte so Aussehen:\
+   ![](images/relais_lock.png?raw=true)
 
 
 - Anzeigeeinstellungen auf medium 
