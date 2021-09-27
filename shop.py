@@ -24,7 +24,7 @@ def addToCart(name, amount):
     """
     Fügt einen Artikel zum Warenkorb hinzu.
     
-    Fügt die angegebene Anzahl vom angegeben Artikel zum Warenkorb hinzu.
+    Fügt die angegebene Anzahl vom angegebenen Artikel zum Warenkorb hinzu.
     
     Args:
         name: Der Name des Artikels
@@ -67,7 +67,7 @@ def getCartValue():
     """
     Gibt den aktuellen Wert des Warenkorbs zurück
     
-    Summiert die Preise aller im Warenkorb befindlichen Artikel, hierbei werden die Preise über die getPrice() Funktion abgefragt.
+    Summiert die Preise aller im Warenkorb befindlichen Artikel. Hierbei werden die Preise über die getPrice() Funktion abgefragt.
     
     Returns:
        Double.  Die Rückgabewerte::
@@ -84,7 +84,7 @@ def checkoutCart(rfid):
     Zieht den aktuellen Wert des Warenkorbs vom angegeben Konto ab und löscht den Warenkorb.
     
     Ruft die buy(RFID, amount) Funktion auf und setzt den Warenkorb über die resetCart() Funktion zurück.
-    Sollte nicht genug Geld auf dem Konto sein, oder ein Fehler beim zurücksetzten des Warenkorbs auftreten, wird False zurückgegeben.
+    Sollte nicht genug Geld auf dem Konto sein, oder ein Fehler beim Zurücksetzen des Warenkorbs auftreten, wird False zurückgegeben.
     
     Args:
         rfid: Die RFID des Kaufenden
