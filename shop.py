@@ -115,7 +115,7 @@ def buy(rfid, amount):
 
 
     Returns:
-       Boolean.  The return code:
+       Boolean.  The return code::
        
         True -- Wenn es erfolgreich war.
         False -- Wenn ein Fehler aufgetreten ist oder nicht genügend Geld auf dem Konto war.
@@ -140,7 +140,7 @@ def getPrice(name):
         name: Der Name vom Produkt
 
     Returns:
-       Boolean oder Integer.  The return code:
+       Boolean oder Integer.  The return code::
        
         Integer -- der Preis des Artikels.
         False -- Wenn ein Fehler aufgetreten ist oder das Produkt nicht gefunden wurde.
