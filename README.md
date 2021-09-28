@@ -78,10 +78,6 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
    ![](images/relais_lock.png?raw=true)
 
 
-- Anzeigeeinstellungen auf medium 
-
-- python 3 als standart
-
 ## Kauflinks (keine Affiliate Links)
 Hier eine Liste an Komponenten wie sie im Projekt genutzt und getestet wurden. (Wir bekommen keine Vergütung wenn über diese Links ein Produkt gekauft wird)\
 [Komplette Liste](https://www.reichelt.de/my/1877276 "reichelt.de")\
