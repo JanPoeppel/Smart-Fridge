@@ -893,7 +893,7 @@ class PageDeposit(tk.Frame):
         self.buy.configure(pady='0')
         self.buy.configure(text='aufladen')
         self.buy.configure(width=87)
-        self.buy.bind('<Button-1>',lambda e:controller.show_frame(Page13, amount = int(str(self.amount.get('1.0','end')).translate(None, '\n')), controller = controller))
+        self.buy.bind('<Button-1>',lambda e:controller.show_frame(Page13, amount = int(str(self.amount.get('1.0','end')).translate(str.maketrans('', '\n'))), controller = controller))
         
 class Page9(tk.Frame):
     
