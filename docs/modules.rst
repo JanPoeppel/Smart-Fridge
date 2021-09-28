@@ -15,3 +15,4 @@ Smart Fridge
    relais
    reader
    mapping
+   node
