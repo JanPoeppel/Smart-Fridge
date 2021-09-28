@@ -16,6 +16,7 @@ import money
 import logging
 import rfid
 import person
+import node
 import warnings
 import logging
 
@@ -86,6 +87,7 @@ def checkoutCart(rfid):
     
     Ruft die buy(RFID, amount) Funktion auf und setzt den Warenkorb über die resetCart() Funktion zurück.
     Sollte nicht genug Geld auf dem Konto sein, oder ein Fehler beim Zurücksetzen des Warenkorbs auftreten, wird False zurückgegeben.
+    Bei erfolgreichem Kauf wird eine Nachricht an das node Modul geschickt.
     
     Args:
         rfid: Die RFID des Kaufenden
@@ -97,6 +99,7 @@ def checkoutCart(rfid):
           False -- Bei einem Fehler.
     """
     if (buy(rfid, getCartValue())):
+        node.sendMessage("%s hat gerade für %d eingekauft." %(rfid, getCartValue))
         for a in shoppingcart.keys():
             if not(updateAmount(a, -1)):
                 logging.warn("New Amount of %s cannot be updated with %d", a, -1)
