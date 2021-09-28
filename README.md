@@ -45,7 +45,8 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
    Beide Umstände lassen sich jedoch durch folgenden Befehl beheben, da im neuen Betriebssystem Python3 als Standartversion gesetzt ist.
    ```shell
    sudo apt-get --allow-releaseinfo-change update
-   
+   ```
+   ```shell
    sudo apt-get upgrade
    ```
  
