@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 """
    Dieses Modul empfängt die RFID vom RFID Leser
    
