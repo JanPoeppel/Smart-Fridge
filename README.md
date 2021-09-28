@@ -76,6 +76,9 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
 5. Das andere Kabel des Magnetschlosses mit dem Ausgang des Relais verbinden\
    Dies sollte so Aussehen:\
    ![](images/relais_lock.png?raw=true)
+   
+## Setup von Node-RED
+Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-started/raspberrypi#installing-and-upgrading-node-red) zu finden, alle relevanten Befehle sind jedoch hier beschrieben:\
 
 
 ## Kauflinks (keine Affiliate Links)
