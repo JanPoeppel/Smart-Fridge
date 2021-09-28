@@ -21,6 +21,7 @@ def sendMessage(msg):
     """
     if not (ENABLED):
         return
+    print('test')
     headers = {'Content-type': 'text/plain'}
     url = 'http://localhost:1880/hello-raw'
     res = requests.post(url, headers=headers, data = msg)
