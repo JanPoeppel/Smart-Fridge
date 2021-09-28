@@ -79,8 +79,18 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
    
 ## Setup von Node-RED
 Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-started/raspberrypi#installing-and-upgrading-node-red) zu finden, alle relevanten Befehle sind jedoch hier beschrieben:\
-
-
+1. Installation von Node-RED
+   ```shell
+   bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) --nodered-version="1.3.5"
+   ```
+2. Autostart on boot
+   ```shell
+   sudo systemctl enable nodered.service
+   ```
+   
+   
+   
+   
 ## Kauflinks (keine Affiliate Links)
 Hier eine Liste an Komponenten wie sie im Projekt genutzt und getestet wurden. (Wir bekommen keine Vergütung wenn über diese Links ein Produkt gekauft wird)\
 [Komplette Liste](https://www.reichelt.de/my/1877276 "reichelt.de")\
