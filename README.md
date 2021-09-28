@@ -49,6 +49,8 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
    ```shell
    sudo apt-get upgrade
    ```
+   
+   Das neue Betriebssystem soll jedoch laut Support des Displayherstellers in einem nächsten Update des Images direkt verwendet werden.
  
 6. Installieren von PyUSB 1.0
    ```shell
