@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 """
 statistik.py
 Dieses Modul kümmert sich um die Statistik.
