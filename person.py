@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 """
 Dieses Modul kümmert sich um das Verwalten der Nutzenden
 
