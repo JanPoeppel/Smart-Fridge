@@ -46,7 +46,7 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
    ```
 5. Starten des Programmes mit dem Befehl
    ```shell
-   sudo python SmartFridge/main.py
+   sudo python Smart-Fridge/main.py
    ```
 
 ## Einrichtung des Magnetschlosses
