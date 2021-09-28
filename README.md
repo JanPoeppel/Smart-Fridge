@@ -87,8 +87,10 @@ Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-
    ```shell
    sudo systemctl enable nodered.service
    ```
-   
-   
+3. Wenn man Norde-RED direkt benutzt möchte muss man es manuell starten:\
+   ```shell
+   node-red-start
+   ```
    
    
 ## Kauflinks (keine Affiliate Links)
