@@ -96,6 +96,10 @@ Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-
    http://http://raspberrypi.local:1880
    erreichbar
    
+5. Im letzten Schritt müssen wir noch das requests Package installieren um Nachrichten über das node.py Modul schicken zu können
+   ```shell
+   python -m pip install requests
+   ```
    
    
    
