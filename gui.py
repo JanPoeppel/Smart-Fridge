@@ -49,7 +49,7 @@ class SeaofBTCapp(tk.Tk):
             frame.show_ele(frame)
         elif(cont == PageBuyLogin):
             rfids = rfid.read()
-            status = shop.checkoutCart(rfids, amount)
+            status = shop.checkoutCart(rfids)
             if not(status):
                 self.show_frame(PageError, error = 'Nicht genug Geld', controller = controller, page = Page5)
             else:                
