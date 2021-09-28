@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 """
 Dieses Modul setzt die Werte des GPIO Pins
 """
