@@ -99,7 +99,7 @@ def checkoutCart(rfid):
           False -- Bei einem Fehler.
     """
     if (buy(rfid, getCartValue())):
-        node.sendMessage("%s hat gerade für %d eingekauft." %(rfid, getCartValue))
+        node.sendMessage("%s hat gerade für %d eingekauft." %(rfid, getCartValue()))
         for a in shoppingcart.keys():
             if not(updateAmount(a, -1)):
                 logging.warn("New Amount of %s cannot be updated with %d", a, -1)
