@@ -49,7 +49,7 @@ def withdraw(rfid, amount):
         False -- Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
-    return addMoney(rfid, -amount)
+    return addMoney(rfid, -(int(amount))
 
 def getMoney(rfid):
     """
