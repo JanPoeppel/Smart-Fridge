@@ -18,6 +18,7 @@ import time
 import rfid
 import gui
 import shop
+import node
 
 #import RPi.GPIO as GPIO
 
@@ -45,6 +46,7 @@ def start():
         logging.basicConfig(filename='log.log',level=logging.INFO)
         
         person.init()
+        node.sendMessage('Starte GUI')
         
         gui.start()        
         

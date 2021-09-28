@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 """
 node.py
 
@@ -5,11 +6,8 @@ Dieses Modul kümmert sich um das Senden von Nachrichten an Node-RED
 
 """
 ENABLED=False
-try:
-    import requests
-    ENABLED = True
-except ImportError:
-    ENABLED=False
+import requests
+ENABLED = True
 
 
 def sendMessage(msg):
