@@ -102,6 +102,9 @@ Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-
    ```
 6. Im lettzen Schritt müssen wir noch die Twitter Nodes installieren
    ```shell
+   cd .node-red/
+   ```
+   ```shell
    npm install node-red-node-twitter
    ```
 
