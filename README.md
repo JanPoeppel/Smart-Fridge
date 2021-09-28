@@ -40,11 +40,20 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
    b) ohne Internetverbindung
        Die [.zip Datei](https://github.com/JanPoeppel/Smart-Fridge/archive/refs/heads/main.zip) downloaden und auf einem USB Stick entpacken.\
        Dannach die Dateien auf den Raspberrypi kopieren
-4. Installieren von PyUSB 1.0
+5. In der aktuellen Version ist Python2 als Standart gesetzt. Da dieses Projekt schon auf den Nachfolger Python3 setzt, muss dies manuell geupdated werden.\
+   Ebenfalls gibt es eine neue Version des Betriebssystems, wesshalb ein update des RaspberryPi über apt-get update nicht möglich ist.\
+   Beide Umstände lassen sich jedoch durch folgenden Befehl beheben, da im neuen Betriebssystem Python3 als Standartversion gesetzt ist.
+   ```shell
+   sudo apt-get --allow-releaseinfo-change update
+   
+   sudo apt-get upgrade
+   ```
+ 
+6. Installieren von PyUSB 1.0
    ```shell
    sudo apt-get install python-usb python3-usb
    ```
-5. Starten des Programmes mit dem Befehl
+7. Starten des Programmes mit dem Befehl
    ```shell
    sudo python Smart-Fridge/main.py
    ```
