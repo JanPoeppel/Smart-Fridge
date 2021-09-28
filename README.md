@@ -24,8 +24,9 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
 ## Installation
 
 1. Die Micro SD Karte an einem Computer mit dem bereitgestellten Image beschreiben und das Display auf dem Raspberry Pi anbringen. 
-   Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.net/files/files/Produkte/RB-TFT3.5/RB-TFT-Anleitung_04082020.pdf "joy-it.net") zu      finden.
-   Dies sollte dann so Ausschauen:\  
+   Eine Anleitung sowie der Downloadlink für das Image ist [hier](https://joy-it.net/files/files/Produkte/RB-TFT3.5/RB-TFT-Anleitung_04082020.pdf "joy-it.net") zu      finden.\
+   Beim Beschreiben der SD-Karte kann beim RaspberryPi Imager über die Tastenkombination STRG+SHIFT+X direkt eine SSH Verbindung, sowie der hostname vergeben werden.\
+   Nach erfolgreichem Schreiben sollte es dann so ausschauen:\  
    ![](images/imag_succ.png?raw=true)
    
    
@@ -91,6 +92,11 @@ Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-
    ```shell
    node-red-start
    ```
+4. Dann ist der Editor über
+   http://http://raspberrypi.local:1880
+   erreichbar
+   
+   
    
    
 ## Kauflinks (keine Affiliate Links)
