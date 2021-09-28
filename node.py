@@ -1,9 +1,7 @@
 """
 node.py
 
-Dieses Modul kümmert sich um das Senden von Nachrichten an NodeRED
-
-Typisches Anwendungsbeispiel:
+Dieses Modul kümmert sich um das Senden von Nachrichten an Node-RED
 
 """
 ENABLED=False
