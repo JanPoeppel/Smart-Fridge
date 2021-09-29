@@ -34,7 +34,7 @@ def init():
 
 def withdraw(rfid, amount):
     """
-    Zieht Geld vom Guthaben ab
+    Zieht Geld vom Guthaben ab.
 
     Zieht das angegebene Guthaben von der verknüpften RFID ab.
 
@@ -106,10 +106,10 @@ def addMoney(rfid, amount):
 
 def addspent(name, amount):
     """
-    Erhöht den Wert des gesamten ausgegebenen Betrages eines Nutzenden
+    Erhöht den Wert des gesamten ausgegebenen Betrages von Nutzenden
 
     Args:
-        name: Der Name des Nutzenden
+        name: Der Name vom Nutzenden
         amount: Die Menge an Guthaben
     """
     data = settings.getData('data.json')
@@ -123,7 +123,7 @@ def getAll():
     """
     Gibt die Summe aller Konten zurück
     
-    Über diese Funktion kann geprüft werden, wieviel Geld sich auf Konten aktuell befindet.
+    Über diese Funktion kann geprüft werden, wieviel Geld sich aktuell auf Konten befindet.
 
     Returns:
        Double. Die Rückgabewerte::
