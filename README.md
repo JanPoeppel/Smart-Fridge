@@ -112,7 +112,42 @@ Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-
    ```
 Ein Flow, der beim Kauf eine Twitternachricht verfasst schaut dann wie folgt aus:
    ```shell
-[{"id":"54ec08c.8e130f8","type":"tab","label":"Flow 1","disabled":false,"info":""},{"id":"3ce387c8.f1ca38","type":"twitter out","z":"54ec08c.8e130f8","twitter":"","name":"Tweet","x":410,"y":240,"wires":[]},{"id":"3e1c5107.c1e3ae","type":"http in","z":"54ec08c.8e130f8","name":"","url":"/hello-raw","method":"post","upload":false,"swaggerDoc":"","x":160,"y":240,"wires":[["3ce387c8.f1ca38"]]}]
+   [
+    {
+        "id": "54ec08c.8e130f8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3ce387c8.f1ca38",
+        "type": "twitter out",
+        "z": "54ec08c.8e130f8",
+        "twitter": "",
+        "name": "Tweet",
+        "x": 410,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "3e1c5107.c1e3ae",
+        "type": "http in",
+        "z": "54ec08c.8e130f8",
+        "name": "",
+        "url": "/hello-raw",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 240,
+        "wires": [
+            [
+                "3ce387c8.f1ca38"
+            ]
+        ]
+    }
+]
    ```
    
 ## Kauflinks (keine Affiliate Links)
