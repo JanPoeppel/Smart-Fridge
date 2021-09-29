@@ -103,7 +103,7 @@ Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-
    ```shell
    python -m pip install requests
    ```
-6. Im lettzen Schritt müssen wir noch die Twitter Nodes installieren
+6. Im lettzen Schritt müssen noch die Twitter Nodes installiert werden
    ```shell
    cd .node-red/
    ```
