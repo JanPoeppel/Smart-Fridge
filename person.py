@@ -81,7 +81,7 @@ def addPerson(name, rfid):
     Returns:
        Integer. Die Rückgabewerte::
        
-          1 -- Wenn der Nutzende erfolgreich hinzugefügt wurde.
+          1 -- Wenn das Konto erfolgreich hinzugefügt wurde.
          -1 -- Wenn der Name bereits vergeben ist.
          -2 -- Wenn die RFID bereits vergeben ist.
          -3 -- Wenn ein interner Fehler aufgetreten ist.
@@ -147,8 +147,8 @@ def __addNameRFID(name, rfid):
     .. warning:: Bevor die Daten in die Datei gespeichert werden, muss geprüft werden, ob bereits ein Name oder eine RFID mit den Werten hinterlegt ist.
 
     Args:
-        | name: Der Name des Nutzenden
-        | rfid: Die RFID des Nutzenden
+        | name: Der Name vom Nutzenden
+        | rfid: Die RFID vom Nutzenden
     
     Returns:
        Boolean. Die Rückgabewerte::
@@ -174,7 +174,7 @@ def getName(rfid):
     Gibt den Namen zu einer RFID zurück.
 
     Args:
-        rfid: Die RFID des Nutzenden
+        rfid: Die RFID von der angefragten Person
     
     Returns:
        String. Die Rückgabewerte::
@@ -194,7 +194,7 @@ def getRFID(name):
     Gibt die RFID zu einem Namen zurück.
 
     Args:
-        name: Der Name des Nutzenden
+        name: Der Name der gesuchten Person
     
     Returns:
        String. Die Rückgabewerte::
@@ -213,7 +213,7 @@ def lastSeen(rfid):
     Gibt das Datum zurück an dem zuletzt mit der RFID eingekauft wurde.
 
     Args:
-        rfid: Die RFID des Nutzenden
+        rfid: Die RFID der gesuchten Person
     
     Returns:
        Date oder String. Die Rückgabewerte::
