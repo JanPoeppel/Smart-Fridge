@@ -89,10 +89,8 @@ def addPerson(name, rfid):
     
     if(rfidExists(rfid)):
         logging.warning('Versuch RFID doppelt anzulegen '+str(rfid) + ' '+str(name))
-        print('RFID bereits vorhanden, Vorgang wird abgebrochen')
         return -2
     elif(nameExists(name)):
-        print('Name bereits vorhanden')
         return -1
     else:
         if(__addNameRFID(name, rfid)):
