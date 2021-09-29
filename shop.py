@@ -90,7 +90,7 @@ def checkoutCart(rfid):
     Bei erfolgreichem Kauf wird eine Nachricht an das node Modul geschickt.
     
     Args:
-        rfid: Die RFID des Kaufenden
+        rfid: Die RFID der kaufenden Person
     
     Returns:
        Boolean.  Die Rückgabewerte::
@@ -110,7 +110,7 @@ def buy(rfid, amount):
     """
     Zieht Geld vom Konto ab
 
-    überprüft ob genügend Geld auf dem Konto ist und zieht die gegebene Summe ab.
+    Überprüft ob genügend Geld auf dem Konto ist und zieht die gegebene Summe ab.
     Loggt das Event.
 
     Args:
