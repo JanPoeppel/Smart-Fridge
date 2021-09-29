@@ -78,6 +78,9 @@ Touchscreen Display (in dieser Anleitung wird das unten verlinkte Display verwen
    Dies sollte so Aussehen:\
    ![](images/relais_lock.png?raw=true)
    
+   Der Schaltplan des Aufbaues sieht nun wie folgt aus:
+   ![](images/schaltplan.png?raw=true)
+   
 ## Setup von Node-RED
 Eine genaue Anleitung ist auf dieser [Website](https://nodered.org/docs/getting-started/raspberrypi#installing-and-upgrading-node-red) zu finden, alle relevanten Befehle sind jedoch hier beschrieben:\
 1. Installation von Node-RED
