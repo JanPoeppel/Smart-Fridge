@@ -23,6 +23,10 @@ def sendMessage(msg):
         return
     headers = {'Content-type': 'text/plain'}
     url = 'http://localhost:1880/hello-raw'
-    res = requests.post(url, headers=headers, data = msg)
+    try:
+        res = requests.post(url, headers=headers, data = msg)
+    except ConnectionError:
+        print("Connection Error")
+        
     print(res.text)
     
