@@ -124,7 +124,7 @@ class StartPage(tk.Frame):
         font00 = '-family {Courier New} -size 20 -weight normal -slant '  \
             'roman -underline 0 -overstrike 0'
         
-        tk.Frame.__init__(self,parent, height = 1024, width = 600)
+        tk.Frame.__init__(self,parent, height = 600, width = 1024)
         self.back = tk.Button(self)
         self.back.place(relx=0.0, rely=0.5, relheight=0.5, relwidth=0.5)
         self.back.configure(activebackground='#d9d9d9')
