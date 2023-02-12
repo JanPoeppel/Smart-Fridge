@@ -7,6 +7,7 @@ Dieses Modul kümmert sich um das Senden von Nachrichten an Node-RED
 ENABLED=False
 try:
     import requests
+    from urllib3.exceptions import RequestException
     from urllib3.exceptions import NewConnectionError
     ENABLED = True
 except ImportError:
@@ -26,7 +27,9 @@ def sendMessage(msg):
         headers = {'Content-type': 'text/plain'}
         url = 'http://localhost:1880/hello-raw'
         res = requests.post(url, headers=headers, data = msg)
-    except NewConnectionError as e:    # This is the correct syntax
-        res = e
+    except requests.exceptions.RequestException as e:  # This is the correct syntax
+        print("Error")
+        res = "Error"
 
     print(res.text)
+    
