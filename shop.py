@@ -104,6 +104,7 @@ def checkoutCart(rfid):
             if not(updateAmount(a, -1)):
                 logging.warn("New Amount of %s cannot be updated with %d", a, -1)
                 return resetCart()
+        return True
     return False
 
 def buy(rfid, amount):
