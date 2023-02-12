@@ -124,7 +124,7 @@ class StartPage(tk.Frame):
         font00 = '-family {Courier New} -size 20 -weight normal -slant '  \
             'roman -underline 0 -overstrike 0'
         
-        tk.Frame.__init__(self,parent, height = 320, width = 480)
+        tk.Frame.__init__(self,parent, height = 600, width = 1024)
         
         
         tk.Frame.__init__(self, parent)
