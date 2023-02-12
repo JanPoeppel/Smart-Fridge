@@ -39,27 +39,27 @@ def init():
         data[ARTICLE][DRINKS] = {}
         data[ARTICLE][FOOD] = {}
         data[ARTICLE][ALK]['Bier'] = {}
-        data[ARTICLE][ALK]['Bier']['price'] = 100
+        data[ARTICLE][ALK]['Bier']['price'] = 1
         data[ARTICLE][ALK]['Bier']['amount'] = 0
         drinks = ['Cola', 'Limo','Apfelschorle']
         for d in drinks:
             data[ARTICLE][DRINKS][d] = {}
-            data[ARTICLE][DRINKS][d]['price'] = 100
+            data[ARTICLE][DRINKS][d]['price'] = 1
             data[ARTICLE][DRINKS][d]['amount'] = 0
         data[ARTICLE][DRINKS]['Eistee'] = {}
-        data[ARTICLE][DRINKS]['Eistee']['price'] = 50
+        data[ARTICLE][DRINKS]['Eistee']['price'] = 0.5
         data[ARTICLE][DRINKS]['Eistee']['amount'] = 0
         data[ARTICLE][DRINKS]['Wasser'] = {}
-        data[ARTICLE][DRINKS]['Wasser']['price'] = 50
+        data[ARTICLE][DRINKS]['Wasser']['price'] = 0.5
         data[ARTICLE][DRINKS]['Wasser']['amount'] = 0
         data[ARTICLE][FOOD]['Pizza']= {}
-        data[ARTICLE][FOOD]['Pizza']['price'] = 250
+        data[ARTICLE][FOOD]['Pizza']['price'] = 2.5
         data[ARTICLE][FOOD]['Pizza']['amount'] = 0
         data[ARTICLE][FOOD]['Brezel']= {}
-        data[ARTICLE][FOOD]['Brezel']['price'] = 25
+        data[ARTICLE][FOOD]['Brezel']['price'] = 0.25
         data[ARTICLE][FOOD]['Brezel']['amount'] = 0
         data[ARTICLE][FOOD]['TK-Produkte']= {}
-        data[ARTICLE][FOOD]['TK-Produkte']['price'] = 250
+        data[ARTICLE][FOOD]['TK-Produkte']['price'] = 2.5
         data[ARTICLE][FOOD]['TK-Produkte']['amount'] = 0
 
 
