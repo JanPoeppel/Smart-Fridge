@@ -25,8 +25,7 @@ def sendMessage(msg):
     url = 'http://localhost:1880/hello-raw'
     try:
         res = requests.post(url, headers=headers, data = msg)
-    except ConnectionError:
-        print("Connection Error")
-        
+    except ConnectionError as e:    # This is the correct syntax
+        res = e
+                
     print(res.text)
-    
