@@ -49,7 +49,7 @@ def withdraw(rfid, amount):
         False -- Wenn ein Fehler aufgetreten ist.
     """
     rfid = str(rfid)
-    return addMoney(rfid, -(int(amount)))
+    return addMoney(rfid, -(float(amount)))
 
 def getMoney(rfid):
     """
@@ -133,5 +133,5 @@ def getAll():
     data = settings.getData('data.json')
     ret = 0
     for i in data[PEOPLE]:
-        ret += int(i[MONEY])
+        ret += float(i[MONEY])
     return ret
