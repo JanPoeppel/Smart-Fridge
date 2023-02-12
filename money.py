@@ -70,7 +70,7 @@ def getMoney(rfid):
     data = settings.getData('data.json')
     for i in data[PEOPLE]:
         if i[RFID] == rfid:
-            return (i[MONEY]/100)
+            return (i[MONEY])
     return False
 
 def addMoney(rfid, amount):
@@ -98,8 +98,8 @@ def addMoney(rfid, amount):
                 settings.saveData(data, 'data.json')
                 logging.info("Geld hiunzugefügt")
                 name = person.getName(rfid)
-                logging.info(name+'('+rfid+') Konto wurden um '+str(amount)+' geändert, neuer Stand: '+str(i[MONEY]/100))
-                print((name+'('+rfid+') Konto wurden um '+str(amount)+' geändert, neuer Stand: '+str(i[MONEY]/100)))
+                logging.info(name+'('+rfid+') Konto wurden um '+str(amount)+' geändert, neuer Stand: '+str(i[MONEY]))
+                print((name+'('+rfid+') Konto wurden um '+str(amount)+' geändert, neuer Stand: '+str(i[MONEY])))
                 return True
     print("Chip unbekannt, Vorgang abgebrochen")
     return False
@@ -133,5 +133,5 @@ def getAll():
     data = settings.getData('data.json')
     ret = 0
     for i in data[PEOPLE]:
-        ret += int(i[MONEY])/100
+        ret += int(i[MONEY])
     return ret
