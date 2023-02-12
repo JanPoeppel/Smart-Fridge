@@ -16,6 +16,7 @@ LARGE_FONT= ('Verdana', 12)
 class SeaofBTCapp(tk.Tk):
 
     def __init__(self, *args, **kwargs):
+        self.geometry("1024x700")
         tk.Tk.__init__(self, *args, **kwargs)
         container = tk.Frame(self)
         container.pack(side='top', fill='both', expand = True)
@@ -122,10 +123,7 @@ class StartPage(tk.Frame):
             
     def __init__(self, parent, controller):
         font00 = '-family {Courier New} -size 20 -weight normal -slant '  \
-            'roman -underline 0 -overstrike 0'
-        
-        tk.Frame.__init__(self,parent, height = 600, width = 1024)
-        
+            'roman -underline 0 -overstrike 0'  
         
         tk.Frame.__init__(self, parent)
         self.back = tk.Button(self)
