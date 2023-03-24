@@ -29,7 +29,7 @@ def top10(frame):
     list = {}
     for i in data[PEOPLE]:
         try:
-            list[str(i[NAME]).translate(None, '\n')] = i[SPENT]
+            # list[str(i[NAME]).translate(None, '\n')] = i[SPENT]
         except KeyError:
             # Key is not present
             print("KeyError "+i[NAME])
