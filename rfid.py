@@ -13,7 +13,7 @@ def read():
     """
     Initalisiert das reader Modul und wartet auf entsprechende zurückgegebene Werte des RFID-Lesers
     """
-    reader1 = reader.Reader(0x13ba, 0x0018, 12, 8, should_reset=False)
+    reader1 = reader.Reader(0x13ba, 0x0018, 12, 8, should_reset=False, debug=True)
     reader1.initialize()
     rfids =str(reader1.read().strip())
     reader1.disconnect()
