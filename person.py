@@ -54,7 +54,7 @@ def auth(rfid):
           True -- bei erfolgreicher Authentifizierung
           False -- bei fehlgeschlagener Authentifizierung
     """
-    rfid = str(rfid)
+    rfid = str(rfid).replace("\n", "")
     #TODO rfid == admin List settings
     data = settings.getData('data.json')
     admins = data[ADMIN]
