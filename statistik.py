@@ -38,8 +38,9 @@ def top10(frame):
             settings.saveData(data, 'data.json')
             pass
     i = 0
-    for key, value in sorted(list.items(), key=lambda k,v: (v,k), reverse=True):
+    for key, value in sorted(list.items(), key=lambda item: (-item[1], item[0]), reverse=True):
         if(i >= 5):
             break
         frame.Listbox1.insert(tk.END, '%s %s' % (value, key))
-        i = i+1  
+        i = i+1
+ 
