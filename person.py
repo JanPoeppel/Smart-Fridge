@@ -54,7 +54,7 @@ def auth(rfid):
           True -- bei erfolgreicher Authentifizierung
           False -- bei fehlgeschlagener Authentifizierung
     """
-    rfid = str(rfid).replace("\n", "")
+    rfid = str(rfid)
     #TODO rfid == admin List settings
     data = settings.getData('data.json')
     admins = data[ADMIN]
@@ -66,6 +66,7 @@ def auth(rfid):
     else:
         logging.warning('Fehlgeschlagener Login mit '+str(rfid) + ' ' + getName(rfid))
         print('Fehlgeschlagener Login von '+str(rfid) + ' ' + getName(rfid))
+        print(admins)
         return False
 
 def addPerson(name, rfid):
