@@ -18,5 +18,6 @@ def read():
     rfids =str(reader1.read().strip())
     reader1.disconnect()
     rfids = rfids.split('\n')[0]
+    print("testrfid "+rfids)
     return str(rfids)
     
