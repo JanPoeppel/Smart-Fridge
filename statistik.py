@@ -27,16 +27,6 @@ def top10(frame):
     frame.Listbox1.delete(0, tk.END)
     data = settings.getData('data.json')
     list = {}
-    for i in data[PEOPLE]:
-        try:
-            # list[str(i[NAME]).translate(None, '\n')] = i[SPENT]
-        except KeyError:
-            # Key is not present
-            print("KeyError "+i[NAME])
-            i[SPENT] = float(0)
-            list[i[NAME]] = i[SPENT]
-            settings.saveData(data, 'data.json')
-            pass
     i = 0
     for key, value in sorted(list.items(), key=lambda item: (-item[1], item[0]), reverse=True):
         if(i >= 5):
